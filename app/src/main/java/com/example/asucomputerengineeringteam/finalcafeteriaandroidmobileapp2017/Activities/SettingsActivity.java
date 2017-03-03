@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
-
 public class SettingsActivity extends AppCompatActivity {
 
 
