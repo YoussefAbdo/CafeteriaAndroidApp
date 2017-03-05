@@ -8,29 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.anas.mobileapp2017.Auth.LoginActivity">
-
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Login"
-        android:textSize="35dp" />
-
-    <!--TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textview"
-        android:layout_centerHorizontal="true"
-        android:text="Tutorials point"
-        android:textColor="#ff7aff24"
-        android:textSize="35dp" /-->
+    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.LoginActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:inputType="text"
+        android:id="@+id/loginEmailEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -41,55 +23,58 @@
         android:focusable="true"
         android:hint="Email"
         android:textColorHighlight="#ff7eff15"
-        android:textColorHint="#ffff25e6" />
-
-    <!--ImageView
-    android:id="@+id/imageView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/textView"
-    android:layout_centerHorizontal="true"
-    android:src="@drawable/abc" /-->
+        android:textColorHint="@color/color1"
+        android:maxLines="1"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/loginPasswordEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText"
+        android:layout_alignEnd="@+id/loginEmailEditText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignRight="@+id/loginEmailEditText"
+        android:layout_below="@+id/loginEmailEditText"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColorHint="#ffff25e6" />
+        android:textColorHint="@color/color1" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="240dp"
-        android:text="login" />
+        android:layout_below="@+id/loginPasswordEditText"
+        android:background="@color/color5"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="login"
+        android:textSize="30dp"
+        android:textColor="@color/color6"
+        android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:id="@+id/cancelButton"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="240dp"
+        android:layout_below="@+id/loginPasswordEditText"
+        android:background="@color/color5"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="160dp"
+        android:text="Cancel"
+        android:textColor="@color/color6"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
 
-        android:text="Cancel" />
     <TextView
         android:id="@+id/textview2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_alignParentBottom="true"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/cancelButton"
         android:layout_centerHorizontal="true"
-        android:text="@string/txtCredits"/>
-
+        android:textColor="@color/color7"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="@string/creating_a_new_email"/>
 </RelativeLayout>

@@ -22,6 +22,7 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        //http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/+id
 
         // Find the ListView resource.
         categoryListView = (ListView) findViewById(R.id.mainListView );

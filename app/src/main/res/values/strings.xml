@@ -7,4 +7,5 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="txtCredits">txtCredits</string>
+    <string name="creating_a_new_email">not a member? create a new account!</string>
 </resources>

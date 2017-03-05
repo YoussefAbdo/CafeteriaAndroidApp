@@ -7,21 +7,25 @@
             android:icon="@drawable/home"
             android:title="Home" />
         <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/login"
-            android:title="Login" />
+            android:id="@+id/nav_cafeterias"
+            android:icon="@drawable/cafeterias"
+            android:title="Cafeterias" />
         <item
-            android:id="@+id/nav_signup"
-            android:icon="@drawable/signup"
-            android:title="Sign Up" />
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/order"
+            android:title="Orders" />
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/settings"
+            android:title="Account" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/settings"
+            android:title="Settings" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/logout"
             android:title="Logout" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
     </group>
 
     <item android:title="Communicate">
@@ -36,5 +40,6 @@
                 android:title="Contact Us" />
         </menu>
     </item>
+
 
 </menu>

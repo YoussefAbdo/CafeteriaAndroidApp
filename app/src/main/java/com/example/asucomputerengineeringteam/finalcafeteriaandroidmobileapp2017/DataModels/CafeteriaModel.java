@@ -7,6 +7,15 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 public class CafeteriaModel {
     private int id ;
     private String name ;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public CafeteriaModel()
     {}

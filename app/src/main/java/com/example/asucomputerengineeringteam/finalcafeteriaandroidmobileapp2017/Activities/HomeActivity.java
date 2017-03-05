@@ -13,14 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.LoginActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.SignupActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    Button caf ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +34,15 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        caf = (Button)findViewById(R.id.caf);
+        caf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                Intent intent = new Intent(HomeActivity.this,CategoriesActivity.class);
+                Intent intent = new Intent(HomeActivity.this ,CafeteriaActivity.class);
                 startActivity(intent);
 
             }
         });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -61,59 +63,54 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_login) {
-            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_signup) {
-            Intent intent = new Intent(HomeActivity.this, SignupActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_logout) {
+        if (id == R.id.nav_home)
+        {
+            // we still at home page
+        }
+        else if (id == R.id.nav_logout)
+        {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_settings) {
+        }
+        else if (id == R.id.nav_settings)
+        {
             Intent intent = new Intent(HomeActivity.this,SettingsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_help) {
 
-        } else if (id == R.id.nav_contact) {
+        }
+        else if (id == R.id.nav_help)
+        {
+          Intent intent = new Intent(HomeActivity.this , HelpActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_contact)
+        {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
+        else if(id == R.id.nav_orders)
+        {
+            Intent intent = new Intent(HomeActivity.this,OrderActivity.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_cafeterias)
+        {
+            Intent intent = new Intent(HomeActivity.this,CafeteriaActivity.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.nav_account)
+        {
+            Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }
         return false;
-
     }
 }

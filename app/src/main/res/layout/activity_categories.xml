@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.example.anas.mobileapp2017.Activities.CategoriesActivity">
+    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity">
 
     <ListView android:layout_width="fill_parent"
         android:layout_height="fill_parent"

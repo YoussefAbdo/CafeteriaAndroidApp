@@ -1,6 +1,7 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView image , go_button ;
     TextView app_name , order;
 
+    /** Duration of wait **/
+    private final int SPLASH_DISPLAY_LENGTH = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +27,18 @@ public class MainActivity extends AppCompatActivity {
         image = (ImageView)findViewById(R.id.image);
         app_name = (TextView)findViewById(R.id.app_name);
         order = (TextView)findViewById(R.id.order);
-        go_button = (ImageView)findViewById(R.id.go_button);
 
-
-        go_button.setOnClickListener(new View.OnClickListener() {
+         /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/
+        new Handler().postDelayed(new Runnable(){
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                startActivity(intent);
+            public void run() {
+                /* Create an Intent that will start the Menu-Activity. */
+                Intent mainIntent = new Intent(MainActivity.this,HomeActivity.class);
+                MainActivity.this.startActivity(mainIntent);
+                MainActivity.this.finish();
             }
-        });
+        }, SPLASH_DISPLAY_LENGTH);
 
     }
 }

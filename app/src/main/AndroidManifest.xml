@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/food_icon"
@@ -10,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Splash.MainActivity">
+            android:label=""
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +21,10 @@
         <activity
             android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Authentication.LoginActivity"
-            android:label="Login" />
+            android:label="Login " />
         <activity
             android:name=".Authentication.SignupActivity"
             android:label="Sign Up" />
@@ -34,11 +36,18 @@
             android:label="Category" />
         <activity
             android:name=".Activities.MenuItemsActivity"
-            android:label="MenuItems" />
+            android:label="MenuItem"/>
         <activity
             android:name=".Activities.MenuItemDetailsActivity"
             android:label="Item Details" />
-
+        <activity android:name=".Activities.OrderActivity"
+            android:label="Orders"/>/>
+        <activity android:name=".Activities.HelpActivity"
+            android:label="Help"/>
+        />
+        <activity android:name=".Activities.CafeteriaActivity"
+            android:label="Cafeterias"/>
+       />
     </application>
 
 </manifest>
