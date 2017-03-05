@@ -21,13 +21,6 @@
         android:id="@+id/image"/>
 
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="450dp"
-        android:id="@+id/caf"
-        android:text="test"/>
-
     </RelativeLayout>
 
 

@@ -37,50 +37,41 @@ import java.util.List;
 public class CafeteriaActivity extends AppCompatActivity {
 
     // TextView tvJsonItem ;
-    ListView listView;
+    ListView list;
     public CafeteriaAdapter adapter;
     public List<CafeteriaModel> arrayList = new ArrayList<>();
-
+Button load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafeteria);
 
-        listView = (ListView) findViewById(R.id.list);
-
+        list = (ListView) findViewById(R.id.list);
+         load = (Button)findViewById(R.id.load);
         //  tvJsonItem = (TextView) findViewById(R.id.tvJsonIitem);
-        Button btnHit = (Button) findViewById(R.id.btnHit);
+          load.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                  // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
+                  new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
+                  //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
+                  adapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
+                  list.setAdapter(adapter);
+                  //adapter.arrayList.addAll(items);
+                  adapter.notifyDataSetChanged();
+                  //"http://cafeteriaapptest.azurewebsites.net/api/category"
+              }
+          });
 
-        btnHit.setOnClickListener(new View.OnClickListener() {
+
+        /*list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
-                new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
-                //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
-                adapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
-                listView.setAdapter(adapter);
-                //adapter.arrayList.addAll(items);
-                adapter.notifyDataSetChanged();
+                Toast.makeText(CafeteriaActivity.this,"ok",Toast.LENGTH_LONG).show();
             }
-        });
-        //"http://cafeteriaapptest.azurewebsites.net/api/category"
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // TODO Auto-generated method stub
-                String Slecteditem= itemname[+position];
-                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
-                // Intent intent = new Intent(MenuItemsActivity.this,MenuItemDetailsActivity.class);
-                //  intent.putExtra()
-                //  startActivity(intent);
-
-            }
-        });
+        });*/
     }
-
 
     public class JsonTask extends AsyncTask<String, Void, List<CafeteriaModel>> {
 
@@ -93,7 +84,7 @@ public class CafeteriaActivity extends AppCompatActivity {
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                //connection.setRequestMethod("GET");
+                connection.setRequestMethod("GET");
                 connection.connect();
                 InputStream stream = connection.getInputStream();
 
@@ -119,12 +110,6 @@ public class CafeteriaActivity extends AppCompatActivity {
             } catch (IOException e1) {
                 Log.e("LOG", "error", e1);
                 return null;
-
-
-                // return buffer.toString();
-                //  return categoryName + "-" + categoryId;
-                // tvJsonItem.setText(buffer.toString());
-                //  return finalBufferedData.toString();
 
             } finally {
                 if (connection != null) {
@@ -156,12 +141,14 @@ public class CafeteriaActivity extends AppCompatActivity {
             JSONArray parentArray = parentObject.getJSONArray("cafeterias");
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
+           // int id = "Id";
             // final int id = Integer.parseInt("Id");
             // StringBuffer finalBufferedData = new StringBuffer();
             for (int i = 0; i < parentArray.length(); i++) {
                 CafeteriaModel menuItemModel = new CafeteriaModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 menuItemModel.setName(finalObject.getString(name));
+               // menuItemModel.setId(finalObject.getInt(id));
 
 
                 //adding the final object in the list

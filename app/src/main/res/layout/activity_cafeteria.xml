@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CafeteriaActivity">
 
-  <!-- <TextView
+   <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
@@ -18,18 +18,20 @@
         android:id="@+id/text"
         android:text="Choose Your Cafeteria "
         android:textColor="@color/color1"
-        android:textStyle="bold"/>-->
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/btnHit"
-        android:text="Show All cafeterias"/>
+        android:textStyle="bold"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
         android:id="@+id/list">
     </ListView>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/load"
+        android:text="Load"
+        android:layout_marginLeft="250dp"/>
 
    <!-- <GridView
         android:layout_width="fill_parent"

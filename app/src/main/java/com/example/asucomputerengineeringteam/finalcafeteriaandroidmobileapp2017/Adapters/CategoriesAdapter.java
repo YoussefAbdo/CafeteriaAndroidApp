@@ -5,46 +5,42 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-
-import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemsActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-
 
 import java.util.List;
 
-/*
- * Created by Esraa Hosny on 3/4/2017.
+/**
+ * Created by Esraa Hosny on 3/5/2017.
+ */
 
-*/
-
-public class CafeteriaAdapter extends BaseAdapter {
+public class CategoriesAdapter extends BaseAdapter {
     //initialize context , arraylist
     private Context context;
-    public List<CafeteriaModel> cafeteriaModelArrayList ;
+    public List<CategoryModel> categoryModelList;
 
 
     //costructor takes context ,arraylist
-    public CafeteriaAdapter(Context context, List<CafeteriaModel> arrayList) {
+    public CategoriesAdapter(Context context, List<CategoryModel> arrayList) {
         super();
         this.context = context;
-        this.cafeteriaModelArrayList = arrayList;
+        this.categoryModelList = arrayList;
     }
 
     @Override
     public int getCount() {
-        return cafeteriaModelArrayList.size();
+        return categoryModelList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return cafeteriaModelArrayList.get(position);
+        return categoryModelList.get(position);
     }
 
     @Override
@@ -58,23 +54,20 @@ public class CafeteriaAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.cafeteria_row_item, parent, false);
         //  ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
         // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
-
+        CafeteriaModel cafeteriaModel = new CafeteriaModel();
         TextView cafname = (TextView) view.findViewById(R.id.cafname);
-        cafname.setText(cafeteriaModelArrayList.get(position).getName());
-
-
+        cafname.setText(categoryModelList.get(position).getName());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,CategoriesActivity.class);
+                Intent intent = new Intent(context, MenuItemsActivity.class);
                 context.startActivity(intent);
             }
         });
 
 
-
-      return view;
+        return view;
     }
-
 }
+
