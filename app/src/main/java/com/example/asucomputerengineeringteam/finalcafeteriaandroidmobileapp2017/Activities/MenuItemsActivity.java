@@ -1,6 +1,7 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -37,11 +38,16 @@ public class MenuItemsActivity extends AppCompatActivity {
     public menuitemAdapter adapter;
     public List<menuitems> arrayList = new ArrayList<>();
     Button load;
-
+    int id ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_items);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        id  = Integer.parseInt(extras.getString("idCat"));
+
         list = (ListView) findViewById(R.id.list);
         load = (Button) findViewById(R.id.load);
         //  tvJsonItem = (TextView) findViewById(R.id.tvJsonIitem);
@@ -49,7 +55,7 @@ public class MenuItemsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
-                new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
+                new JsonTask3().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem/GetByCategory/"+id);
                 //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
                 adapter = new menuitemAdapter(getApplicationContext(), arrayList);
                 list.setAdapter(adapter);
@@ -61,7 +67,7 @@ public class MenuItemsActivity extends AppCompatActivity {
 
     }
 
-    public class JsonTask extends AsyncTask<String, Void, List<menuitems>> {
+    public class JsonTask3 extends AsyncTask<String, Void, List<menuitems>> {
 
         @Override
         protected List<menuitems> doInBackground(String... params) {

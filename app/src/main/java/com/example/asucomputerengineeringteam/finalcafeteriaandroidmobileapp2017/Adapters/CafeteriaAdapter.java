@@ -2,6 +2,9 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.BaseAdapter;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity;
@@ -17,6 +21,7 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /*
@@ -56,23 +61,33 @@ public class CafeteriaAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.cafeteria_row_item, parent, false);
-        //  ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
+
+         ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
         // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
+        image.setImageResource(R.drawable.chef);
 
         TextView cafname = (TextView) view.findViewById(R.id.cafname);
         cafname.setText(cafeteriaModelArrayList.get(position).getName());
-
-
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,CategoriesActivity.class);
+                CafeteriaModel cafeteriaModel;
+                cafeteriaModel =cafeteriaModelArrayList.get(position);
+                int id = cafeteriaModel.getId();
+                intent.putExtra("idCaf",id);
                 context.startActivity(intent);
+
+               // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
             }
         });
 
-
+        //If bitmapdata is the byte array then getting Bitmap is done like this:
+       /* Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata, 0, bitmapdata.length);
+        ByteArrayOutputStream blob = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 *//* Ignored for PNGs *//*, blob);
+        byte[] bitmapdata = blob.toByteArray();*/
 
       return view;
     }

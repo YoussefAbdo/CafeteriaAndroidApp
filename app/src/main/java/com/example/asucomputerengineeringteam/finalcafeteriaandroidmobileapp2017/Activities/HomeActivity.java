@@ -16,8 +16,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.LoginActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.SignupActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity;
 

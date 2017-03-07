@@ -1,5 +1,6 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,10 +32,16 @@ public class CategoriesActivity extends AppCompatActivity {
     Button load;
     public CategoriesAdapter adapter;
     public List<CategoryModel> arrayList = new ArrayList<>();
+    int id ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        id  = Integer.parseInt(extras.getString("idCaf"));
+
         mainListView = (ListView) findViewById(R.id.mainListView);
         load = (Button)findViewById(R.id.load);
         //  tvJsonItem = (TextView) findViewById(R.id.tvJsonIitem);
@@ -42,7 +49,7 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
-                new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafeteria/" );
+                new JsonTask2().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/"+id );
                 //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
                 adapter = new CategoriesAdapter(getApplicationContext(), arrayList);
                 mainListView.setAdapter(adapter);
@@ -53,7 +60,7 @@ public class CategoriesActivity extends AppCompatActivity {
         });
 
     }
-    public class JsonTask extends AsyncTask<String, Void, List<CategoryModel>> {
+    public class JsonTask2 extends AsyncTask<String, Void, List<CategoryModel>> {
 
         @Override
         protected List<CategoryModel> doInBackground(String... params) {
@@ -127,13 +134,14 @@ public class CategoriesActivity extends AppCompatActivity {
             JSONArray parentArray = parentObject.getJSONArray("cafeterias");
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
+            String id = "Id";
             // final int id = Integer.parseInt("Id");
             // StringBuffer finalBufferedData = new StringBuffer();
             for (int i = 0; i < parentArray.length(); i++) {
                 CategoryModel categoryModel = new CategoryModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 categoryModel.setName(finalObject.getString(name));
-
+               categoryModel.setId(finalObject.getInt(String.valueOf(id)));
 
                 //adding the final object in the list
                 arrayList.add(categoryModel);

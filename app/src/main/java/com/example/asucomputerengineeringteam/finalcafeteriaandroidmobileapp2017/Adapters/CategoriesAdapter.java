@@ -61,11 +61,16 @@ public class CategoriesAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MenuItemsActivity.class);
+                Intent intent = new Intent(context,MenuItemsActivity.class);
+                CategoryModel categoryModel;
+                categoryModel= categoryModelList.get(position);
+                int id =categoryModel.getId();
+                intent.putExtra("idCat",id);
                 context.startActivity(intent);
+
+                // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
             }
         });
-
 
         return view;
     }
