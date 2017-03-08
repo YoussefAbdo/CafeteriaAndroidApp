@@ -150,7 +150,7 @@ public class CafeteriaActivity extends AppCompatActivity {
                     //adding the final object in the list
                     arrayList.add(menuItemModel);
                 }
-
+                Log.d("id", id);
                 Log.d("name data", name);
                 return arrayList;
             }

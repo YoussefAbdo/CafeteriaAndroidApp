@@ -69,13 +69,14 @@ public class CafeteriaAdapter extends BaseAdapter {
         TextView cafname = (TextView) view.findViewById(R.id.cafname);
         cafname.setText(cafeteriaModelArrayList.get(position).getName());
 
+        final TextView cafid = (TextView) view.findViewById(R.id.cafid);
+        cafname.setText(cafeteriaModelArrayList.get(position).getName());
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,CategoriesActivity.class);
-                CafeteriaModel cafeteriaModel;
-                cafeteriaModel =cafeteriaModelArrayList.get(position);
-                int id = cafeteriaModel.getId();
+                int id = cafid.getId();
                 intent.putExtra("idCaf",id);
                 context.startActivity(intent);
 

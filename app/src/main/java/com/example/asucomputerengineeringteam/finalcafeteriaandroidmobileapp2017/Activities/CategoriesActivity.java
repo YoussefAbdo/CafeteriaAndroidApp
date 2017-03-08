@@ -143,9 +143,11 @@ public class CategoriesActivity extends AppCompatActivity {
                 categoryModel.setName(finalObject.getString(name));
                categoryModel.setId(finalObject.getInt(String.valueOf(id)));
 
+
                 //adding the final object in the list
                 arrayList.add(categoryModel);
             }
+
 
             Log.d("name data", name);
             return arrayList;
