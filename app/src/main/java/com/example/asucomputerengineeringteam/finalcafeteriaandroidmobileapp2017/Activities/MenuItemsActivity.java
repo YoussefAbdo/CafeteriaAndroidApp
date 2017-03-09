@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.menuitemAdapter;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.menuitems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
@@ -36,7 +37,7 @@ public class MenuItemsActivity extends AppCompatActivity {
 
     ListView list;
     public menuitemAdapter adapter;
-    public List<menuitems> arrayList = new ArrayList<>();
+    public List<MenuItemModel> arrayList = new ArrayList<>();
     Button load;
     int id ;
     @Override
@@ -67,10 +68,10 @@ public class MenuItemsActivity extends AppCompatActivity {
 
     }
 
-    public class JsonTask3 extends AsyncTask<String, Void, List<menuitems>> {
+    public class JsonTask3 extends AsyncTask<String, Void, List<MenuItemModel>> {
 
         @Override
-        protected List<menuitems> doInBackground(String... params) {
+        protected List<MenuItemModel> doInBackground(String... params) {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
             String finalJson = null;
@@ -134,7 +135,7 @@ public class MenuItemsActivity extends AppCompatActivity {
             }
         }
 
-        private List<menuitems> getData(String jsontoString) throws JSONException {
+        private List<MenuItemModel> getData(String jsontoString) throws JSONException {
 
             JSONObject parentObject = new JSONObject(jsontoString);
             // JSONArray parentArray = parentObject.getJSONArray("menuItems");
@@ -144,7 +145,7 @@ public class MenuItemsActivity extends AppCompatActivity {
             // final int id = Integer.parseInt("Id");
             // StringBuffer finalBufferedData = new StringBuffer();
             for (int i = 0; i < parentArray.length(); i++) {
-                menuitems menuItemModel = new menuitems();
+                MenuItemModel menuItemModel = new MenuItemModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 menuItemModel.setName(finalObject.getString(name));
 

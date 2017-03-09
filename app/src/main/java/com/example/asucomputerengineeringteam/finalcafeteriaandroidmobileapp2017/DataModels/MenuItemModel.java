@@ -4,7 +4,7 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
  * Created by Esraa Hosny on 2/28/2017.
  */
 
-public class menuitems {
+public class MenuItemModel {
 
     private String id ;
     private String name ;
@@ -14,7 +14,7 @@ public class menuitems {
     private String Type ;
 
 
-    public menuitems() {
+    public MenuItemModel() {
     }
 
     public String getId() {
