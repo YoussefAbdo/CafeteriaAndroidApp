@@ -10,10 +10,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash.MainActivity"
+        <activity
+            android:name=".Splash.MainActivity"
             android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -21,7 +23,6 @@
             android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Authentication.LoginActivity"
             android:label="Login " />
@@ -36,18 +37,23 @@
             android:label="Category" />
         <activity
             android:name=".Activities.MenuItemsActivity"
-            android:label="MenuItem"/>
+            android:label="MenuItem" />
         <activity
             android:name=".Activities.MenuItemDetailsActivity"
             android:label="Item Details" />
-        <activity android:name=".Activities.OrderActivity"
-            android:label="Orders"/>/>
-        <activity android:name=".Activities.HelpActivity"
-            android:label="Help"/>
+        <activity
+            android:name=".Activities.OrderActivity"
+            android:label="Orders" />
         />
-        <activity android:name=".Activities.CafeteriaActivity"
-            android:label="Cafeterias"/>
-       />
+        <activity
+            android:name=".Activities.HelpActivity"
+            android:label="Help" />
+        />
+        <activity
+            android:name=".Activities.CafeteriaActivity"
+            android:label="Cafeterias" />
+        />
+        <activity android:name=".Activities.Basket"></activity>
     </application>
 
 </manifest>
