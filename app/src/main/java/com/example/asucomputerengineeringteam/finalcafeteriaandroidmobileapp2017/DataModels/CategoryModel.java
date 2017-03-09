@@ -52,7 +52,8 @@ public class CategoryModel {
     public static  class Cafeteria {
 
         private int cafId;
-        private String cafeteria;
+        private String cafName;
+        private String ImageData ;
 
         public int getCafId() {
             return cafId;
@@ -62,12 +63,20 @@ public class CategoryModel {
             this.cafId = cafId;
         }
 
-        public String getCafeteria() {
-            return cafeteria;
+        public String getCafName() {
+            return cafName;
         }
 
-        public void setCafeteria(String cafeteria) {
-            this.cafeteria = cafeteria;
+        public void setCafName(String cafName) {
+            this.cafName = cafName;
+        }
+
+        public String getImageData() {
+            return ImageData;
+        }
+
+        public void setImageData(String imageData) {
+            ImageData = imageData;
         }
     }
 

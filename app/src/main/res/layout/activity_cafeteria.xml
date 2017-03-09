@@ -11,7 +11,7 @@
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CafeteriaActivity">
 
    <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:textSize="20dp"
@@ -31,7 +31,7 @@
         android:layout_height="50dp"
         android:id="@+id/load"
         android:text="Load"
-        android:layout_marginLeft="250dp"/>
+        android:layout_marginLeft="200dp"/>
 
    <!-- <GridView
         android:layout_width="fill_parent"

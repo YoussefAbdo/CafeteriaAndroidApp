@@ -7,19 +7,27 @@
     android:layout_height="fill_parent"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:id="@+id/mainListView">
-    </ListView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:id="@+id/text"
+        android:text="Choose Your Category "
+        android:textColor="@color/color1"
+        android:textStyle="bold"/>
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:id="@+id/load"
         android:text="Load"
-        android:layout_marginLeft="250dp"/>
+        android:layout_marginLeft="200dp"/>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainListView">
+    </ListView>
 
 
 </LinearLayout>

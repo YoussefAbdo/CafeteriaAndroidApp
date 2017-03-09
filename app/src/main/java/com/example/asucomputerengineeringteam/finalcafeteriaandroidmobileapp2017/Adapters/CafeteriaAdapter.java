@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,14 +71,17 @@ public class CafeteriaAdapter extends BaseAdapter {
         cafname.setText(cafeteriaModelArrayList.get(position).getName());
 
         final TextView cafid = (TextView) view.findViewById(R.id.cafid);
-        cafname.setText(cafeteriaModelArrayList.get(position).getName());
+       // cafid.setText(cafeteriaModelArrayList.get(position).getId());
+       // cafid.setText((String.valueOf)(cafeteriaModelArrayList.get(position).getId()));
+        cafid.setText((cafeteriaModelArrayList.get(position).getId())+ "");
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,CategoriesActivity.class);
-                int id = cafid.getId();
+               Intent intent = new Intent(context,CategoriesActivity.class);
+               String id = String.valueOf(cafid.getId());
                 intent.putExtra("idCaf",id);
+                Log.v("id is right" , id);
                 context.startActivity(intent);
 
                // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();

@@ -49,7 +49,8 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
-                new JsonTask2().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/"+id );
+                new JsonTask2().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/" + id);
+                // http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafeteria/2131558558
                 //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
                 adapter = new CategoriesAdapter(getApplicationContext(), arrayList);
                 mainListView.setAdapter(adapter);
@@ -131,7 +132,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
             JSONObject parentObject = new JSONObject(jsontoString);
             // JSONArray parentArray = parentObject.getJSONArray("menuItems");
-            JSONArray parentArray = parentObject.getJSONArray("cafeterias");
+            JSONArray parentArray = parentObject.getJSONArray("categories");
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
             String id = "Id";
@@ -141,7 +142,21 @@ public class CategoriesActivity extends AppCompatActivity {
                 CategoryModel categoryModel = new CategoryModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 categoryModel.setName(finalObject.getString(name));
-               categoryModel.setId(finalObject.getInt(String.valueOf(id)));
+                categoryModel.setId(finalObject.getInt(String.valueOf(id)));
+
+                  /* List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
+                    for(int j=0 ;j<finalObject.getJSONArray("cafeterias").length();j++)
+                    {
+                        JSONObject categoryObject = finalObject.getJSONArray("category").getJSONObject(j);
+                        CategoryModel.Cafeteria cafeteria = new CategoryModel.Cafeteria();
+                        cafeteria.setCafId(categoryObject.getInt("Id"));
+                        cafeteria.setCafName(categoryObject.getString("name"));
+                        cafeteria.setImageData(categoryObject.getString("ImageData"));
+
+                        cafeteriaList.add(cafeteria);
+
+                    }
+                    CategoryModel.setCafeteriaList(cafeteriaList);*/
 
 
                 //adding the final object in the list

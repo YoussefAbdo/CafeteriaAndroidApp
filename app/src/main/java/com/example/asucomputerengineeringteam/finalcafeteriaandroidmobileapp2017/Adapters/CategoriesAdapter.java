@@ -58,13 +58,16 @@ public class CategoriesAdapter extends BaseAdapter {
         TextView cafname = (TextView) view.findViewById(R.id.cafname);
         cafname.setText(categoryModelList.get(position).getName());
 
+        final TextView cafid = (TextView) view.findViewById(R.id.cafid);
+        // cafid.setText(cafeteriaModelArrayList.get(position).getId());
+        // cafid.setText((String.valueOf)(cafeteriaModelArrayList.get(position).getId()));
+        cafid.setText((categoryModelList.get(position).getId())+ "");
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,MenuItemsActivity.class);
-                CategoryModel categoryModel;
-                categoryModel= categoryModelList.get(position);
-                int id =categoryModel.getId();
+                String id = String.valueOf(cafid.getId());
                 intent.putExtra("idCat",id);
                 context.startActivity(intent);
 

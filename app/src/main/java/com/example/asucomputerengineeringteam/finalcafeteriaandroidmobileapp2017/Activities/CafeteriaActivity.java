@@ -2,6 +2,8 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class CafeteriaActivity extends AppCompatActivity {
 
     // TextView tvJsonItem ;
     ListView list;
-    public CafeteriaAdapter adapter;
+    public CafeteriaAdapter cafeteriaAdapter;
     public List<CafeteriaModel> arrayList = new ArrayList<>();
     Button load;
 
@@ -55,10 +57,10 @@ public class CafeteriaActivity extends AppCompatActivity {
                 // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
                 new JsonTask1().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
                 //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
-                adapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
-                list.setAdapter(adapter);
+                cafeteriaAdapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
+                list.setAdapter(cafeteriaAdapter);
                 //adapter.arrayList.addAll(items);
-                adapter.notifyDataSetChanged();
+               cafeteriaAdapter.notifyDataSetChanged();
                 //"http://cafeteriaapptest.azurewebsites.net/api/category"
             }
         });
@@ -154,8 +156,6 @@ public class CafeteriaActivity extends AppCompatActivity {
                 Log.d("name data", name);
                 return arrayList;
             }
-
-
         }
 
     }

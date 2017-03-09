@@ -9,7 +9,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemsActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:id="@+id/text"
+        android:text="Choose Your menuitems "
+        android:textColor="@color/color1"
+        android:textStyle="bold"/>
 
     <ListView
         android:layout_width="match_parent"
