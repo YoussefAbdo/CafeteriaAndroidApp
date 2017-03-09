@@ -7,13 +7,10 @@
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrderActivity">
 
 
-    <TextView
-        android:id="@+id/title_text_view"
+    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Here is the Orders History"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#4689C8"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
+
+    </ListView>
 
 </LinearLayout>

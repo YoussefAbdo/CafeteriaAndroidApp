@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <CheckBox
+        android:id="@+id/addition_1_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extra Cheese"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <CheckBox
+        android:id="@+id/addition_2_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Onion Rings"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <CheckBox
+        android:id="@+id/addition_3_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ketchup"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <CheckBox
+        android:id="@+id/addition_4_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extra Sauce"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+
+</LinearLayout>
