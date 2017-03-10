@@ -30,34 +30,27 @@ public class CategoriesActivity extends AppCompatActivity {
 
     ListView mainListView;
     Button load;
-    public CategoriesAdapter adapter;
+    public CategoriesAdapter categoriesAdapter;
     public List<CategoryModel> arrayList = new ArrayList<>();
-    int id ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-
-        Intent intent = getIntent();
+      /*  Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        id  = Integer.parseInt(extras.getString("idCaf"));
-        Log.v("id = " , String.valueOf(id));
-
+        id  = extras.getInt("idCaf");*/
+        final String id = getIntent().getExtras().getString("idCaf");
+        Log.v("id = " , id);
         mainListView = (ListView) findViewById(R.id.mainListView);
         load = (Button)findViewById(R.id.load);
-        //  tvJsonItem = (TextView) findViewById(R.id.tvJsonIitem);
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
-                new JsonTask2().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/" + id);
-                // http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafeteria/2131558558
-                //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
-                adapter = new CategoriesAdapter(getApplicationContext(), arrayList);
-                mainListView.setAdapter(adapter);
-                //adapter.arrayList.addAll(items);
-                adapter.notifyDataSetChanged();
-                //"http://cafeteriaapptest.azurewebsites.net/api/category"
+                new JsonTask2().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/"+ id);
+                categoriesAdapter = new CategoriesAdapter(getApplicationContext(), arrayList);
+                mainListView.setAdapter(categoriesAdapter);
+                categoriesAdapter.notifyDataSetChanged();
             }
         });
 
@@ -73,7 +66,7 @@ public class CategoriesActivity extends AppCompatActivity {
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
+               // connection.setRequestMethod("GET");
                 connection.connect();
                 InputStream stream = connection.getInputStream();
 
@@ -137,6 +130,7 @@ public class CategoriesActivity extends AppCompatActivity {
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
             String id = "Id";
+            String cafeteriaId = "cafeteriaId";
             // final int id = Integer.parseInt("Id");
             // StringBuffer finalBufferedData = new StringBuffer();
             for (int i = 0; i < parentArray.length(); i++) {
@@ -144,12 +138,14 @@ public class CategoriesActivity extends AppCompatActivity {
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 categoryModel.setName(finalObject.getString(name));
                 categoryModel.setId(finalObject.getInt(String.valueOf(id)));
+               // categoryModel.setCafeteriaId(finalObject.getInt(cafeteriaId));
+
 
                    List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
                     for(int j=0 ;j<finalObject.getJSONArray("Cafeteria").length();j++)
                     {
                         CategoryModel.Cafeteria cafeteria = new CategoryModel.Cafeteria();
-                        JSONObject categoryObject = finalObject.getJSONArray("Cafeteria").getJSONObject(j);
+                        JSONObject categoryObject = finalObject.getJSONArray("categories").getJSONObject(j);
                         cafeteria.setCafId(categoryObject.getInt("Id"));
                         cafeteria.setCafName(categoryObject.getString("Name"));
                         cafeteria.setImageData(categoryObject.getString("ImageData"));
@@ -159,8 +155,6 @@ public class CategoriesActivity extends AppCompatActivity {
                         //adding the final object in the list
                         arrayList.add(categoryModel);
             }
-
-
             Log.d("name data", name);
             return arrayList;
         }

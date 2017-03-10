@@ -51,30 +51,27 @@ public class CategoriesAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.cafeteria_row_item, parent, false);
+        view = inflater.inflate(R.layout.category_row_item, parent, false);
         //  ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
         // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
-        CafeteriaModel cafeteriaModel = new CafeteriaModel();
-        TextView cafname = (TextView) view.findViewById(R.id.cafname);
-        cafname.setText(categoryModelList.get(position).getName());
-
-        final TextView cafid = (TextView) view.findViewById(R.id.cafid);
+      //  CafeteriaModel cafeteriaModel = new CafeteriaModel();
+        TextView catname = (TextView) view.findViewById(R.id.catname);
+        catname.setText(categoryModelList.get(position).getName());
+        final TextView catid = (TextView) view.findViewById(R.id.catid);
         // cafid.setText(cafeteriaModelArrayList.get(position).getId());
         // cafid.setText((String.valueOf)(cafeteriaModelArrayList.get(position).getId()));
-        cafid.setText((categoryModelList.get(position).getId())+ "");
-
+        catid.setText((categoryModelList.get(position).getId())+ "");
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,MenuItemsActivity.class);
-                String id = String.valueOf(cafid.getId());
+                String id = catid.getText().toString();
                 intent.putExtra("idCat",id);
                 context.startActivity(intent);
 
                 // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
             }
         });
-
         return view;
     }
 }

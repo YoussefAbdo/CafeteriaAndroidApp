@@ -24,7 +24,7 @@ public class CafeteriaAdapter extends BaseAdapter {
     //initialize context , arraylist
     public Context context;
     public List<CafeteriaModel> cafeteriaModelArrayList ;
-
+    private static final String TAG = "ok";
 
     //costructor takes context ,arraylist
     public CafeteriaAdapter(Context context, List<CafeteriaModel> arrayList) {
@@ -60,14 +60,17 @@ public class CafeteriaAdapter extends BaseAdapter {
         // cafid.setText((String.valueOf)(cafeteriaModelArrayList.get(position).getId()));
         final TextView cafid = (TextView) view.findViewById(R.id.cafid);
         cafid.setText((cafeteriaModelArrayList.get(position).getId())+ "");
+        Log.d(TAG, "id = " + cafid);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                Intent intent = new Intent(context,CategoriesActivity.class);
-               String id = String.valueOf(cafid.getId());
+                String id = cafid.getText().toString();
                 intent.putExtra("idCaf",id);
-               // Log.v("id is right" , id);
+                Log.d(TAG, "id = " + id);
+              // Log.d("id", String.valueOf(cafid.getId()));
                 context.startActivity(intent);
+                Toast.makeText(context,cafid.getText().toString(),Toast.LENGTH_LONG).show();
                // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
             }
         });
