@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.menuitemAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.menuitems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import org.json.JSONArray;
@@ -36,7 +35,7 @@ public class MenuItemsActivity extends AppCompatActivity {
 
 
     ListView list;
-    public menuitemAdapter adapter;
+    public menuitemAdapter menuitemAdapter;
     public List<MenuItemModel> arrayList = new ArrayList<>();
     Button load;
     int id ;
@@ -58,10 +57,10 @@ public class MenuItemsActivity extends AppCompatActivity {
                 // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
                 new JsonTask3().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem/GetByCategory/"+id);
                 //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
-                adapter = new menuitemAdapter(getApplicationContext(), arrayList);
-                list.setAdapter(adapter);
+                menuitemAdapter = new menuitemAdapter(getApplicationContext(), arrayList);
+                list.setAdapter(menuitemAdapter);
                 //adapter.arrayList.addAll(items);
-                adapter.notifyDataSetChanged();
+                menuitemAdapter.notifyDataSetChanged();
                 //"http://cafeteriaapptest.azurewebsites.net/api/category"
             }
         });

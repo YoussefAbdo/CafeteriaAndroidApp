@@ -9,16 +9,16 @@ public class CafeteriaModel {
     private String name ;
     private String image;
 
+    //constructor
+    public CafeteriaModel()
+    {}
+
     public String getImage() {
         return image;
     }
-
     public void setImage(String image) {
         this.image = image;
     }
-
-    public CafeteriaModel()
-    {}
 
     public int getId() {
         return id;

@@ -41,6 +41,7 @@ public class CategoriesActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         id  = Integer.parseInt(extras.getString("idCaf"));
+        Log.v("id = " , String.valueOf(id));
 
         mainListView = (ListView) findViewById(R.id.mainListView);
         load = (Button)findViewById(R.id.load);
@@ -144,23 +145,19 @@ public class CategoriesActivity extends AppCompatActivity {
                 categoryModel.setName(finalObject.getString(name));
                 categoryModel.setId(finalObject.getInt(String.valueOf(id)));
 
-                  /* List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
-                    for(int j=0 ;j<finalObject.getJSONArray("cafeterias").length();j++)
+                   List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
+                    for(int j=0 ;j<finalObject.getJSONArray("Cafeteria").length();j++)
                     {
-                        JSONObject categoryObject = finalObject.getJSONArray("category").getJSONObject(j);
                         CategoryModel.Cafeteria cafeteria = new CategoryModel.Cafeteria();
+                        JSONObject categoryObject = finalObject.getJSONArray("Cafeteria").getJSONObject(j);
                         cafeteria.setCafId(categoryObject.getInt("Id"));
-                        cafeteria.setCafName(categoryObject.getString("name"));
+                        cafeteria.setCafName(categoryObject.getString("Name"));
                         cafeteria.setImageData(categoryObject.getString("ImageData"));
-
                         cafeteriaList.add(cafeteria);
-
                     }
-                    CategoryModel.setCafeteriaList(cafeteriaList);*/
-
-
-                //adding the final object in the list
-                arrayList.add(categoryModel);
+                      categoryModel.setCafeteriaList(cafeteriaList);
+                        //adding the final object in the list
+                        arrayList.add(categoryModel);
             }
 
 

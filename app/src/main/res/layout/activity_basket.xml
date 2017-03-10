@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.Basket">
+    android:orientation="vertical"
+    android:nestedScrollingEnabled="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +13,9 @@
         <ListView
             android:id="@+id/mobile_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_height="wrap_content">
+
+        </ListView>
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"

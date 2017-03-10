@@ -13,30 +13,22 @@ import android.widget.TextView;
 
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemDetailsActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemsActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.menuitems;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import java.util.List;
-
-/*//*
-
-*/
 /**
  * Created by Esraa Hosny on 2/28/2017.
  *//*
 */
-
-
-
 public class menuitemAdapter extends BaseAdapter {
 
     //initialize context , arraylist
     private Context context;
-    public List<menuitems> arrayList;
+    public List<MenuItemModel> arrayList;
 
     //costructor takes context ,arraylist
-    public menuitemAdapter(Context context, List<menuitems> arrayList) {
+    public menuitemAdapter(Context context, List<MenuItemModel> arrayList) {
         super();
         this.context=context;
         this.arrayList=arrayList;
