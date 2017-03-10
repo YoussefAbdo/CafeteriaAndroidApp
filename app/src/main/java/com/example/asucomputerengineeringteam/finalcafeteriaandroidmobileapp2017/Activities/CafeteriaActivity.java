@@ -1,4 +1,5 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,24 +27,27 @@ public class CafeteriaActivity extends AppCompatActivity {
     ListView list;
     public CafeteriaAdapter cafeteriaAdapter;
     public List<CafeteriaModel> arrayList = new ArrayList<>();
+    private ProgressDialog progressDialog ;
     Button load;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafeteria);
         list = (ListView) findViewById(R.id.list);
-        load = (Button) findViewById(R.id.load);
+        load = (Button)findViewById(R.id.load);
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new JsonTask1().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
                 cafeteriaAdapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
                 list.setAdapter(cafeteriaAdapter);
-               cafeteriaAdapter.notifyDataSetChanged();
+                cafeteriaAdapter.notifyDataSetChanged();
             }
         });
+
     }
+
+
       public  class JsonTask1 extends AsyncTask<String, Void, List<CafeteriaModel>> {
 
             @Override

@@ -52,14 +52,14 @@ public class menuitemAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.menu_list, parent,false);
+        view = inflater.inflate(R.layout.menuitem_row_item, parent,false);
 
         //ImageView image = (ImageView) view.findViewById(R.id.imageView);
-       TextView name_item = (TextView)view.findViewById(R.id.item);
-       TextView price_item = (TextView)view.findViewById(R.id.textView1);
+       TextView menname= (TextView)view.findViewById(R.id.menname);
+       TextView menprice = (TextView)view.findViewById(R.id.menprice);
 
-        name_item.setText(arrayList.get(position).getName());
-        price_item.setText(arrayList.get(position).getPrice());
+        menname.setText(arrayList.get(position).getName());
+        menprice.setText(arrayList.get(position).getPrice());
 
 
         view.setOnClickListener(new View.OnClickListener() {

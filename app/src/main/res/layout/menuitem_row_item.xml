@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
-        android:id="@+id/imagecat"
+        android:id="@+id/imagemen"
         android:layout_width="100dp"
         android:layout_height="100dp">
 
@@ -15,22 +16,22 @@
         android:layout_height="100dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/catname"
+            android:id="@+id/menname"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_marginTop="15dp"
             android:textColor="@color/color7"
             android:textSize="20sp"
             android:layout_marginLeft="20dp">
         </TextView>
         <TextView
-            android:id="@+id/catid"
+            android:id="@+id/menprice"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_marginTop="30dp"
             android:textColor="@color/color7"
             android:textSize="20sp">
         </TextView>
-</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

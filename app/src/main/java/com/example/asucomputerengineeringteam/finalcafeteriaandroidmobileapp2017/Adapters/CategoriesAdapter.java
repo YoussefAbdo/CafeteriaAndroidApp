@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity;
@@ -52,14 +53,12 @@ public class CategoriesAdapter extends BaseAdapter {
     public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.category_row_item, parent, false);
-        //  ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
+         ImageView image = (ImageView) view.findViewById(R.id.imagecat);
+        image.setImageResource(R.drawable.pizza);
         // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
-      //  CafeteriaModel cafeteriaModel = new CafeteriaModel();
         TextView catname = (TextView) view.findViewById(R.id.catname);
         catname.setText(categoryModelList.get(position).getName());
         final TextView catid = (TextView) view.findViewById(R.id.catid);
-        // cafid.setText(cafeteriaModelArrayList.get(position).getId());
-        // cafid.setText((String.valueOf)(cafeteriaModelArrayList.get(position).getId()));
         catid.setText((categoryModelList.get(position).getId())+ "");
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +68,7 @@ public class CategoriesAdapter extends BaseAdapter {
                 intent.putExtra("idCat",id);
                 context.startActivity(intent);
 
-                // Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
+                //Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
             }
         });
         return view;

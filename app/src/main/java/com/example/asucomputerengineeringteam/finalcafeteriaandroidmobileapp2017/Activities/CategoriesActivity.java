@@ -29,10 +29,9 @@ import java.util.List;
 public class CategoriesActivity extends AppCompatActivity {
 
     ListView mainListView;
-    Button load;
     public CategoriesAdapter categoriesAdapter;
     public List<CategoryModel> arrayList = new ArrayList<>();
-
+   Button load;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +54,9 @@ public class CategoriesActivity extends AppCompatActivity {
         });
 
     }
+
+
+
     public class JsonTask2 extends AsyncTask<String, Void, List<CategoryModel>> {
 
         @Override
@@ -141,7 +143,7 @@ public class CategoriesActivity extends AppCompatActivity {
                // categoryModel.setCafeteriaId(finalObject.getInt(cafeteriaId));
 
 
-                   List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
+                  /* List<CategoryModel.Cafeteria> cafeteriaList = new ArrayList<>();
                     for(int j=0 ;j<finalObject.getJSONArray("Cafeteria").length();j++)
                     {
                         CategoryModel.Cafeteria cafeteria = new CategoryModel.Cafeteria();
@@ -151,7 +153,7 @@ public class CategoriesActivity extends AppCompatActivity {
                         cafeteria.setImageData(categoryObject.getString("ImageData"));
                         cafeteriaList.add(cafeteria);
                     }
-                      categoryModel.setCafeteriaList(cafeteriaList);
+                      categoryModel.setCafeteriaList(cafeteriaList);*/
                         //adding the final object in the list
                         arrayList.add(categoryModel);
             }

@@ -33,39 +33,36 @@ import java.util.List;
 
 public class MenuItemsActivity extends AppCompatActivity {
 
-
     ListView list;
     public menuitemAdapter menuitemAdapter;
     public List<MenuItemModel> arrayList = new ArrayList<>();
-    Button load;
-    int id ;
+   Button load ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_items);
 
-        Intent intent = getIntent();
+       /* Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        id  = Integer.parseInt(extras.getString("idCat"));
+        id  = Integer.parseInt(extras.getString("idCat"));*/
+
+        final String id = getIntent().getExtras().getString("idCat");
 
         list = (ListView) findViewById(R.id.list);
-        load = (Button) findViewById(R.id.load);
-        //  tvJsonItem = (TextView) findViewById(R.id.tvJsonIitem);
+        load = (Button)findViewById(R.id.load);
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // new JsonTask().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem");
                 new JsonTask3().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem/GetByCategory/"+id);
-                //http://cafeteriaapptest.azurewebsites.net/api/cafeteria
                 menuitemAdapter = new menuitemAdapter(getApplicationContext(), arrayList);
                 list.setAdapter(menuitemAdapter);
-                //adapter.arrayList.addAll(items);
                 menuitemAdapter.notifyDataSetChanged();
-                //"http://cafeteriaapptest.azurewebsites.net/api/category"
             }
         });
 
-    }
+
+            }
+
 
     public class JsonTask3 extends AsyncTask<String, Void, List<MenuItemModel>> {
 
@@ -137,8 +134,7 @@ public class MenuItemsActivity extends AppCompatActivity {
         private List<MenuItemModel> getData(String jsontoString) throws JSONException {
 
             JSONObject parentObject = new JSONObject(jsontoString);
-            // JSONArray parentArray = parentObject.getJSONArray("menuItems");
-            JSONArray parentArray = parentObject.getJSONArray("cafeterias");
+            JSONArray parentArray = parentObject.getJSONArray("menuItems");
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
             // final int id = Integer.parseInt("Id");
@@ -151,7 +147,6 @@ public class MenuItemsActivity extends AppCompatActivity {
                 //adding the final object in the list
                 arrayList.add(menuItemModel);
             }
-
             Log.d("name data", name);
             return arrayList;
         }
