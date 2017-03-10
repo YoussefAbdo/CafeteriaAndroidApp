@@ -54,9 +54,6 @@ public class CategoriesActivity extends AppCompatActivity {
         });
 
     }
-
-
-
     public class JsonTask2 extends AsyncTask<String, Void, List<CategoryModel>> {
 
         @Override
@@ -64,11 +61,10 @@ public class CategoriesActivity extends AppCompatActivity {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
             String finalJson = null;
-
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-               // connection.setRequestMethod("GET");
+                connection.setRequestMethod("GET");
                 connection.connect();
                 InputStream stream = connection.getInputStream();
 

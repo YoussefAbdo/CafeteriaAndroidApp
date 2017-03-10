@@ -9,33 +9,17 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/color2"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity">
 
-
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="App Name"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="#ff0000"
-        android:textSize="50sp"
-        android:textStyle="bold"/>
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="500dp"
+        android:id="@+id/logo"
+        app:srcCompat="@drawable/logo" />
 
 
-    <TextView
-        android:id="@+id/order"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Order Food Online"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="170dp"
-        android:textColor="#ff0000"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        />
+
+
 
 
 </RelativeLayout>

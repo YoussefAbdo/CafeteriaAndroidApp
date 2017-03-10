@@ -2,12 +2,14 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemsActivity;
@@ -55,7 +57,6 @@ public class CategoriesAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.category_row_item, parent, false);
          ImageView image = (ImageView) view.findViewById(R.id.imagecat);
         image.setImageResource(R.drawable.pizza);
-        // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
         TextView catname = (TextView) view.findViewById(R.id.catname);
         catname.setText(categoryModelList.get(position).getName());
         final TextView catid = (TextView) view.findViewById(R.id.catid);
@@ -66,9 +67,9 @@ public class CategoriesAdapter extends BaseAdapter {
                 Intent intent = new Intent(context,MenuItemsActivity.class);
                 String id = catid.getText().toString();
                 intent.putExtra("idCat",id);
+                Log.v("idcat" , id);
                 context.startActivity(intent);
-
-                //Toast.makeText(context,"yes",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,catid.getText().toString(),Toast.LENGTH_LONG).show();
             }
         });
         return view;

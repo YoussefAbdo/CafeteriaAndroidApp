@@ -13,7 +13,7 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView image , go_button ;
+    ImageView logo;
     TextView app_name , order;
 
     /** Duration of wait **/
@@ -23,11 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        image = (ImageView)findViewById(R.id.image);
-        app_name = (TextView)findViewById(R.id.app_name);
-        order = (TextView)findViewById(R.id.order);
-
+        logo = (ImageView)findViewById(R.id.logo);
+        logo.setImageResource(R.drawable.logo);
          /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){

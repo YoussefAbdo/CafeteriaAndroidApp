@@ -36,18 +36,12 @@ public class MenuItemsActivity extends AppCompatActivity {
     ListView list;
     public menuitemAdapter menuitemAdapter;
     public List<MenuItemModel> arrayList = new ArrayList<>();
-   Button load ;
+    Button load ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_items);
-
-       /* Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        id  = Integer.parseInt(extras.getString("idCat"));*/
-
         final String id = getIntent().getExtras().getString("idCat");
-
         list = (ListView) findViewById(R.id.list);
         load = (Button)findViewById(R.id.load);
         load.setOnClickListener(new View.OnClickListener() {
@@ -59,11 +53,7 @@ public class MenuItemsActivity extends AppCompatActivity {
                 menuitemAdapter.notifyDataSetChanged();
             }
         });
-
-
-            }
-
-
+    }
     public class JsonTask3 extends AsyncTask<String, Void, List<MenuItemModel>> {
 
         @Override
@@ -75,7 +65,7 @@ public class MenuItemsActivity extends AppCompatActivity {
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-                //connection.setRequestMethod("GET");
+                connection.setRequestMethod("GET");
                 connection.connect();
                 InputStream stream = connection.getInputStream();
 
@@ -101,12 +91,6 @@ public class MenuItemsActivity extends AppCompatActivity {
             } catch (IOException e1) {
                 Log.e("LOG", "error", e1);
                 return null;
-
-
-                // return buffer.toString();
-                //  return categoryName + "-" + categoryId;
-                // tvJsonItem.setText(buffer.toString());
-                //  return finalBufferedData.toString();
 
             } finally {
                 if (connection != null) {
@@ -137,12 +121,12 @@ public class MenuItemsActivity extends AppCompatActivity {
             JSONArray parentArray = parentObject.getJSONArray("menuItems");
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
-            // final int id = Integer.parseInt("Id");
-            // StringBuffer finalBufferedData = new StringBuffer();
+            String price = "Price";
             for (int i = 0; i < parentArray.length(); i++) {
                 MenuItemModel menuItemModel = new MenuItemModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 menuItemModel.setName(finalObject.getString(name));
+                menuItemModel.setName(finalObject.getString(price));
 
                 //adding the final object in the list
                 arrayList.add(menuItemModel);

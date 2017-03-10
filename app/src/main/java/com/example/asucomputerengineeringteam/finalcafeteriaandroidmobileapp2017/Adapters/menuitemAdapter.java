@@ -58,6 +58,7 @@ public class menuitemAdapter extends BaseAdapter {
        TextView menname= (TextView)view.findViewById(R.id.menname);
        TextView menprice = (TextView)view.findViewById(R.id.menprice);
 
+
         menname.setText(arrayList.get(position).getName());
         menprice.setText(arrayList.get(position).getPrice());
 
