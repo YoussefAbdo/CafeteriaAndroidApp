@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,42 +13,44 @@
             android:name=".Splash.MainActivity"
             android:label="">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Authentication.LoginActivity"
-            android:label="Login "/>
+            android:label="Login " />
         <activity
             android:name=".Authentication.SignupActivity"
-            android:label="Sign Up"/>
+            android:label="Sign Up" />
         <activity
             android:name=".Activities.SettingsActivity"
-            android:label="Settings"/>
+            android:label="Settings" />
         <activity
             android:name=".Activities.CategoriesActivity"
-            android:label="Category"/>
+            android:label="Category" />
         <activity
             android:name=".Activities.MenuItemsActivity"
-            android:label="MenuItem"/>
+            android:label="MenuItem" />
         <activity
             android:name=".Activities.MenuItemDetailsActivity"
-            android:label="Item Details"/>
+            android:label="Item Details" />
         <activity
             android:name=".Activities.OrderActivity"
-            android:label="Orders"/>
+            android:label="Orders" />
         <activity
             android:name=".Activities.HelpActivity"
-            android:label="Help"/>
+            android:label="Help" />
         <activity
             android:name=".Activities.CafeteriaActivity"
             android:label="Cafeterias" />
-        <activity android:name=".Activities.Basket"></activity>
+        <activity android:name=".Activities.Basket" />
+        <activity android:name=".Activities.EditActivity"></activity>
     </application>
 
 </manifest>

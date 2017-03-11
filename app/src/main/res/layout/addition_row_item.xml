@@ -6,7 +6,7 @@
 
 
     <CheckBox
-        android:id="@+id/addition_1_checkbox"
+        android:id="@+id/add_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Extra Cheese"

@@ -71,10 +71,10 @@ public class menuitemAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MenuItemDetailsActivity.class);
-                intent.putExtra("name", menname.getText().toString());
+                intent.putExtra("menuitem_name", menname.getText().toString());
                 intent.putExtra("desc", description);
                 intent.putExtra("type", type);
-                intent.putExtra("price", menprice.getText().toString());
+                intent.putExtra("menuitem_price", menprice.getText().toString());
                 intent.putExtra("photo",photo);
                 context.startActivity(intent);
             }

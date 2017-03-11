@@ -7,11 +7,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/mobile_list"
+            android:id="@+id/basket_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </ListView>
@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/add_more_items_button"
+                android:id="@+id/add_more"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textColor="#000000" />
 
             <Button
-                android:id="@+id/next_button"
+                android:id="@+id/edit"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 android:text="$0"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="#000000"
-                android:textStyle="normal" />
+                android:textStyle="normal"/>
 
         </RelativeLayout>
 
