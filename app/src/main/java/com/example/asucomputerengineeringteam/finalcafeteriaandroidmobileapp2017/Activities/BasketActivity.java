@@ -18,12 +18,12 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import java.util.ArrayList;
 import java.util.List;
 
-public class Basket extends AppCompatActivity {
+public class BasketActivity extends AppCompatActivity {
 
     ListView basket_list ;
     public BasketAdapter basketAdapter;
     public List<String> arrayList = new ArrayList<>();
-    Button add_more , edit ;
+    Button add_more , edit,order ;
 
 
     @Override
@@ -35,6 +35,7 @@ public class Basket extends AppCompatActivity {
         basket_list = (ListView)findViewById(R.id.basket_list);
         add_more = (Button)findViewById(R.id.add_more);
         edit = (Button)findViewById(R.id.edit);
+        order = (Button)findViewById(R.id.order);
 
 
         final String menuitem_name = getIntent().getExtras().getString("menuitem_name");
@@ -52,18 +53,25 @@ public class Basket extends AppCompatActivity {
         add_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(Basket.this , MenuItemsActivity.class);
+                Intent intent1 = new Intent(BasketActivity.this , MenuItemsActivity.class);
                 startActivity(intent1);
             }
         });
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(Basket.this ,EditActivity.class);
+                Intent intent2 = new Intent(BasketActivity.this ,EditActivity.class);
                 startActivity(intent2);
             }
         });
 
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(BasketActivity.this , OrderStatusActivity.class);
+                startActivity(intent3);
+            }
+        });
 
     }
 }

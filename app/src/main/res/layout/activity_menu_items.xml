@@ -26,11 +26,11 @@
         android:id="@+id/mainListView">
     </ListView>
     <Button
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:id="@+id/load"
         android:text="Load"
-        android:layout_marginLeft="230dp"/>
+        android:layout_marginLeft="240dp"/>
 
 
 </RelativeLayout>

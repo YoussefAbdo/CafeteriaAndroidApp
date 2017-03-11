@@ -26,7 +26,7 @@ public class CafeteriaActivity extends AppCompatActivity {
 
     ListView list;
     public CafeteriaAdapter cafeteriaAdapter;
-    public List<CafeteriaModel> arrayList = new ArrayList<>();
+    public List<CafeteriaModel> cafeteriaModelList = new ArrayList<>();
     private ProgressDialog progressDialog ;
     Button load;
     @Override
@@ -39,12 +39,11 @@ public class CafeteriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new JsonTask1().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
-                cafeteriaAdapter = new CafeteriaAdapter(getApplicationContext(), arrayList);
+                cafeteriaAdapter = new CafeteriaAdapter(getApplicationContext(), cafeteriaModelList);
                 list.setAdapter(cafeteriaAdapter);
                 cafeteriaAdapter.notifyDataSetChanged();
             }
         });
-
     }
 
 
@@ -118,11 +117,11 @@ public class CafeteriaActivity extends AppCompatActivity {
                      //  menuItemModel.setImage(finalObject.getInt(image));*/
 
                     //adding the final object in the list
-                    arrayList.add(menuItemModel);
+                    cafeteriaModelList.add(menuItemModel);
                 }
                 Log.d("id", id);
                 Log.d("name data", name);
-                return arrayList;
+                return cafeteriaModelList;
             }
         }
 

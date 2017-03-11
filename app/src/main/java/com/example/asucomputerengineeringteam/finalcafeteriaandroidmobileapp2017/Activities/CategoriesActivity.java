@@ -1,6 +1,5 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CategoriesAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
@@ -36,9 +34,6 @@ public class CategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-      /*  Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        id  = extras.getInt("idCaf");*/
         final String id = getIntent().getExtras().getString("idCaf");
         Log.v("id = " , id);
         mainListView = (ListView) findViewById(R.id.mainListView);

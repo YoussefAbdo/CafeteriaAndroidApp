@@ -4,12 +4,14 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemDetailsActivity;
@@ -79,7 +81,23 @@ public class menuitemAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
+        ImageView favorite = (ImageView)view.findViewById(R.id.favorite);
+        favorite.setImageResource(R.drawable.favorite);
+        ImageView nofavorite = (ImageView)view.findViewById(R.id.nofavorite);
+        nofavorite.setImageResource(R.drawable.nofavorite);
 
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context , " Item " + menname.getText().toString()+" is added correctly" , Toast.LENGTH_LONG).show();
+            }
+        });
+        nofavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context , " Item " + menname.getText().toString()+" is deleted correctly" , Toast.LENGTH_LONG).show();
+            }
+        });
         return view;
 
     }

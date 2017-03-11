@@ -50,7 +50,8 @@
             android:name=".Activities.CafeteriaActivity"
             android:label="Cafeterias" />
         <activity android:name=".Activities.Basket" />
-        <activity android:name=".Activities.EditActivity"></activity>
+        <activity android:name=".Activities.EditActivity" />
+        <activity android:name=".Activities.OrderStatusDetails"></activity>
     </application>
 
 </manifest>

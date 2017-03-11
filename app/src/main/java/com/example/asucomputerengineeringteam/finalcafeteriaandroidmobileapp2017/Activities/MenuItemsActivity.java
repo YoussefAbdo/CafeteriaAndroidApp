@@ -1,18 +1,12 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.menuitemAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
@@ -30,10 +24,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MenuItemsActivity extends AppCompatActivity {
-
-    ListView list;
+    ListView mainListView;
     public menuitemAdapter menuitemAdapter;
     public List<MenuItemModel> arrayList = new ArrayList<>();
     Button load ;
@@ -42,14 +34,14 @@ public class MenuItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_items);
         final String id = getIntent().getExtras().getString("idCat");
-        list = (ListView) findViewById(R.id.list);
+        mainListView = (ListView) findViewById(R.id.mainListView);
         load = (Button)findViewById(R.id.load);
         load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new JsonTask3().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem/GetByCategory/"+id);
                 menuitemAdapter = new menuitemAdapter(getApplicationContext(), arrayList);
-                list.setAdapter(menuitemAdapter);
+                mainListView.setAdapter(menuitemAdapter);
                 menuitemAdapter.notifyDataSetChanged();
             }
         });
@@ -61,7 +53,6 @@ public class MenuItemsActivity extends AppCompatActivity {
             HttpURLConnection connection = null;
             BufferedReader reader = null;
             String finalJson = null;
-
             try {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
