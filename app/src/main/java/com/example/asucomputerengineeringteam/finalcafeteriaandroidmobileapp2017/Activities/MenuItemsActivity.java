@@ -122,11 +122,20 @@ public class MenuItemsActivity extends AppCompatActivity {
             // List<MenuItemModel> menuItemModelList = new ArrayList<>();
             String name = "Name";
             String price = "Price";
+            String description = "Description";
+            String type = "Type";
+            String photo = "Photo";
+
             for (int i = 0; i < parentArray.length(); i++) {
                 MenuItemModel menuItemModel = new MenuItemModel();
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 menuItemModel.setName(finalObject.getString(name));
-                menuItemModel.setName(finalObject.getString(price));
+                menuItemModel.setPrice(finalObject.getString(price));
+                menuItemModel.setDescription(finalObject.getString(description));
+                menuItemModel.setType(finalObject.getString(type));
+                menuItemModel.setPhoto(finalObject.getString(photo));
+
+
 
                 //adding the final object in the list
                 arrayList.add(menuItemModel);

@@ -32,22 +32,6 @@ public class CategoryModel {
         this.name = name;
     }
 
-    public int getCafeteriaId() {
-        return cafeteriaId;
-    }
-
-    public void setCafeteriaId(int cafeteriaId) {
-        this.cafeteriaId = cafeteriaId;
-    }
-
-    public List<Cafeteria> getCafeteriaList() {
-        return cafeteriaList;
-    }
-
-    public void setCafeteriaList(List<Cafeteria> cafeteriaList) {
-        this.cafeteriaList = cafeteriaList;
-    }
-
 
     public static  class Cafeteria {
 
@@ -55,29 +39,6 @@ public class CategoryModel {
         private String cafName;
         private String ImageData ;
 
-        public int getCafId() {
-            return cafId;
-        }
-
-        public void setCafId(int cafId) {
-            this.cafId = cafId;
-        }
-
-        public String getCafName() {
-            return cafName;
-        }
-
-        public void setCafName(String cafName) {
-            this.cafName = cafName;
-        }
-
-        public String getImageData() {
-            return ImageData;
-        }
-
-        public void setImageData(String imageData) {
-            ImageData = imageData;
-        }
     }
 
 }

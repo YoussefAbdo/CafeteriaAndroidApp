@@ -54,19 +54,28 @@ public class menuitemAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.menuitem_row_item, parent,false);
 
-        //ImageView image = (ImageView) view.findViewById(R.id.imageView);
-       TextView menname= (TextView)view.findViewById(R.id.menname);
-       TextView menprice = (TextView)view.findViewById(R.id.menprice);
-
-
+        final ImageView imagemen = (ImageView) view.findViewById(R.id.imagemen);
+        imagemen.setImageResource(R.drawable.burger);
+       final TextView menname= (TextView)view.findViewById(R.id.menname);
+       final TextView menprice = (TextView)view.findViewById(R.id.menprice);
         menname.setText(arrayList.get(position).getName());
         menprice.setText(arrayList.get(position).getPrice());
 
+        MenuItemModel menuItemModel = (MenuItemModel) getItem(position);
+
+        final String description = menuItemModel.getDescription();
+        final String type = menuItemModel.getType();
+        final String photo = menuItemModel.getPhoto();
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MenuItemDetailsActivity.class);
+                intent.putExtra("name", menname.getText().toString());
+                intent.putExtra("desc", description);
+                intent.putExtra("type", type);
+                intent.putExtra("price", menprice.getText().toString());
+                intent.putExtra("photo",photo);
                 context.startActivity(intent);
             }
         });
