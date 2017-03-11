@@ -5,4 +5,5 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
  */
 
 public class NotificationsActivity {
+
 }

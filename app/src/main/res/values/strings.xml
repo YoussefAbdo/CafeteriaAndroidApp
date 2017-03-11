@@ -8,4 +8,5 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="txtCredits">txtCredits</string>
     <string name="creating_a_new_email">not a member? create a new account!</string>
+    <string name="title_activity_google_maps">Map</string>
 </resources>
