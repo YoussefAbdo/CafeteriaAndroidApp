@@ -10,4 +10,13 @@
     <color name="color5">#ff6666</color>
     <color name="color6"> #ffffff</color>
     <color name="color7">#e60000</color>
+
+    <color name="brown">#795548</color>
+    <color name="dark_brown">#3E2723</color>
+    <color name="yellow">#FFAB00</color>
+    <color name="orange">#E65100</color>
+    <color name="cafe">#FFCC80</color>
+    <color name="light_cafe">#FFECB3</color>
+    <color name="light_orange">#FFCC80</color>
+    <color name="light_light_cafe">#FFECB3</color>
 </resources>

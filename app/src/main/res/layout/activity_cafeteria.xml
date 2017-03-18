@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_cafe"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CafeteriaActivity">
 
    <TextView
@@ -17,21 +18,23 @@
         android:textSize="20dp"
         android:id="@+id/text"
         android:text="Choose Your Cafeteria "
-        android:textColor="@color/color1"
+        android:textColor="@color/brown"
         android:textStyle="bold"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="100dp"
         android:id="@+id/list">
     </ListView>
     <Button
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:id="@+id/load"
         android:text="Load"
-        android:layout_marginLeft="200dp"/>
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_start"
+        />
 
    <!-- <GridView
         android:layout_width="fill_parent"

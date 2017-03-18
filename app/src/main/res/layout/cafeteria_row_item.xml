@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_cafe">
 
 
     <ImageView
@@ -19,7 +20,7 @@
         android:id="@+id/cafname"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:textColor="@color/color7"
+        android:textColor="@color/orange"
         android:textSize="20sp"
         android:layout_marginLeft="20dp">
     </TextView>
@@ -27,7 +28,7 @@
         android:id="@+id/cafid"
         android:layout_width="250dp"
         android:layout_height="30dp"
-        android:textColor="@color/color7"
+        android:textColor="@color/orange"
         android:textSize="20sp"
         android:layout_marginLeft="20dp">
     </TextView>

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/light_cafe"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoriesActivity">
 
     <TextView
@@ -14,18 +15,19 @@
         android:textSize="20dp"
         android:id="@+id/text"
         android:text="Choose Your Category "
-        android:textColor="@color/color1"
+        android:textColor="@color/brown"
         android:textStyle="bold"/>
     <Button
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:id="@+id/load"
         android:text="Load"
-        android:layout_marginLeft="200dp"/>
+        android:background="@drawable/button_start"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:id="@+id/mainListView">
     </ListView>
 

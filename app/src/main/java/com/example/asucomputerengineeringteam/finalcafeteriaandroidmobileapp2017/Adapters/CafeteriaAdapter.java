@@ -1,6 +1,9 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,8 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.SettingsActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 /*
@@ -52,8 +57,13 @@ public class CafeteriaAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.cafeteria_row_item, parent, false);
         ImageView image = (ImageView) view.findViewById(R.id.imagecaf);
-        // image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
-        image.setImageResource(R.drawable.chef);
+         //image.setImageResource(Integer.parseInt(cafeteriaModelArrayList.get(position).getImage()));
+        image.setImageResource(R.drawable.pizza);
+
+       /* Intent intent = new Intent();
+        final String image1 =intent.getExtras().getString("image");
+        image.setImageResource(Integer.parseInt(image1));*/
+
         TextView cafname = (TextView) view.findViewById(R.id.cafname);
         cafname.setText(cafeteriaModelArrayList.get(position).getName());
         // cafid.setText(cafeteriaModelArrayList.get(position).getId());

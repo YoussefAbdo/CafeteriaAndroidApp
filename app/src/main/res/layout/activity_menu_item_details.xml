@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/light_light_cafe"
+
         >
 
         <ImageView
@@ -26,7 +28,7 @@
             android:layout_marginTop="8dp"
             android:text="King Burger"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#000000"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
         <TextView
@@ -36,7 +38,7 @@
             android:layout_marginTop="8dp"
             android:text="Grilled beef burger patties, cheese slice, lettuce, onion, pickles and sauce, serve in 2 layers of bun bread."
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#000000"
+            android:textColor="@color/dark_brown"
             android:textStyle="normal" />
 
         <TextView
@@ -46,7 +48,7 @@
             android:layout_marginTop="8dp"
             android:text="non_vegeterian"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#000000"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/item_price"
@@ -55,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:text="price"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#000000"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
         <TextView
@@ -65,17 +67,22 @@
             android:layout_marginTop="8dp"
             android:text="Additions"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#000000"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color2">
+            android:background="@color/light_orange"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
         <ListView
             android:id="@+id/addition_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            >
         </ListView>
         </LinearLayout>
         <TextView
@@ -85,7 +92,7 @@
             android:layout_alignParentLeft="true"
             android:text="Quantity"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#000000"
+            android:textColor="@color/orange"
             android:textStyle="bold" />
 
         <RelativeLayout
@@ -96,17 +103,21 @@
             <Button
                 android:id="@+id/add"
                 android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="16dp"
-                android:text="-" />
+                android:background="@color/yellow"
+                android:text="-"
+                android:textSize="30dp"/>
             <Button
                 android:id="@+id/remove"
                 android:layout_width="48dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="16dp"
                 android:onClick="increment"
+                android:background="@color/yellow"
+                android:textSize="30dp"
                 android:text="+" />
 
             <TextView
@@ -117,16 +128,18 @@
                 android:padding="9sp"
                 android:textSize="30dp"
                 android:text="2"
+                android:background="@color/orange"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="#000000"
-                android:textStyle="normal" />
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <Button
             android:id="@+id/basket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add to Basket" />
+            android:text="Add to Basket"
+            android:background="@color/yellow"/>
 
     </LinearLayout>
 </ScrollView>

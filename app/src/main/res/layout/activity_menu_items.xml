@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_cafe"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemsActivity">
     <TextView
         android:layout_width="wrap_content"
@@ -16,21 +17,22 @@
         android:textSize="20dp"
         android:id="@+id/text"
         android:text="Choose Your menuitems "
-        android:textColor="@color/color1"
+        android:textColor="@color/brown"
         android:textStyle="bold"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="110dp"
         android:id="@+id/mainListView">
     </ListView>
     <Button
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:id="@+id/load"
+        android:layout_marginTop="50dp"
         android:text="Load"
-        android:layout_marginLeft="240dp"/>
+        android:background="@drawable/button_start"/>
 
 
 </RelativeLayout>

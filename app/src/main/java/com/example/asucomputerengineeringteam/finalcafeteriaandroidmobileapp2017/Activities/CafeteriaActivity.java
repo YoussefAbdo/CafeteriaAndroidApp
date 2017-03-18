@@ -1,8 +1,12 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -112,9 +117,22 @@ public class CafeteriaActivity extends AppCompatActivity {
                     JSONObject finalObject = parentArray.getJSONObject(i);
                     menuItemModel.setName(finalObject.getString(name));
                     menuItemModel.setId(finalObject.getInt(String.valueOf(id)));
-                    /*byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                     //  menuItemModel.setImage(finalObject.getInt(image));*/
+                   // menuItemModel.setId(finalObject.getInt(String.valueOf(image)));
+
+                    //encode image to base64 string
+                   /* ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), Integer.parseInt(image));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] imageBytes = baos.toByteArray();
+                    String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);  //base64 image string
+*/
+                    // convert base64 image string to an image again
+                  /*  byte [] imageBytes = Base64.decode(image, Base64.DEFAULT);
+                    Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                    Intent intent = new Intent(CafeteriaActivity.this , CafeteriaAdapter.class);
+                    intent.putExtra("image" , decodedImage);
+                    startActivity(intent);*/
+                   // image.setImageBitmap(decodedImage);
 
                     //adding the final object in the list
                     cafeteriaModelList.add(menuItemModel);

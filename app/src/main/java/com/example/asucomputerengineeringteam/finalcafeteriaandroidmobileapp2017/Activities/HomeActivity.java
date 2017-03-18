@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    Button caf ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

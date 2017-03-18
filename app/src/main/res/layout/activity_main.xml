@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_cafe"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity">
 
     <ImageView
@@ -16,9 +17,36 @@
         android:layout_height="500dp"
         android:id="@+id/logo"
         app:srcCompat="@drawable/logo" />
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginLeft="100dp"
+        >
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/facebook"
+            app:srcCompat="@drawable/facebook" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/twitter"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/twitter" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/youtube"
+            app:srcCompat="@drawable/youtube" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/web_site"
+            app:srcCompat="@drawable/web_site" />
 
-
+    </LinearLayout>
 
 
 

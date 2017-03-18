@@ -15,10 +15,10 @@
         android:allowBackup="true"
         android:icon="@drawable/food_icon"
         android:supportsRtl="true"
+        android:label="Cafeteria Online"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash.MainActivity"
-            android:label="">
+            android:name=".Splash.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".Activities.HomeActivity"
-            android:label="@string/title_activity_home"
+            android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Authentication.LoginActivity"
@@ -48,7 +48,7 @@
             android:name=".Activities.MenuItemDetailsActivity"
             android:label="Item Details" />
         <activity
-            android:name=".Activities.OrderActivity"
+            android:name=".Activities.OrderStatusActivity"
             android:label="Orders" />
         <activity
             android:name=".Activities.HelpActivity"
@@ -56,9 +56,12 @@
         <activity
             android:name=".Activities.CafeteriaActivity"
             android:label="Cafeterias" />
-        <activity android:name=".Activities.Basket" />
-        <activity android:name=".Activities.EditActivity" />
-        <activity android:name=".Activities.OrderStatusDetails" />
+        <activity android:name=".Activities.BasketActivity"
+            android:label="Basket" />
+        <activity android:name=".Activities.EditActivity"
+            android:label="Edit Your Menu" />
+        <activity android:name=".Activities.OrderStatusDetails"
+            android:label="Order Status" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -71,9 +74,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
+     <!--   <activity
             android:name=".Services.GoogleMapsActivity"
-            android:label="@string/title_activity_google_maps"></activity>
+            android:label="@string/title_activity_google_maps"></activity>-->
     </application>
 
 </manifest>

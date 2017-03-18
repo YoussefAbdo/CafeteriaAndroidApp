@@ -10,12 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.BasketAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Services.GoogleMapsActivity;
+//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Services.GoogleMapsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,9 @@ public class BasketActivity extends AppCompatActivity {
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BasketActivity.this , GoogleMapsActivity.class);
-                startActivity(intent);
+              /*  Intent intent = new Intent(BasketActivity.this , GoogleMapsActivity.class);
+                startActivity(intent);*/
+                Toast.makeText(BasketActivity.this,"go to location ",Toast.LENGTH_LONG).show();
             }
         });
         final String menuitem_name = getIntent().getExtras().getString("menuitem_name");

@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_light_cafe"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.LoginActivity">
 
     <EditText
@@ -22,8 +23,8 @@
         android:layout_marginTop="46dp"
         android:focusable="true"
         android:hint="Email"
-        android:textColorHighlight="#ff7eff15"
-        android:textColorHint="@color/color1"
+        android:textColorHighlight="@color/yellow"
+        android:textColorHint="@color/dark_brown"
         android:maxLines="1"/>
 
     <EditText
@@ -38,31 +39,31 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColorHint="@color/color1" />
+        android:textColorHint="@color/dark_brown" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@+id/loginPasswordEditText"
-        android:background="@color/color5"
+        android:background="@drawable/button_login"
         android:layout_marginTop="100dp"
         android:layout_marginLeft="100dp"
         android:text="login"
         android:textSize="30dp"
-        android:textColor="@color/color6"
+        android:textColor="#ffffff"
         android:textStyle="bold"/>
 
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@+id/loginPasswordEditText"
-        android:background="@color/color5"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="160dp"
+        android:background="@drawable/button_login"
         android:text="Cancel"
-        android:textColor="@color/color6"
+        android:textColor="#ffffff"
         android:textStyle="bold"
         android:textSize="30dp"/>
 
@@ -73,7 +74,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/cancelButton"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/color7"
+        android:textColor="@color/dark_brown"
         android:textStyle="bold"
         android:textSize="15sp"
         android:text="@string/creating_a_new_email"/>
