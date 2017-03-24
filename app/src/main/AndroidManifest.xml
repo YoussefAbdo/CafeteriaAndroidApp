@@ -14,8 +14,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/food_icon"
-        android:supportsRtl="true"
         android:label="Cafeteria Online"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Splash.MainActivity">
@@ -48,7 +48,7 @@
             android:name=".Activities.MenuItemDetailsActivity"
             android:label="Item Details" />
         <activity
-            android:name=".Activities.OrderStatusActivity"
+            android:name=".Activities.OrderDetailsActivity"
             android:label="Orders" />
         <activity
             android:name=".Activities.HelpActivity"
@@ -60,7 +60,8 @@
             android:label="Basket" />
         <activity android:name=".Activities.EditActivity"
             android:label="Edit Your Menu" />
-        <activity android:name=".Activities.OrderStatusDetails"
+        <activity
+            android:name=".Activities.OrdersActivity"
             android:label="Order Status" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -1,27 +1,19 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels;
 
-import android.location.Location;
-
-import java.sql.Time;
-import java.util.Calendar;
-
-import static android.R.attr.id;
-
-//import com.google.android.gms.maps.model.LatLng;
-
 /**
- * Created by Esraa Hosny on 3/11/2017.
+ * Created by EngYo on 24-Mar-17.
  */
 
-public class OrdersModel {
+public class OrderDetailsModel {
     private int Id;
     private boolean PaymentDone;
-    private Time OrderTime;
+    private String OrderTime;
     private String PaymentMethod;
     private String DeliveryPlace;
     private String OrderStatus;
-    private Time DeliverytTime;
+    private String DeliveryTime;
     private int customerid;
+    private int Credit;
 //    private Customer customer;
 
     public int getId() {
@@ -40,11 +32,11 @@ public class OrdersModel {
         PaymentDone = paymentDone;
     }
 
-    public Time getOrderTime() {
+    public String getOrderTime() {
         return OrderTime;
     }
 
-    public void setOrderTime(Time orderTime) {
+    public void setOrderTime(String orderTime) {
         OrderTime = orderTime;
     }
 
@@ -72,12 +64,12 @@ public class OrdersModel {
         OrderStatus = orderStatus;
     }
 
-    public Time getDeliverytTime() {
-        return DeliverytTime;
+    public String getDeliveryTime() {
+        return DeliveryTime;
     }
 
-    public void setDeliverytTime(Time deliverytTime) {
-        DeliverytTime = deliverytTime;
+    public void setDeliveryTime(String deliveryTime) {
+        DeliveryTime = deliveryTime;
     }
 
     public int getCustomerid() {
@@ -88,7 +80,15 @@ public class OrdersModel {
         this.customerid = customerid;
     }
 
-//    public Customer getCustomer() {
+    public int getCredit() {
+        return Credit;
+    }
+
+    public void setCredit(int credit) {
+        Credit = credit;
+    }
+
+    //    public Customer getCustomer() {
 //        return customer;
 //    }
 //

@@ -3,18 +3,13 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.BasketAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 //import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Services.GoogleMapsActivity;
 
@@ -23,9 +18,9 @@ import java.util.List;
 
 public class BasketActivity extends AppCompatActivity {
 
-    ListView basket_list ;
     public BasketAdapter basketAdapter;
     public List<String> arrayList = new ArrayList<>();
+    ListView basket_list;
     Button add_more , edit,order ;
     ImageView gps ;
 
@@ -81,7 +76,7 @@ public class BasketActivity extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(BasketActivity.this , OrderStatusActivity.class);
+                Intent intent3 = new Intent(BasketActivity.this, OrderDetailsActivity.class);
                 startActivity(intent3);
             }
         });

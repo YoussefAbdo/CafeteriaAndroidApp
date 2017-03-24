@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrderActivity">
+    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrdersActivity">
 
+    <!--THIS FILE MUST BE DELETED-->
+    <!--IT HAS NO USE-->
 
     <TextView
         android:id="@+id/text"
@@ -14,7 +16,7 @@
         android:layout_marginTop="20dp"
         android:text="List of Orders"
         android:textColor="@color/color1"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <ListView
