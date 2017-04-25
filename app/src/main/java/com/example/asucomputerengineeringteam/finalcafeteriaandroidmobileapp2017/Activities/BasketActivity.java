@@ -1,3 +1,4 @@
+/*
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
 import android.content.Intent;
@@ -9,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.BasketAdapter;
+
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 //import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Services.GoogleMapsActivity;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class BasketActivity extends AppCompatActivity {
 
-    public BasketAdapter basketAdapter;
+    //public BasketAdapter basketAdapter;
     public List<String> arrayList = new ArrayList<>();
     ListView basket_list;
     Button add_more , edit,order ;
@@ -41,8 +42,10 @@ public class BasketActivity extends AppCompatActivity {
         gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*  Intent intent = new Intent(BasketActivity.this , GoogleMapsActivity.class);
-                startActivity(intent);*/
+              */
+/*  Intent intent = new Intent(BasketActivity.this , GoogleMapsActivity.class);
+                startActivity(intent);*//*
+
                 Toast.makeText(BasketActivity.this,"go to location ",Toast.LENGTH_LONG).show();
             }
         });
@@ -50,13 +53,15 @@ public class BasketActivity extends AppCompatActivity {
         final String menuitem_price = getIntent().getExtras().getString("menuitem_price");
         final String addition_name = getIntent().getExtras().getString("addition_name");
 
-       /* List<String> menuitems = new List<String> ;
+       */
+/* List<String> menuitems = new List<String> ;
         menuitems.add(menuitem_name);
         List<String> additions = new List<String> ;
         menuitems.add(menuitem_price);
         basketAdapter = new BasketAdapter(Basket.this,menuitems , additions);
         basket_list.setAdapter(basketAdapter);
-        basketAdapter.notifyDataSetChanged();*/
+        basketAdapter.notifyDataSetChanged();*//*
+
 
         add_more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,3 +88,4 @@ public class BasketActivity extends AppCompatActivity {
 
     }
 }
+*/

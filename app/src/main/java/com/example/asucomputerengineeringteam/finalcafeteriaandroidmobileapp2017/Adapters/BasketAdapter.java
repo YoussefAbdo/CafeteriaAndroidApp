@@ -1,3 +1,4 @@
+/*
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 
 import android.content.Context;
@@ -19,9 +20,11 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 
 import java.util.List;
 
+*/
 /**
  * Created by Esraa Hosny on 3/11/2017.
- */
+ *//*
+
 
 public class BasketAdapter extends BaseAdapter {
 
@@ -72,3 +75,4 @@ public class BasketAdapter extends BaseAdapter {
         return view;
     }
 }
+*/

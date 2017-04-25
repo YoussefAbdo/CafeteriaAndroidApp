@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         logo = (ImageView)findViewById(R.id.logo);
-        logo.setImageResource(R.drawable.logo);
+        logo.setImageResource(R.drawable.app_cover);
          /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){

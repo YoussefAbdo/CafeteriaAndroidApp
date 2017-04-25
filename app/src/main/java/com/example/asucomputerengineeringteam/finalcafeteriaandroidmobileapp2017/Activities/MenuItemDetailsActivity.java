@@ -1,3 +1,4 @@
+/*
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
 import android.content.Intent;
@@ -12,9 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.AdditionAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.menuitemAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import org.json.JSONArray;
@@ -76,7 +75,8 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
         item_price.setText("Item price is : " + price);
 
 
-       /* final int[] counter = {0};
+       */
+/* final int[] counter = {0};
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +88,8 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 quantity_text.setText(String.valueOf(counter[0]));
             }
-        });*/
+        });*//*
+
 
 
         //http://cafeteriaapptest.azurewebsites.net/api/addition
@@ -188,3 +189,4 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
         }
     }
 }
+*/

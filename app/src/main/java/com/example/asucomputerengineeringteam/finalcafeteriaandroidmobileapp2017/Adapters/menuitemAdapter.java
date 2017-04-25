@@ -1,106 +1,84 @@
-
+/*
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 
-
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemDetailsActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import java.util.List;
-/**
- * Created by Esraa Hosny on 2/28/2017.
- *//*
+
 */
-public class menuitemAdapter extends BaseAdapter {
+/**
+ * Created by Esraa Hosny on 4/25/2017.
+ *//*
 
-    //initialize context , arraylist
-    private Context context;
-    public List<MenuItemModel> arrayList;
 
-    //costructor takes context ,arraylist
-    public menuitemAdapter(Context context, List<MenuItemModel> arrayList) {
-        super();
+public class MenuItemAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyViewHolder>  {
+
+    List<CafeteriaDataModel> cafeteriaArrayList ;
+    Context context ;
+
+    public CafeteriaAdapter(Context context, List<CafeteriaDataModel> cafeteriaArrayList){
+        this.cafeteriaArrayList = cafeteriaArrayList;
         this.context=context;
-        this.arrayList=arrayList;
     }
     @Override
-    public int getCount() {
-        return arrayList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return arrayList.get(position);
+    public CafeteriaAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cafeteria_list_item,parent,false);
+        CafeteriaAdapter.MyViewHolder viewHolder=new CafeteriaAdapter.MyViewHolder(view);
+        return viewHolder;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public void onBindViewHolder(CafeteriaAdapter.MyViewHolder holder, int position) {
+
+        holder.caf_text_view.setText(cafeteriaArrayList.get(position).getName());
+        // holder.caf_image.setImageResource(R.drawable.pizza);
+        byte [] imageBytes = Base64.decode(cafeteriaArrayList.get(position).getImage().toString(), Base64.DEFAULT);
+        Log.v("sizeImage" ,imageBytes.toString() );
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        holder.caf_image.setImageBitmap(decodedImage);
+
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public int getItemCount() {
+        return cafeteriaArrayList.size();
+    }
+    class MyViewHolder extends RecyclerView.ViewHolder{
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.menuitem_row_item, parent,false);
+        public TextView caf_text_view;
+        public ImageView caf_image ;
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            caf_text_view=(TextView)itemView.findViewById(R.id.caf_text_view);
+            caf_image = (ImageView)itemView.findViewById(R.id.caf_image);
 
-        final ImageView imagemen = (ImageView) view.findViewById(R.id.imagemen);
-        imagemen.setImageResource(R.drawable.burger);
-       final TextView menname= (TextView)view.findViewById(R.id.menname);
-       final TextView menprice = (TextView)view.findViewById(R.id.menprice);
-        menname.setText(arrayList.get(position).getName());
-        menprice.setText(arrayList.get(position).getPrice());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   */
+/* Intent intent= new Intent(context,next activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);*//*
 
-        MenuItemModel menuItemModel = (MenuItemModel) getItem(position);
-
-        final String description = menuItemModel.getDescription();
-        final String type = menuItemModel.getType();
-        final String photo = menuItemModel.getPhoto();
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MenuItemDetailsActivity.class);
-                intent.putExtra("menuitem_name", menname.getText().toString());
-                intent.putExtra("desc", description);
-                intent.putExtra("type", type);
-                intent.putExtra("menuitem_price", menprice.getText().toString());
-                intent.putExtra("photo",photo);
-                context.startActivity(intent);
-            }
-        });
-        ImageView favorite = (ImageView)view.findViewById(R.id.favorite);
-        favorite.setImageResource(R.drawable.favorite);
-        ImageView nofavorite = (ImageView)view.findViewById(R.id.nofavorite);
-        nofavorite.setImageResource(R.drawable.nofavorite);
-
-        favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context , " Item " + menname.getText().toString()+" is added correctly" , Toast.LENGTH_LONG).show();
-            }
-        });
-        nofavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context , " Item " + menname.getText().toString()+" is deleted correctly" , Toast.LENGTH_LONG).show();
-            }
-        });
-        return view;
-
+                    Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
 
-
+*/

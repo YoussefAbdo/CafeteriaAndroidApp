@@ -17,8 +17,7 @@
         android:label="Cafeteria Online"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Splash.MainActivity">
+        <activity android:name=".Splash.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,39 +29,28 @@
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Authentication.LoginActivity"
-            android:label="Login " />
-        <activity
-            android:name=".Authentication.SignupActivity"
-            android:label="Sign Up" />
-        <activity
             android:name=".Activities.SettingsActivity"
             android:label="Settings" />
-        <activity
-            android:name=".Activities.CategoriesActivity"
-            android:label="Category" />
-        <activity
-            android:name=".Activities.MenuItemsActivity"
-            android:label="MenuItem" />
-        <activity
-            android:name=".Activities.MenuItemDetailsActivity"
-            android:label="Item Details" />
-        <activity
-            android:name=".Activities.OrderDetailsActivity"
-            android:label="Orders" />
         <activity
             android:name=".Activities.HelpActivity"
             android:label="Help" />
         <activity
-            android:name=".Activities.CafeteriaActivity"
-            android:label="Cafeterias" />
-        <activity android:name=".Activities.BasketActivity"
-            android:label="Basket" />
-        <activity android:name=".Activities.EditActivity"
+            android:name=".Activities.EditActivity"
             android:label="Edit Your Menu" />
         <activity
+            android:name=".Activities.CafeteriaInterface"
+            android:label="Cafeterias" />
+        <activity
+            android:name=".Activities.OrderDetailsActivity"
+            android:label="Help" />
+        <activity
             android:name=".Activities.OrdersActivity"
-            android:label="Order Status" />
+            android:label="Edit Your Menu" />
+        <activity android:name=".Activities.CategoryInterface"
+            android:label="Categories" >
+
+        </activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -75,9 +63,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-     <!--   <activity
+        <!--
+            <activity
             android:name=".Services.GoogleMapsActivity"
-            android:label="@string/title_activity_google_maps"></activity>-->
+            android:label="@string/title_activity_google_maps"></activity>
+        -->
+
+
     </application>
 
 </manifest>
