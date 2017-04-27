@@ -1,35 +1,26 @@
-// THIS CLASS MUST BE DELETED
-// IT HAS NO USE
-
-
+// I am working now on this
 
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-
-//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
-//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrdersAdapter;
-//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaModel;
-//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrdersModel;
-//import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-////import com.google.android.gms.maps.model.LatLng;
-
+import android.widget.TextView;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderDetailsModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrdersModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-
+import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,125 +34,111 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
 import static android.R.attr.id;
 
 public class OrdersActivity extends AppCompatActivity {
 
-//    public OrdersAdapter ordersAdapter;
-//    public List<OrdersModel> ordersModelList = new ArrayList<>();
-//    ListView list;
-//    Button load;
-//    Calendar calendar;
-//    private ProgressDialog progressDialog;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_orders);
-//
-//        list = (ListView) findViewById(R.id.list);
-//        load = (Button) findViewById(R.id.load);
-//        load.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new JsonTask4().execute("http://cafeteriaapptest.azurewebsites.net/api/order");
-//                ordersAdapter = new OrdersAdapter(getApplicationContext(), ordersModelList);
-//                list.setAdapter(ordersAdapter);
-//                ordersAdapter.notifyDataSetChanged();
-//            }
-//        });
-//
-////        SimpleDateFormat parserSDF=new SimpleDateFormat("M/d/yyyy h:m:s a");
-////        Date d = parserSDF.parse(dateField,0);
-//    }
-//
-//    public class JsonTask4 extends AsyncTask<String, Void, List<OrdersModel>> {
-//
-//        @Override
-//        protected List<OrdersModel> doInBackground(String... params) {
-//            HttpURLConnection connection = null;
-//            BufferedReader reader = null;
-//            String finalJson = null;
-//            try {
-//                URL url = new URL(params[0]);
-//                connection = (HttpURLConnection) url.openConnection();
-//                connection.setRequestMethod("GET");
-//                connection.connect();
-//                InputStream stream = connection.getInputStream();
-//                reader = new BufferedReader(new InputStreamReader(stream));
-//                if (stream == null) {
-//                    // Nothing to do.
-//                    return null;
-//                }
-//                StringBuffer buffer = new StringBuffer();
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    buffer.append(line);
-//                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
-//                }
-//                if (buffer.length() == 0) {
-//                    // Stream was empty.  No point in parsing.
-//                    return null;
-//                }
-//                finalJson = buffer.toString();
-//                Log.v("finalJSON", finalJson);
-//            } catch (IOException e1) {
-//                Log.e("LOG", "error", e1);
-//                return null;
-//            } finally {
-//                if (connection != null) {
-//                    connection.disconnect();
-//                }
-//                if (reader != null) {
-//                    try {
-//                        reader.close();
-//                    } catch (IOException ioe) {
-//                        //log statement or any message
-//                        Log.e("LOG", "error", ioe);
-//                    }
-//                }
-//                try {
-//                    return getData(finalJson);
-//                } catch (JSONException e) {
-//                    //e.printStackTrace();
-//                    Log.e("LOG", "error", e);
-//                }
-//                return null;
-//            }
-//        }
-//
-//        private List<OrdersModel> getData(String jsontoString) throws JSONException {
-//            JSONObject parentObject = new JSONObject(jsontoString);
-//            JSONArray parentArray = parentObject.getJSONArray("orders");
-//            String Id = "Id";
-//            Time DeliveryTime = Time.valueOf("DeliveryTime");
-//            boolean PaymentDone = Boolean.parseBoolean("PaymentDone");
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ITALY);
-//            calendar = Calendar.getInstance();
-//            String strDate = dateFormat.format(calendar.getTime());
-//            String PaymnetMethod = "PaymnetMethod";
-//            //LatLng DeliveryPlace = "DeliveryPlace";
-//            String OrderStatus = "OrderStatus";
-//
-//
-//            for (int i = 0; i < parentArray.length(); i++) {
-//                OrdersModel ordersModel = new OrdersModel();
-//                JSONObject finalObject = parentArray.getJSONObject(i);
-//                ordersModel.setId(finalObject.getInt(String.valueOf(id)));
-//                ordersModel.setOrderStatus(String.valueOf(finalObject.getInt(OrderStatus)));
-//                ordersModel.setOrderTime(Time.valueOf(String.valueOf(finalObject.getInt((strDate)))));
-//                ordersModel.setPaymentMethod(String.valueOf(finalObject.getInt(PaymnetMethod)));
-////                ordersModel.setDeliveryPlace(finalObject.getInt(DeliveryPlace);
-//                //ordersModel.setDeliverytTime(finalObject.getInt(String.valueOf(DeliveryTime)));
-//                // String [] values = strDate.split("/",0);
-//                //ordersModel.setPaymentDone(finalObject.getInt(String.valueOf((PaymentDone))));
-//
-//                //adding the final object in the list
-//                ordersModelList.add(ordersModel);
-//            }
-//            return ordersModelList;
-//        }
-//    }
+    //private ListView ordered_items_list_view_orders;
+    //private TextView total_price_text_view;
+    private TextView id_text_view_orders;
+    private TextView payment_done_text_view_orders;
+    private TextView order_time_text_view_orders;
+    private TextView payment_method_text_view_orders;
+    private TextView delivery_place_text_view_orders;
+    private TextView order_status_text_view_orders;
+    private TextView delivery_time_text_view_orders;
+    private TextView customerid_text_view_orders;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_orders);
+
+        // Showing and Enabling clicks on the Home/Up button
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        // setting up text views and stuff
+        setUpUIViews();
+
+        // recovering data from MainActivity, sent via intent
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String json = bundle.getString("orderDetailsModel"); // getting the model from MainActivity send via extras
+            OrderDetailsModel orderDetailsModel = new Gson().fromJson(json, OrderDetailsModel.class);
+
+//            // Then later, when you want to display image
+//            ImageLoader.getInstance().displayImage(movieModel.getImage(), ivMovieIcon, new ImageLoadingListener() {
+//                @Override
+//                public void onLoadingStarted(String imageUri, View view) {
+//                    progressBar.setVisibility(View.VISIBLE);
+//                }
+//
+//                @Override
+//                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+//                    progressBar.setVisibility(View.GONE);
+//                }
+//
+//                @Override
+//                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                    progressBar.setVisibility(View.GONE);
+//                }
+//
+//                @Override
+//                public void onLoadingCancelled(String imageUri, View view) {
+//                    progressBar.setVisibility(View.GONE);
+//                }
+//            });
+
+            //ordered_items_list_view_orders setData (I must set the data of the ordered items here)
+            //total_price_text_view_orders.setText(orderDetailsModel.get); (Total Price must be set here)
+            id_text_view_orders.setText("Reference Number: " + String.valueOf(orderDetailsModel.getId()));
+            payment_done_text_view_orders.setText("Payment Status: " + String.valueOf(orderDetailsModel.isPaymentDone()));
+            order_time_text_view_orders.setText("Order Time: " + orderDetailsModel.getOrderTime());
+            payment_method_text_view_orders.setText("Payment Method: " + orderDetailsModel.getPaymentMethod());
+            delivery_place_text_view_orders.setText("Delivery Place: " + orderDetailsModel.getDeliveryPlace());
+            order_status_text_view_orders.setText("Delivery Place: " + orderDetailsModel.getDeliveryPlace());
+            order_status_text_view_orders.setText("Order Status: " + orderDetailsModel.getOrderStatus());
+            delivery_time_text_view_orders.setText("Delivery Time: " + orderDetailsModel.getDeliveryTime());
+            customerid_text_view_orders.setText("Your ID: " + String.valueOf(orderDetailsModel.getCustomerid()));
+
+//            StringBuffer stringBuffer = new StringBuffer();
+//            for(MovieModel.Cast cast : movieModel.getCastList()){
+//                stringBuffer.append(cast.getName() + ", ");
+//            }
+//
+//            tvCast.setText("Cast:" + stringBuffer);
+//            tvStory.setText(movieModel.getStory());
+
+
+        }
+    }
+
+    private void setUpUIViews() {
+        //ordered_items_list_view_orders = (ListView) findViewById(R.id.ordered_items_list_view_orders);
+        //total_price_text_view_orders = (TextView) findViewById(R.id.total_price_text_view_orders);
+        id_text_view_orders = (TextView) findViewById(R.id.id_text_view_orders);
+        payment_done_text_view_orders = (TextView) findViewById(R.id.payment_done_text_view_orders);
+        order_time_text_view_orders = (TextView) findViewById(R.id.order_time_text_view_orders);
+        payment_method_text_view_orders = (TextView) findViewById(R.id.payment_method_text_view_orders);
+        delivery_place_text_view_orders = (TextView) findViewById(R.id.delivery_place_text_view_orders);
+        order_status_text_view_orders = (TextView) findViewById(R.id.order_status_text_view_orders);
+        delivery_time_text_view_orders = (TextView) findViewById(R.id.delivery_time_text_view_orders);
+        customerid_text_view_orders = (TextView) findViewById(R.id.customerid_text_view_orders);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

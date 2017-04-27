@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/order_row_item_linear_layout">
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,6 +26,16 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Total price:  "
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#4689C8"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/id_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Reference Number: "
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#4689C8"
         android:textStyle="bold" />
@@ -90,11 +101,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/credit_text_view"
+        android:id="@+id/customerid_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:text="Current credit: "
+        android:text="Your ID: "
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#4689C8"
         android:textStyle="bold" />

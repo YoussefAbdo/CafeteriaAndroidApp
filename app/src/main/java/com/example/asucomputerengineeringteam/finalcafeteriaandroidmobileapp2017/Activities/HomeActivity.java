@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity
         }
         else if(id == R.id.nav_orders)
         {
-            Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+            Intent intent = new Intent(HomeActivity.this, OrderDetailsActivity.class);
             startActivity(intent);
         }
         else if(id == R.id.nav_cafeterias)

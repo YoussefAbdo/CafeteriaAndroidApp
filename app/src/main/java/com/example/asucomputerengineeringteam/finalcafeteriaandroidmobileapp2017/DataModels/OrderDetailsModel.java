@@ -1,5 +1,9 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 /**
  * Created by EngYo on 24-Mar-17.
  */
@@ -13,8 +17,8 @@ public class OrderDetailsModel {
     private String OrderStatus;
     private String DeliveryTime;
     private int customerid;
-    private int Credit;
-//    private Customer customer;
+    @SerializedName("OrderItems")
+    private List<OrderItems> orderItemsList;
 
     public int getId() {
         return Id;
@@ -80,19 +84,60 @@ public class OrderDetailsModel {
         this.customerid = customerid;
     }
 
-    public int getCredit() {
-        return Credit;
+    public List<OrderItems> getOrderItemsList() {
+        return orderItemsList;
     }
 
-    public void setCredit(int credit) {
-        Credit = credit;
+    public void setOrderItemsList(List<OrderItems> orderItemsList) {
+        this.orderItemsList = orderItemsList;
     }
 
-    //    public Customer getCustomer() {
-//        return customer;
-//    }
-//
-//    public void setCustomer(Customer customer) {
-//        this.customer = customer;
-//    }
+    public static class OrderItems {
+
+        private int ID;
+        private int Quantity;
+        private int OrderID;
+        private int Order;
+        private int MenuItemId;
+
+        public int getID() {
+            return ID;
+        }
+
+        public void setID(int ID) {
+            this.ID = ID;
+        }
+
+        public int getQuantity() {
+            return Quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            Quantity = quantity;
+        }
+
+        public int getOrderID() {
+            return OrderID;
+        }
+
+        public void setOrderID(int orderID) {
+            OrderID = orderID;
+        }
+
+        public int getOrder() {
+            return Order;
+        }
+
+        public void setOrder(int order) {
+            Order = order;
+        }
+
+        public int getMenuItemId() {
+            return MenuItemId;
+        }
+
+        public void setMenuItemId(int menuItemId) {
+            MenuItemId = menuItemId;
+        }
+    }
 }
