@@ -1,6 +1,7 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
@@ -25,15 +28,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     List<CategoryDataModel> categoryDataModelList ;
     Context context ;
+    String cat_id;
+    int [] images ;
 
-    public CategoryAdapter(Context context, List<CategoryDataModel> categoryDataModelList){
+    public CategoryAdapter(Context context, List<CategoryDataModel> categoryDataModelList , int images[]){
         this.categoryDataModelList = categoryDataModelList;
         this.context=context;
+        this.images = images;
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list_item,parent,false);
-        CategoryAdapter.MyViewHolder viewHolder=new CategoryAdapter.MyViewHolder(view);
+       MyViewHolder viewHolder=new MyViewHolder(view);
         return viewHolder;
     }
 
@@ -41,12 +47,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(CategoryAdapter.MyViewHolder holder, int position) {
 
         holder.cat_text_view.setText(categoryDataModelList.get(position).getName());
-         holder.cat_image.setImageResource(R.drawable.pizza);
-//        byte [] imageBytes = Base64.decode(categoryDataModelList.get(position).getImage().toString(), Base64.DEFAULT);
-//        Log.v("sizeImage" ,imageBytes.toString() );
-//        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-//        holder.cat_image.setImageBitmap(decodedImage);
 
+       /* byte[] imageBytes = Base64.decode(categoryDataModelList.get(position).getImage().toString(),Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+        holder.cat_image.setImageBitmap(decodedImage);*/
+
+        holder.cat_image.setImageResource(images[position]);
+        cat_id  = String.valueOf(categoryDataModelList.get(position).getId());
     }
 
     @Override
@@ -54,7 +61,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         return categoryDataModelList.size();
     }
     class MyViewHolder extends RecyclerView.ViewHolder{
-
         public TextView cat_text_view;
         public ImageView cat_image ;
         public MyViewHolder(View itemView) {
@@ -65,10 +71,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   /* Intent intent= new Intent(context,next activity.class);
+                    Intent intent= new Intent(context,MenuItemInterface.class);
+                    intent.putExtra("cat_id", cat_id);
+                    Log.v("cat_id" , cat_id);
+                    //  intent.putExtra("cat_image_intent", cat_image.toString());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);*/
-                    Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
+                    context.startActivity(intent);
+
                 }
             });
         }
