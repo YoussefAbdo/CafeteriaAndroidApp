@@ -93,6 +93,11 @@ public class HomeActivity extends AppCompatActivity
             Intent intent = new Intent(HomeActivity.this,HomeActivity.class);
             startActivity(intent);
         }
+        else if (id == R.id.nav_basket)
+        {
+            Intent intent = new Intent(HomeActivity.this,BasketActivity.class);
+            startActivity(intent);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

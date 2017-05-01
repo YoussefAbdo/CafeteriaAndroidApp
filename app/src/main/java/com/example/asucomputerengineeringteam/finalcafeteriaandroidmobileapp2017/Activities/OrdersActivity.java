@@ -2,39 +2,13 @@
 
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderDetailsModel;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrdersModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.google.gson.Gson;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import static android.R.attr.id;
 
 public class OrdersActivity extends AppCompatActivity {
 

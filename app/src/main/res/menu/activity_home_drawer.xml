@@ -17,6 +17,10 @@
             android:icon="@drawable/order"
             android:title="Orders" />
         <item
+            android:id="@+id/nav_basket"
+            android:icon="@drawable/order"
+            android:title="Basket" />
+        <item
             android:id="@+id/nav_account"
             android:icon="@drawable/settings"
             android:title="Account" />
