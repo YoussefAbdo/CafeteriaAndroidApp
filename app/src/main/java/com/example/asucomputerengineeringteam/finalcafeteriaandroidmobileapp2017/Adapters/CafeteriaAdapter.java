@@ -30,6 +30,7 @@ public class CafeteriaAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyVi
     List<CafeteriaDataModel> cafeteriaArrayList ;
     Context context ;
     String caf_id;
+    String caf_image_intent;
 
     public CafeteriaAdapter(Context context, List<CafeteriaDataModel> cafeteriaArrayList){
         this.cafeteriaArrayList = cafeteriaArrayList;
@@ -45,12 +46,14 @@ public class CafeteriaAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.caf_text_view.setText(cafeteriaArrayList.get(position).getName());
+
         byte[] imageBytes = Base64.decode(cafeteriaArrayList.get(position).getImage().toString(),Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
         holder.caf_image.setImageBitmap(decodedImage);
         Log.v("sizeImage" ,imageBytes.toString());
 
         caf_id  = String.valueOf(cafeteriaArrayList.get(position).getId());
+
 
     }
 
@@ -72,11 +75,12 @@ public class CafeteriaAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyVi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, CategoryInterface.class);
+                    Intent intent = new Intent(context,CategoryInterface.class);
                     intent.putExtra("caf_id", caf_id);
+                  //  intent.putExtra("caf_image_intent", caf_image.toString());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                   // Toast.makeText(context , "ok" , Toast.LENGTH_LONG).show();
+                  // Toast.makeText(context , "ok" , Toast.LENGTH_LONG).show();
 
                 }
             });

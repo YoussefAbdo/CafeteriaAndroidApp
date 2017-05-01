@@ -14,14 +14,21 @@ public class MenuItemDataModel {
     private String price;
     private String Description;
     private String Type ;
-    private String photo;
     private String alternatetext ;
     private List<Category> categoryList;
+    private String ImageData;
 
 
     public MenuItemDataModel() {
     }
 
+    public String getImageData() {
+        return ImageData;
+    }
+
+    public void setImageData(String imageData) {
+        ImageData = imageData;
+    }
     public String getId() {
         return id;
     }
@@ -78,17 +85,10 @@ public class MenuItemDataModel {
         Type = type;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
     public void setAlternatetext(String alternatetext) {
         this.alternatetext = alternatetext;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
 
     public static  class Category {
 
@@ -98,4 +98,6 @@ public class MenuItemDataModel {
         private String name ;
 
     }
+
+
 }

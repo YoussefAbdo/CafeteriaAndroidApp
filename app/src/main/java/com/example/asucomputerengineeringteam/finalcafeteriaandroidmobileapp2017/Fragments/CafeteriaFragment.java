@@ -1,16 +1,20 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
@@ -27,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,6 +41,7 @@ public class CafeteriaFragment extends Fragment {
     public CafeteriaAdapter cafeteriaAdapter;
     public List<CafeteriaDataModel> cafeteriaModelList = new ArrayList<>();
     RecyclerView recyclerView;
+    TextView text ;
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog dialog;
 
@@ -53,7 +59,9 @@ public class CafeteriaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_cafeteria, container, false);
         recyclerView =(RecyclerView)view.findViewById(R.id.cafeteria_recyclerView);
-        new JsonTaskCafeteria().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
+        text = (TextView)view.findViewById(R.id.text1);
+
+            new JsonTaskCafeteria().execute("http://cafeteriaapptest.azurewebsites.net/api/cafeteria");
         return view;
     }
     public  class JsonTaskCafeteria extends AsyncTask<String, String, List<CafeteriaDataModel>> {
@@ -145,7 +153,8 @@ public class CafeteriaFragment extends Fragment {
             super.onPostExecute(cafeterias);
             dialog.dismiss();
             if(cafeterias != null) {
-                layoutManager = new LinearLayoutManager(getContext());
+               // layoutManager = new LinearLayoutManager(getContext());
+                layoutManager=new StaggeredGridLayoutManager(calculateNoOfColumns(getContext()),1);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
                 //  Toast.makeText(getContext(),cafeteriaModelList.size()+" ",Toast.LENGTH_LONG).show();
@@ -157,6 +166,14 @@ public class CafeteriaFragment extends Fragment {
             {
                 Toast.makeText(getContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
             }
+
+        }
+        public  int calculateNoOfColumns(Context context) {
+            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+            float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+            int noOfColumns = (int) (dpWidth / 180);
+            return noOfColumns >= 2 ? noOfColumns : 2;
+
         }
     }
 }

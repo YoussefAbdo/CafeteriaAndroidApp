@@ -6,10 +6,13 @@
     <color name="color1">#e60000</color>
     <color name="color2"> #ffe6b3</color>
     <color name="color3">#00e673</color>
+    <color name="color8">#68EFAD</color>
     <color name="color4">#ffcc66</color>
     <color name="color5">#ff6666</color>
     <color name="color6"> #ffffff</color>
     <color name="color7">#e60000</color>
+    <color name="rose">#FFCDD2</color>
+    <color name="dark_rose">#EF9A9A</color>
 
     <color name="brown">#795548</color>
     <color name="dark_brown">#3E2723</color>
@@ -19,4 +22,7 @@
     <color name="light_cafe">#FFECB3</color>
     <color name="light_orange">#FFCC80</color>
     <color name="light_light_cafe">#FFECB3</color>
+
+    <color name="red1">#E53935</color>
+    <color name="dark_red">#B71C1C</color>
 </resources>

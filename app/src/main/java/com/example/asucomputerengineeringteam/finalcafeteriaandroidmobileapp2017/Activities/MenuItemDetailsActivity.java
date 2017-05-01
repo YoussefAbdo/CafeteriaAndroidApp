@@ -1,4 +1,5 @@
 /*
+
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
 import android.content.Intent;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.AdditionAdapter;
+
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
@@ -38,7 +39,7 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
    // ListView addition_list ;
     Button add , remove , basket;
     ListView addition_list;
-    public AdditionAdapter additionAdapter ;
+  //  public AdditionAdapter additionAdapter ;
     public List<AdditonModel> arrayList = new ArrayList<>();
 
 
@@ -75,8 +76,8 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
         item_price.setText("Item price is : " + price);
 
 
-       */
-/* final int[] counter = {0};
+
+ final int[] counter = {0};
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +89,8 @@ public class MenuItemDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 quantity_text.setText(String.valueOf(counter[0]));
             }
-        });*//*
+        });
+
 
 
 

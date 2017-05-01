@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoryInterface;
@@ -43,8 +44,14 @@ public class CategoryFragment  extends Fragment {
     public CategoryAdapter categoryAdapter;
     public List<CategoryDataModel> categoryDataModelList = new ArrayList<>();
     RecyclerView recyclerView;
+    ImageView caf_upper_image ;
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog dialog;
+    int category_images[] = {
+            R.drawable.pasta ,
+            R.drawable.pizza,
+            R.drawable.salad ,
+            };
 
     public CategoryFragment() {
     }
@@ -61,13 +68,20 @@ public class CategoryFragment  extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_category, container, false);
         recyclerView =(RecyclerView)view.findViewById(R.id.category_recyclerView);
 
+        caf_upper_image = (ImageView)view.findViewById(R.id.caf_upper_image);
+        caf_upper_image.setImageResource(R.drawable.burger);
+
+        /*CategoryInterface activity = (CategoryInterface) getActivity();
+        String caf_image = activity.getIntent().getExtras().getString("caf_image_intent");
+       caf_upper_image.setImageResource(Integer.parseInt(caf_image));
+        Log.v("image = " , caf_image);*/
+
         CategoryInterface activity = (CategoryInterface) getActivity();
         String caf_id = activity.getIntent().getExtras().getString("caf_id");
         Log.v("id = " , caf_id);
         new JsonTaskCategory().execute("http://cafeteriaapptest.azurewebsites.net/api/category/GetByCafetria/"+ caf_id);
         return view;
     }
-
 
     public  class JsonTaskCategory extends AsyncTask<String, String, List<CategoryDataModel>> {
 
@@ -143,13 +157,12 @@ public class CategoryFragment  extends Fragment {
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 categoryDataModel.setName(finalObject.getString(name));
                 categoryDataModel.setImage(finalObject.getString(image));
-                categoryDataModel.setImage(finalObject.getString(id));
+                categoryDataModel.setId(Integer.parseInt(finalObject.getString(id)));
 
                 //adding the final object in the list
                 categoryDataModelList.add(categoryDataModel);
             }
             Log.v("size",categoryDataModelList.size()+"");
-            // return cafeteriaModelList;
             return categoryDataModelList;
         }
 
@@ -161,10 +174,8 @@ public class CategoryFragment  extends Fragment {
                 layoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
-                //  Toast.makeText(getContext(),cafeteriaModelList.size()+" ",Toast.LENGTH_LONG).show();
-                categoryAdapter = new CategoryAdapter(getContext(), categories);
+                categoryAdapter = new CategoryAdapter(getContext(), categories , category_images);
                 recyclerView.setAdapter(categoryAdapter);
-                //cafeteriaAdapter.notifyDataSetChanged();
             }
             else
             {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,26 +8,30 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_margin="4dp"
-        android:elevation="4dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:padding="2dp"
+        app:cardCornerRadius="20dp"
         >
+
         <ImageView
             android:id="@+id/caf_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-           android:layout_marginLeft="10dp"
-            >
-        </ImageView>
+            android:padding="25dp"
+            android:layout_width="160dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"/>
+
         <TextView
             android:id="@+id/caf_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:paddingTop="20dp"
-            android:paddingLeft="20dp"
+            android:padding="10dp"
             android:textSize="20sp"
+            android:textColor="@color/dark_red"
             android:gravity="center_horizontal"
-            android:text="cafeterias"/>
+            android:text="cafeterias"
+            android:layout_marginTop="170dp"/>
     </android.support.v7.widget.CardView>
 </LinearLayout>

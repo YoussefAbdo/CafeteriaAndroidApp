@@ -1,5 +1,4 @@
-/*
-package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
+/*package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,12 +16,12 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import java.util.List;
-
 */
-/**
- * Created by Esraa Hosny on 3/11/2017.
- *//*
 
+/*
+ * Created by Esraa Hosny on 3/11/2017.
+
+/
 
 public class AdditionAdapter extends BaseAdapter {
     //initialize context , arraylist
@@ -71,15 +70,13 @@ public class AdditionAdapter extends BaseAdapter {
         });
 
         //If bitmapdata is the byte array then getting Bitmap is done like this:
-       */
-/* Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata, 0, bitmapdata.length);
+ Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapdata, 0, bitmapdata.length);
         ByteArrayOutputStream blob = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0 *//*
-*/
-/* Ignored for PNGs *//*
-*/
-/*, blob);
-        byte[] bitmapdata = blob.toByteArray();*//*
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0
+
+ Ignored for PNGs /*
+, blob);
+        byte[] bitmapdata = blob.toByteArray();
 
 
         return view;
