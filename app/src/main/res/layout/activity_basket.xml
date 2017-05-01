@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_light_cafe"
-    android:nestedScrollingEnabled="true">
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,9 +15,8 @@
         <ListView
             android:id="@+id/basket_list"
             android:layout_width="match_parent"
-            android:background="@color/yellow"
-            android:layout_height="wrap_content">
-        </ListView>
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"></ListView>
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
@@ -26,7 +25,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/add_more"
+                android:id="@+id/add_more_button"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -36,7 +35,7 @@
                 android:textColor="@color/dark_brown" />
 
             <Button
-                android:id="@+id/edit"
+                android:id="@+id/edit_button"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,11 +74,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="$0"
                 android:layout_marginRight="20dp"
+                android:text="$0"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@color/orange"
-                android:textStyle="normal"/>
+                android:textStyle="normal" />
 
         </RelativeLayout>
 
@@ -96,20 +95,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
-        <EditText
-            android:id="@+id/location_edit_text"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginBottom="8dp"
-            android:hint="Write your location here!"
-            android:inputType="textMultiLine" />
-           <ImageView
-               android:layout_width="60dp"
-               android:layout_height="60dp"
-               android:id="@+id/gps"
-               app:srcCompat="@drawable/gps" />
+
+            <EditText
+                android:id="@+id/location_edit_text"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="Write your location here!"
+                android:inputType="textMultiLine" />
+
+            <ImageView
+                android:id="@+id/gps_image_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/gps" />
         </LinearLayout>
 
         <TextView
@@ -133,29 +134,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
-                android:textColor="@color/dark_brown"
                 android:text="Cash On Delivery"
-                android:textStyle="bold"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/dark_brown"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/wallet_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cafeteria Credit"
-                android:textStyle="bold"
+                android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@color/dark_brown"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:textStyle="bold" />
         </RadioGroup>
 
         <Button
-            android:id="@+id/order"
+            android:id="@+id/order_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@drawable/button_start"
             android:text="Order now"
-            android:textSize="30sp"
-            android:textStyle="bold"
             android:textColor="@color/dark_brown"
-            android:background="@drawable/button_start"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

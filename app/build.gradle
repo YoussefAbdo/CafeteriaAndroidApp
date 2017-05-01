@@ -32,6 +32,7 @@ dependencies {
    // compile 'com.google.android.gms:play-services:10.2.0'
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile 'com.google.android.gms:play-services:10.2.1'
     testCompile 'junit:junit:4.12'
 
 }
