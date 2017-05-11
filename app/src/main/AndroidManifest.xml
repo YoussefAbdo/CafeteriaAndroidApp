@@ -50,6 +50,9 @@
         <activity
             android:name=".Activities.OrdersActivity"
             android:label="Edit Your Menu" />
+        <activity
+            android:name=".Activities.BasketActivity"
+            android:label="Basket" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -70,6 +73,9 @@
         -->
 
         <activity android:name=".Activities.MenuItemDetailsInterface"></activity>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"></meta-data>
+
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 </manifest>

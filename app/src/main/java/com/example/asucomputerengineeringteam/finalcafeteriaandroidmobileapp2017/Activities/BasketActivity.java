@@ -116,10 +116,9 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         }
     }
 
-*
+    /**
      * Runs when a GoogleApiClient object successfully connects.
-
-
+     */
     @Override
     public void onConnected(Bundle connectionHint) {
         // Provides a simple way of getting a device's location and is well suited for
@@ -199,10 +198,10 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
     }
 
+    /*
 * Called by Google Play services if the connection to GoogleApiClient drops because of an
 * error.
-
-
+*/
     public void onDisconnected() {
         Log.i(TAG, "Disconnected");
     }
@@ -234,14 +233,3 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         location_edit_text.setText(String.valueOf(mLastLocation.getLatitude() + "," + String.valueOf(mLastLocation.getLongitude())));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
