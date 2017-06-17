@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_Order"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemDetailsInterface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color8">
+
+        <ImageView
+            android:id="@+id/photo_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/burger"/>
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/dark_red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/dark_red"
+            android:textStyle="normal"/>
+
+        <TextView
+            android:id="@+id/item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/dark_red"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/dark_red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/additions_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Additions"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/dark_red"
+            android:textStyle="bold"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/addition_recyclerView"
+                android:background="@color/rose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/text1">
+            </android.support.v7.widget.RecyclerView>
+        </ScrollView>
+        <TextView
+            android:id="@+id/quantity_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Quantity"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@color/dark_red"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:id="@+id/quantity_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/round_button"
+                android:text="-"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="30dp"/>
+            <Button
+                android:id="@+id/remove"
+                android:layout_width="48dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/round_button"
+                android:onClick="increment"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:text="+"/>
+
+            <TextView
+                android:id="@+id/quantity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="9sp"
+                android:textSize="30dp"
+                android:text="0"
+                android:background="@drawable/round_button"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/basket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Basket"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:background="@color/dark_red"/>
+
+    </LinearLayout>
+</ScrollView>
