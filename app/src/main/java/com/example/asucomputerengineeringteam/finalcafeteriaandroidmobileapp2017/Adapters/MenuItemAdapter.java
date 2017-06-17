@@ -13,8 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.DetailsMenuItem;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.DataBaseFavourites;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
@@ -31,7 +30,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
     Context context;
     String cat_id;
     int menu_images[];
-    DataBaseFavourites dbf;
     String idItem;
 
    // public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModels , int menu_images[]) {
@@ -58,10 +56,10 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
 
         cat_id = String.valueOf(menuItemDataModelList.get(position).getId());
 
-        holder.favorite.setImageResource(R.drawable.favorite);
+       /* holder.favorite.setImageResource(R.drawable.favorite);
         holder.no_favorite.setImageResource(R.drawable.nofavorite);
 
-
+*/
        /* byte[] imageBytes = Base64.decode(menuItemDataModelList.get(position).getImageData().toString(), Base64.DEFAULT);
         Log.v("sizeImage", imageBytes.toString());
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
@@ -85,27 +83,27 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
         public TextView men_name_text;
         public ImageView men_image_view;
         public TextView men_price_text;
-        public ImageView favorite;
-        public ImageView no_favorite;
+       /* public ImageView favorite;
+        public ImageView no_favorite;*/
 
         public MyViewHolder(View itemView) {
             super(itemView);
             men_name_text = (TextView)itemView.findViewById(R.id.men_name_text);
             men_image_view = (ImageView)itemView.findViewById(R.id.men_image_view);
             men_price_text = (TextView)itemView.findViewById(R.id.men_price_text);
-            favorite = (ImageView)itemView.findViewById(R.id.favorite);
-            no_favorite = (ImageView)itemView.findViewById(R.id.no_favorite);
+          /*  favorite = (ImageView)itemView.findViewById(R.id.favorite);
+            no_favorite = (ImageView)itemView.findViewById(R.id.no_favorite);*/
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, DetailsMenuItem.class);
+                    Intent intent = new Intent(context, MenuDetailInterface.class);
                     intent.putExtra("cat_id", cat_id);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                     // Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
                 }
             });
-            favorite.setOnClickListener(new View.OnClickListener() {
+         /*   favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                    // Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
@@ -142,7 +140,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
-            });
+            });*/
         }
     }
 }

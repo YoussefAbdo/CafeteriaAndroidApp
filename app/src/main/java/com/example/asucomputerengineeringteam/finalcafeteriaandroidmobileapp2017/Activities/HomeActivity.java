@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments.MenuDetailsFragment;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity;
 
@@ -84,7 +86,7 @@ public class HomeActivity extends AppCompatActivity
         }
         else if(id == R.id.nav_cafeterias)
         {
-            Intent intent = new Intent(HomeActivity.this,CafeteriaInterface.class);
+            Intent intent = new Intent(HomeActivity.this,MenuDetailInterface.class);
             startActivity(intent);
           // Toast.makeText(HomeActivity.this , "contact feedback center" , Toast.LENGTH_LONG).show();
         }

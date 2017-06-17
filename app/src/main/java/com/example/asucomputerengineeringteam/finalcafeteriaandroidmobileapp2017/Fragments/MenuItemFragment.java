@@ -25,10 +25,8 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.DetailsMenuItem;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.MenuItemAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.DataBaseFavourites;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
@@ -61,7 +59,6 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
     private ProgressDialog dialog;
     public EditText search;
 
-    DataBaseFavourites dbf;
     ArrayList<CafeteriaDataModel> arrayList_Fav_menuitems = new ArrayList<>();
 
     int menu_images[] = {
@@ -76,7 +73,6 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        dbf = new DataBaseFavourites(getActivity());
         dialog = new ProgressDialog(getContext());
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
@@ -107,8 +103,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
         men_upper_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), DetailsMenuItem.class);
-                startActivity(intent);
+                Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -254,7 +249,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
             }
         }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
         super.onCreateOptionsMenu(menu, inflater);
@@ -275,9 +270,9 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
                 return true; // Return true to expand action view
             }
         });
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -299,6 +294,6 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }
 

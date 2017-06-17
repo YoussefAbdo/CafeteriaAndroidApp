@@ -10,6 +10,7 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -65,9 +66,12 @@
             android:label="@string/title_activity_google_maps"></activity>
         -->
 
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"></meta-data>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".Activities.MenuDetailInterface"
+            android:theme="@style/AppTheme"></activity>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 </manifest>
