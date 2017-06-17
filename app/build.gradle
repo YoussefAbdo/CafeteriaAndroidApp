@@ -7,8 +7,11 @@ android {
         applicationId "com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017"
         minSdkVersion 15
         targetSdkVersion 25
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
+        aaptOptions.cruncherEnabled = false
+        aaptOptions.useNewCruncher = false
     }
     buildTypes {
         release {
