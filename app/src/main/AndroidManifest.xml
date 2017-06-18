@@ -14,16 +14,18 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
-        android:label="Cafeteria Online"
+        android:icon="@drawable/app_logo"
+        android:label="Order Online"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Splash.MainActivity">
+        <activity android:name=".Splash.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Splash.MainActivity">
         </activity>
         <activity
             android:name=".Activities.HomeActivity"
@@ -70,8 +72,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Activities.MenuDetailInterface"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".Activities.MenuDetailInterface"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

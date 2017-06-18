@@ -24,7 +24,6 @@
         android:layout_below="@+id/caf_upper_image"/>
 
     <android.support.v7.widget.RecyclerView
-        android:background="@color/rose"
         android:id="@+id/category_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
