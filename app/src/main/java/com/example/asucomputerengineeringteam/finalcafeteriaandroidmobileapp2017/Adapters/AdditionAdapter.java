@@ -17,8 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoryInterface;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import java.util.List;
@@ -28,27 +31,26 @@ public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.MyView
 
     List<AdditonModel> additionModelList;
     Context context;
-     String[] additionItems;
+     String addition_item_name;
 
-    public AdditionAdapter(Context context, List<AdditonModel> additionModelList , String additionItems[]) {
+    public AdditionAdapter(Context context, List<AdditonModel> additionModelList) {
         this.additionModelList = additionModelList;
         this.context = context;
-        this.additionItems = additionItems;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cafeteria_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.addition_row_item, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-      //  holder.add_checkbox.setText(additionModelList.get(position).getName());
+       holder.add_checkbox.setText(additionModelList.get(position).getName());
         String.valueOf(additionModelList.get(position).getId());
-        holder.add_checkbox.setText(additionItems[position]);
-
+       // holder.add_checkbox.setText(additionItems[position].getN);
+         addition_item_name = additionModelList.get(position).getName();
     }
 
     @Override
@@ -65,10 +67,11 @@ public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   /* Intent intent = new Intent(context, CategoryInterface.class);
+                    Intent intent = new Intent(context, MenuDetailInterface.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);*/
-                    Toast.makeText(context, "yes addition is selected", Toast.LENGTH_SHORT).show();
+                    intent.putExtra("addition_item" ,addition_item_name);
+                    context.startActivity(intent);
+                    //Toast.makeText(context, "yes addition is selected", Toast.LENGTH_SHORT).show();
 
                 }
             });

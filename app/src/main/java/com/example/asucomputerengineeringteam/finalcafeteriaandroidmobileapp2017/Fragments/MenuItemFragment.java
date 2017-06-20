@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.MenuItemAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
@@ -211,6 +212,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
             String name = "Name";
             String image = "ImageData";
             String id = "Id";
+            String review = "alternatetext";
             String price = "Price";
             for (int i = 0; i < parentArray.length(); i++) {
                 MenuItemDataModel menuItemDataModel = new MenuItemDataModel();
@@ -218,6 +220,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
                 menuItemDataModel.setName(finalObject.getString(name));
                 menuItemDataModel.setId(Integer.parseInt(finalObject.getString(id)));
                 menuItemDataModel.setPrice(Double.parseDouble(finalObject.getString(price)));
+                menuItemDataModel.setAlternatetext(finalObject.getString(review));
                 //  menuItemDataModel.setImageData(finalObject.getString(image));
                 //adding the final object in the list
                 menuItemDataModelList.add(menuItemDataModel);
