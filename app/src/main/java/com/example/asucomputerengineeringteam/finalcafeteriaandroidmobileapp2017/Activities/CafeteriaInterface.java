@@ -14,7 +14,6 @@ public class CafeteriaInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafeteria_interface);
-
        CafeteriaFragment mainActivityFragment = new CafeteriaFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.caf_activity,mainActivityFragment).commit();
     }

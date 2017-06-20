@@ -4,7 +4,7 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rose"
+    android:background="#ffffff"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CafeteriaInterface"
     tools:showIn="@layout/activity_cafeteria_interface"
     >
@@ -15,9 +15,9 @@
         android:id="@+id/text1"
         android:text="Choose Your Cafeteria"
         android:textStyle="bold"
-        android:textColor="@color/dark_red"
+        android:textColor="#ffffff"
         android:textSize="20sp"
-        android:background="@color/dark_rose"/>
+        android:background="@color/bg_screen1"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cafeteria_recyclerView"
         android:layout_width="match_parent"

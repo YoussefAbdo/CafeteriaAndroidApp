@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity
         {
             Intent intent = new Intent(HomeActivity.this,CafeteriaInterface.class);
             startActivity(intent);
-          // Toast.makeText(HomeActivity.this , "contact feedback center" , Toast.LENGTH_LONG).show();
+         //  Toast.makeText(HomeActivity.this , "contact feedback center" , Toast.LENGTH_LONG).show();
         }
         else if(id == R.id.nav_account)
         {
