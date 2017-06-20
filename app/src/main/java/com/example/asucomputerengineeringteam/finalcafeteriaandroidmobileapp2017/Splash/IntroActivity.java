@@ -30,6 +30,22 @@ public class IntroActivity extends AppCompatActivity {
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
 
+
+    //apis urls
+    //1- cafeteria :: http://cafeteriaappdemo.azurewebsites.net/api/cafeteria
+    //2- order item :: http://cafeteriaappdemo.azurewebsites.net/api/orderitem
+    //3-menuitem :: http://cafeteriaappdemo.azurewebsites.net/api/menuitem
+    //4-users :: http://cafeteriaappdemo.azurewebsites.net/api/user
+    //5-addition :: http://cafeteriaappdemo.azurewebsites.net/api/addition
+    //6-order :: http://cafeteriaappdemo.azurewebsites.net/api/order
+    //7-customer :: http://cafeteriaappdemo.azurewebsites.net/api/customer   :: not activated
+    //8-category :: http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria  :: not activated
+    //9-menuitem :: http://cafeteriaappdemo.azurewebsites.net/api/menuitem/GetByCategory/   :: not activated
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

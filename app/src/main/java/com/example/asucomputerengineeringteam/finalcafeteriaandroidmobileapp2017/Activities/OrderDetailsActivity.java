@@ -33,7 +33,7 @@ import java.util.List;
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
-    private final String URL_TO_HIT = "http://cafeteriaapptest.azurewebsites.net/api/order";
+    private final String URL_TO_HIT = "order :: http://cafeteriaappdemo.azurewebsites.net/api/order";
     private ListView order_details_list_view;
     private ProgressDialog dialog;
 

@@ -116,7 +116,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
         String cat_id = activity.getIntent().getExtras().getString("cat_id");
         Log.v("idtomenuitem", cat_id);
        // addTextListener();
-        new JsonTaskMenuItem().execute("http://cafeteriaapptest.azurewebsites.net/api/menuitem/GetByCategory/" + Integer.valueOf(cat_id));
+        new JsonTaskMenuItem().execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem/GetByCategory/" + Integer.valueOf(cat_id));
 
         return view;
     }
