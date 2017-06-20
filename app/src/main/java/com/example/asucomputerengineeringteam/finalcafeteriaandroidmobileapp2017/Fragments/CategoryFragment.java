@@ -47,12 +47,6 @@ public class CategoryFragment  extends Fragment {
     ImageView caf_upper_image ;
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog dialog;
-    int category_images[] = {
-            R.drawable.pasta ,
-            R.drawable.pizza,
-            R.drawable.salad ,
-            };
-
     public CategoryFragment() {
     }
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,14 +71,15 @@ public class CategoryFragment  extends Fragment {
         String caf_image = activity.getIntent().getExtras().getString("caf_image_intent");
        caf_upper_image.setImageResource(Integer.parseInt(caf_image));
         Log.v("image = " , caf_image);*/
-
-        CategoryInterface activity = (CategoryInterface) getActivity();
+        CategoryInterface activity = (CategoryInterface)getActivity();
         String caf_id = activity.getIntent().getExtras().getString("caf_id");
         Log.v("id" , caf_id);
-        new JsonTaskCategory().execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria"+Integer.valueOf(caf_id));
+        JsonTaskCategory jsonTaskCategory = new JsonTaskCategory();
+        jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafeteria"+Integer.valueOf(caf_id));
+
+
         return view;
     }
-
     public  class JsonTaskCategory extends AsyncTask<String, String, List<CategoryDataModel>> {
 
         @Override
@@ -176,7 +171,7 @@ public class CategoryFragment  extends Fragment {
                 layoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setHasFixedSize(true);
-                categoryAdapter = new CategoryAdapter(getContext(), categories , category_images);
+                categoryAdapter = new CategoryAdapter(getContext(), categories);
                 recyclerView.setAdapter(categoryAdapter);
             }
             else

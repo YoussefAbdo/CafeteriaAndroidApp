@@ -59,14 +59,9 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog dialog;
     public EditText search;
-
     ArrayList<CafeteriaDataModel> arrayList_Fav_menuitems = new ArrayList<>();
 
-    int menu_images[] = {
-            R.drawable.pasta,
-            R.drawable.pizza,
-            R.drawable.salad,
-    };
+
 
     public MenuItemFragment() {
     }
@@ -91,7 +86,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
             menuItemDataModelList.add(new MenuItemDataModel());
             //obj.getDisplayCountry(), obj.getISO3Country() were parameters of data model
         }
-        menuItemAdapter = new MenuItemAdapter(getContext(),menuItemDataModelList,menu_images);
+        menuItemAdapter = new MenuItemAdapter(getContext(),menuItemDataModelList);
         recyclerView.setAdapter(menuItemAdapter);
     }
 
@@ -241,7 +236,7 @@ public class MenuItemFragment extends Fragment implements SearchView.OnQueryText
                     layoutManager = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(layoutManager);//to manage the position of its items in the RecyclerView.
                     recyclerView.setHasFixedSize(true);  //To improve the performance of RecyclerView
-                    menuItemAdapter = new MenuItemAdapter(getContext(), menuitems, menu_images);
+                    menuItemAdapter = new MenuItemAdapter(getContext(), menuitems);
                     recyclerView.setAdapter(menuItemAdapter);
                     menuItemAdapter.notifyDataSetChanged();
 

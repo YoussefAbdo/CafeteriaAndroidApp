@@ -29,15 +29,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
     List<MenuItemDataModel> menuItemDataModelList;
     Context context;
     String cat_id;
-    int menu_images[];
-    String idItem;
     String review;
 
-   // public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModels , int menu_images[]) {
-    public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModels , int menu_images[]) {
+    public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModels) {
         menuItemDataModelList = menuItemDataModels;
         this.context = context;
-        this.menu_images = menu_images;
     }
 
     @Override
@@ -66,7 +62,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
         Log.v("sizeImage", imageBytes.toString());
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
         holder.men_image_view.setImageBitmap(decodedImage);*/
-        holder.men_image_view.setImageResource(menu_images[position]);
     }
 
 
@@ -95,12 +90,12 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, MenuDetailInterface.class);
+                 /*   Intent intent = new Intent(context,MenuDetailInterface.class);
                     intent.putExtra("cat_id", cat_id);
                     intent.putExtra("reviews", review);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);
-                    // Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
+                    context.startActivity(intent);*/
+                    Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
                 }
             });
 

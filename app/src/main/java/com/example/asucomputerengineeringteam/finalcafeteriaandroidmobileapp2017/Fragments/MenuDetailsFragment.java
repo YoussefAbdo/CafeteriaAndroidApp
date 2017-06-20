@@ -104,9 +104,9 @@ public class MenuDetailsFragment extends Fragment {
 
 
         // setting reviews in text view
-        MenuItemInterface activity = (MenuItemInterface) getActivity();
-        String reviews_of_menu_item = activity.getIntent().getExtras().getString("reviews");
-        textViewReviews.setText(reviews_of_menu_item);
+        MenuDetailInterface menuDetailInterface = (MenuDetailInterface) getActivity();
+        String reviews_of_menu_item = menuDetailInterface.getIntent().getExtras().getString("reviews");
+        textViewReviews.setText("" + reviews_of_menu_item);
         Log.v("reviews", reviews_of_menu_item);
 
            favorite.setOnClickListener(new View.OnClickListener() {

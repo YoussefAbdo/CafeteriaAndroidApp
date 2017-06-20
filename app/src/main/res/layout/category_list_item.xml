@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/rose">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             android:paddingLeft="30dp"
             android:gravity="center_horizontal"
             android:text="categories"
-            android:textColor="@color/dark_red"
+            android:textColor="@color/dark_green"
             android:textSize="25sp"
             android:layout_toLeftOf="@+id/cat_image"/>
     </android.support.v7.widget.CardView>

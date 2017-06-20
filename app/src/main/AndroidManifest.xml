@@ -75,6 +75,17 @@
         <activity
             android:name=".Activities.MenuDetailInterface"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.CafeteriaInterface"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Activities.CategoryInterface"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.MenuItemInterface"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
     </application>
 

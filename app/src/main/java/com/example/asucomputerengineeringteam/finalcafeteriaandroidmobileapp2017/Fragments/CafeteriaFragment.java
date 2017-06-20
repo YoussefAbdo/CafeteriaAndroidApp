@@ -48,7 +48,7 @@ public class CafeteriaFragment extends Fragment {
     RecyclerView recyclerView;
     TextView text;
     RecyclerView.LayoutManager layoutManager;
-    private ProgressDialog dialog;
+    public ProgressDialog dialog;
 
 
     public CafeteriaFragment() {
@@ -68,7 +68,8 @@ public class CafeteriaFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_cafeteria, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.cafeteria_recyclerView);
         text = (TextView) view.findViewById(R.id.text1);
-        new JsonTaskCafeteria().execute("http://cafeteriaappdemo.azurewebsites.net/api/cafeteria");
+            new JsonTaskCafeteria().execute("http://cafeteriaappdemo.azurewebsites.net/api/cafeteria");
+
         return view;
     }
 
@@ -138,6 +139,7 @@ public class CafeteriaFragment extends Fragment {
 
             String name = "Name";
             String image = "ImageData";
+            Log.v("caf_name", name);
             Log.v("image", image);
             String id = "Id";
             for (int i = 0; i < parentArray.length(); i++) {
