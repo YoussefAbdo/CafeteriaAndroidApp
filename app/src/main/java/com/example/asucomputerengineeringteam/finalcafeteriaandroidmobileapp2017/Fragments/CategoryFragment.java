@@ -75,7 +75,7 @@ public class CategoryFragment  extends Fragment {
         String caf_id = activity.getIntent().getExtras().getString("caf_id");
         Log.v("id" , caf_id);
         JsonTaskCategory jsonTaskCategory = new JsonTaskCategory();
-        jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafeteria"+Integer.valueOf(caf_id));
+        jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria/"+Integer.valueOf(caf_id));
 
 
         return view;

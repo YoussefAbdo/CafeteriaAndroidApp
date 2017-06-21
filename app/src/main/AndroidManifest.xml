@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -18,25 +18,28 @@
         android:label="Order Online"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Splash.IntroActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".Splash.IntroActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splash.MainActivity">
-        </activity>
+        <activity android:name=".Splash.MainActivity" />
         <activity
             android:name=".Activities.HomeActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.SettingsActivity"
-            android:label="Settings" />
+            android:label="Settings"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.HelpActivity"
-            android:label="Help" />
+            android:label="Help"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.EditActivity"
             android:label="Edit Your Menu" />
@@ -78,15 +81,17 @@
         <activity
             android:name=".Activities.CafeteriaInterface"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".Activities.CategoryInterface"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.MenuItemInterface"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
+        <activity
+            android:name=".CustomizedNavigationDrawer.DrawerActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.ContactUsActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
