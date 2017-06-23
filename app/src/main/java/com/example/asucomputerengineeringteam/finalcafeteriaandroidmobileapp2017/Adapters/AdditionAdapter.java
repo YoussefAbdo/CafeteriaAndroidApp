@@ -27,7 +27,7 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import java.util.List;
 
  // Created by Esraa Hosny on 3/11/2017.
-public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.MyViewHolder> {
+public class AdditionAdapter extends BaseAdapter {
 
     List<AdditonModel> additionModelList;
     Context context;
@@ -38,43 +38,54 @@ public class AdditionAdapter extends RecyclerView.Adapter<AdditionAdapter.MyView
         this.context = context;
     }
 
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.addition_row_item, parent, false);
-        MyViewHolder viewHolder = new MyViewHolder(view);
-        return viewHolder;
-    }
 
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-       holder.add_checkbox.setText(additionModelList.get(position).getName());
-        String.valueOf(additionModelList.get(position).getId());
-       // holder.add_checkbox.setText(additionItems[position].getN);
+     @Override
+     public int getCount() {
+         return additionModelList.size();
+     }
+
+     @Override
+     public Object getItem(int position) {
+         return additionModelList.get(position);
+     }
+
+     @Override
+     public long getItemId(int position) {
+         return position;
+     }
+
+     @Override
+     public View getView(int position, View view, ViewGroup parent) {
+          view = LayoutInflater.from(parent.getContext()).inflate(R.layout.addition_row_item, parent, false);
+         final CheckBox add_checkbox = (CheckBox) view.findViewById(R.id.add_checkbox);
+          add_checkbox.setText(additionModelList.get(position).getName());
+         String.valueOf(additionModelList.get(position).getId());
+         // holder.add_checkbox.setText(additionItems[position].getN);
          addition_item_name = additionModelList.get(position).getName();
-    }
-
-    @Override
-    public int getItemCount() {
-        return additionModelList.size();
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        public CheckBox add_checkbox;
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            add_checkbox = (CheckBox) itemView.findViewById(R.id.add_checkbox);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
+         view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, MenuDetailInterface.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("addition_item" ,addition_item_name);
-                    context.startActivity(intent);
-                    //Toast.makeText(context, "yes addition is selected", Toast.LENGTH_SHORT).show();
+                    if(!add_checkbox.isChecked())
+                    {
+                        Toast.makeText(context, "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intent = new Intent(context, MenuDetailInterface.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("addition_item", addition_item_name);
+                        context.startActivity(intent);
+                        Toast.makeText(context, "Good, addition is selected", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             });
-        }
-    }
+         return view;
+     }
+
+
+
+
+
+
 }

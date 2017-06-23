@@ -1,4 +1,4 @@
-package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
+package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels;
 
 public class ReviewsDataModel {
     private String content;

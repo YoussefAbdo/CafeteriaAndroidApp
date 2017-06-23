@@ -16,35 +16,21 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView logo;
-    TextView app_name , order;
+    ImageView logo , image;
     Button start;
 
-    /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        image = (ImageView)findViewById(R.id.image);
+        image.setImageResource(R.drawable.frame_image_modified2);
+        image.setAlpha(85);
 
         logo = (ImageView)findViewById(R.id.logo_image);
         logo.setImageResource(R.drawable.app_logo);
 
-
-     /*    *//* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*//*
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                *//* Create an Intent that will start the Menu-Activity. *//*
-                Intent mainIntent = new Intent(MainActivity.this,HomeActivity.class);
-                MainActivity.this.startActivity(mainIntent);
-                MainActivity.this.finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);*/
         start = (Button)findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,13 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/text_chef"
+        android:textColor="@color/dark_green"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:text="open this"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello"
-        android:layout_margin="20dp"
-        android:textColor="#000000"/>
+        android:id="@+id/image_chef"
+        android:src="@drawable/chef2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_chef"/>
 
 
 </LinearLayout>

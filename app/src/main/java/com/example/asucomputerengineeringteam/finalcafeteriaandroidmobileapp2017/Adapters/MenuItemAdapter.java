@@ -49,21 +49,19 @@ public class MenuItemAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(final int position, View view, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         view = inflater.inflate(R.layout.menuitem_list_item, parent, false);
-
         TextView men_name_text = (TextView) view.findViewById(R.id.men_name_text);
-        ImageView men_image_view = (ImageView) view.findViewById(R.id.men_image_view);
+        final ImageView men_image_view = (ImageView) view.findViewById(R.id.men_image_view);
         TextView men_price_text = (TextView) view.findViewById(R.id.men_price_text);
-
+        TextView men_more_text = (TextView)view.findViewById(R.id.men_more_text);
         String name = menuItemDataModelList.get(position).getName();
         men_name_text.setText(name);
-
         String price = String.valueOf(menuItemDataModelList.get(position).getPrice());
         men_price_text.setText(price);
-
         men_image_view.setImageResource(R.drawable.burger);
+        men_more_text.setText("more...");
 
         review = menuItemDataModelList.get(position).getAlternatetext();
         //  http://cafeteriaappdemo.azurewebsites.net/Scripts/CustomerTheme/images/page3_img1.jpg
@@ -73,11 +71,16 @@ public class MenuItemAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent(context, MenuDetailInterface.class);
-                intent.putExtra("reviews", review);
+                Intent intent = new Intent(context, MenuDetailInterface.class);
+                intent.putExtra("name", menuItemDataModelList.get(position).getName());
+                intent.putExtra("price", menuItemDataModelList.get(position).getPrice());
+                intent.putExtra("description", menuItemDataModelList.get(position).getDescription());
+                intent.putExtra("type", menuItemDataModelList.get(position).getType());
+                intent.putExtra("image_url", menuItemDataModelList.get(position).getImageData());
+                intent.putExtra("alternate_text", menuItemDataModelList.get(position).getAlternatetext());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);*/
-                Toast.makeText(context, "ok item", Toast.LENGTH_SHORT).show();
+                context.startActivity(intent);
+               // Toast.makeText(context, "ok item", Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -29,6 +29,9 @@
         </activity>
         <activity android:name=".Splash.MainActivity" />
         <activity
+            android:name=".CustomizedNavigationDrawer.DrawerActivity"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Activities.HomeActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -87,9 +90,7 @@
         <activity
             android:name=".Activities.MenuItemInterface"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".CustomizedNavigationDrawer.DrawerActivity"
-            android:theme="@style/AppTheme" />
+
         <activity android:name=".Activities.ContactUsActivity"
             android:theme="@style/AppTheme"></activity>
     </application>

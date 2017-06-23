@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_screen3"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_name"
+        android:src="@drawable/frame_image_modified2" />
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/logo_image"
         android:layout_width="100dp"
@@ -33,30 +43,26 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/app_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/salad" />
-
-    <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@+id/image"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/round_button_2"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:text="Start"
-        android:textColor="#ffffff"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <Button
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="150dp"
+            android:layout_below="@+id/app_name"
+            android:layout_marginTop="300dp"
+            android:background="@drawable/round_button_2"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="Start"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
-</RelativeLayout>
+
+
+
+
+
+</FrameLayout>
