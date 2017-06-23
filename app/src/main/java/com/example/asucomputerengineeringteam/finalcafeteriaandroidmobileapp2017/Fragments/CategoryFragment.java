@@ -69,18 +69,17 @@ public class CategoryFragment  extends Fragment {
         String caf_id = activity.getIntent().getExtras().getString("caf_id");
         Log.v("id" , caf_id);
         JsonTaskCategory jsonTaskCategory = new JsonTaskCategory();
-        jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria/"+Integer.valueOf(caf_id));
+        //Integer.valueOf(caf_id)
+        jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria/"+2);
 
         return view;
     }
     public  class JsonTaskCategory extends AsyncTask<String, String, List<CategoryDataModel>> {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             dialog.show();
         }
-
         @Override
         protected List<CategoryDataModel> doInBackground(String... params) {
             HttpURLConnection connection = null;

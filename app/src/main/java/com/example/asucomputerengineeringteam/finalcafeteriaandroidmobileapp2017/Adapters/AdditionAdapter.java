@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -60,32 +61,7 @@ public class AdditionAdapter extends BaseAdapter {
          final CheckBox add_checkbox = (CheckBox) view.findViewById(R.id.add_checkbox);
           add_checkbox.setText(additionModelList.get(position).getName());
          String.valueOf(additionModelList.get(position).getId());
-         // holder.add_checkbox.setText(additionItems[position].getN);
          addition_item_name = additionModelList.get(position).getName();
-         view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(!add_checkbox.isChecked())
-                    {
-                        Toast.makeText(context, "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Intent intent = new Intent(context, MenuDetailInterface.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("addition_item", addition_item_name);
-                        context.startActivity(intent);
-                        Toast.makeText(context, "Good, addition is selected", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-            });
          return view;
      }
-
-
-
-
-
-
 }

@@ -2,22 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+   >
+
 
     <ImageView
         android:id="@+id/men_image_view"
-        android:layout_width="110dp"
+        android:layout_width="150dp"
         android:layout_height="110dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
         android:src="@drawable/pizza" />
-
+    <LinearLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_screen3"
+        android:orientation="vertical"
+        android:layout_below="@+id/men_image_view">
 
     <TextView
         android:id="@+id/men_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/men_image_view"
        android:layout_marginLeft="30dp"
         android:layout_marginRight="5dp"
         android:text="Name"
@@ -29,7 +34,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:background="@color/bg_screen3"
         android:layout_below="@+id/men_name_text">
     <TextView
         android:id="@+id/men_price_text"
@@ -53,6 +57,7 @@
         android:textColor="@color/dark_green"
         android:textSize="15sp"
         android:textStyle="bold" />
+    </LinearLayout>
 
 
 </LinearLayout>

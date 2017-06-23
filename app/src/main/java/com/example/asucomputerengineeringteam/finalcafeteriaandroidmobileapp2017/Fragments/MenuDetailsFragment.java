@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.BasketActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoryInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.AdditionAdapter;
@@ -62,9 +63,10 @@ public class MenuDetailsFragment extends Fragment {
     public List<AdditonModel> additonModelList = new ArrayList<>();
     ListView addition_lv;
     ImageView image, favorite, notfavorite;
-    TextView item_name , item_description , item_type , item_price , quantity_text , addition_text ,quantity_title_text_view ,textViewReviews;
-    Button add_quantity , remove_quantity , basket ,back_btn ;
+    TextView item_name, item_description, item_type, item_price, quantity_text, addition_text, quantity_title_text_view, textViewReviews;
+    Button add_btn, remove_btn, basket, back_btn;
     TextView tvReviewData;
+
     /*TextView tvIsConnected;
     EditText addition_name;
     Button btnPost;
@@ -88,41 +90,40 @@ public class MenuDetailsFragment extends Fragment {
 
 
         //instantiation of ui
-        image = (ImageView)view.findViewById(R.id.photo_image_view);
-        item_description = (TextView)view.findViewById(R.id.item_description);
-        item_name = (TextView)view.findViewById(R.id.item_name);
-        item_price = (TextView)view.findViewById(R.id.item_price);
-        item_type = (TextView)view.findViewById(R.id.item_type);
-        addition_text = (TextView)view.findViewById(R.id.additions_text_view);
-        quantity_title_text_view = (TextView)view.findViewById(R.id.quantity_title_text_view);
-        quantity_text = (TextView)view.findViewById(R.id.quantity_text);
-        add_quantity = (Button)view.findViewById(R.id.add);
-        remove_quantity = (Button)view.findViewById(R.id.remove);
-        basket = (Button)view.findViewById(R.id.basket);
-        favorite = (ImageView)view.findViewById(R.id.favorite);
-        notfavorite = (ImageView)view.findViewById(R.id.no_favorite);
-        textViewReviews = (TextView)view.findViewById(R.id.textViewReviews);
+        image = (ImageView) view.findViewById(R.id.photo_image_view);
+        item_description = (TextView) view.findViewById(R.id.item_description);
+        item_name = (TextView) view.findViewById(R.id.item_name);
+        item_price = (TextView) view.findViewById(R.id.item_price);
+        item_type = (TextView) view.findViewById(R.id.item_type);
+        addition_text = (TextView) view.findViewById(R.id.additions_text_view);
+        quantity_title_text_view = (TextView) view.findViewById(R.id.quantity_title_text_view);
+        quantity_text = (TextView) view.findViewById(R.id.quantity_text);
+        add_btn = (Button) view.findViewById(R.id.add_btn);
+        remove_btn = (Button) view.findViewById(R.id.remove_btn);
+        basket = (Button) view.findViewById(R.id.basket);
+        favorite = (ImageView) view.findViewById(R.id.favorite);
+        notfavorite = (ImageView) view.findViewById(R.id.no_favorite);
+        textViewReviews = (TextView) view.findViewById(R.id.textViewReviews);
         addition_lv = (ListView) view.findViewById(R.id.addition_lv);
-        back_btn = (Button)view.findViewById(R.id.back_btn);
+        // back_btn = (Button)view.findViewById(R.id.back_btn);
 
 
         // intent part
         MenuDetailInterface menuDetailInterface = (MenuDetailInterface) getActivity();
         String item_name_intent = menuDetailInterface.getIntent().getExtras().getString("name");
         item_name.setText(item_name_intent);
-        String item_price_intent  = menuDetailInterface.getIntent().getExtras().getString("price");
+        String item_price_intent = menuDetailInterface.getIntent().getExtras().getString("price");
         item_price.setText("Price = " + item_price_intent);
-        String item_description_intent  = menuDetailInterface.getIntent().getExtras().getString("description");
+        String item_description_intent = menuDetailInterface.getIntent().getExtras().getString("description");
         item_description.setText("Description of this meal ...." + item_description_intent);
-        String item_type_intent  = menuDetailInterface.getIntent().getExtras().getString("type");
+        String item_type_intent = menuDetailInterface.getIntent().getExtras().getString("type");
         item_type.setText("Type is non-vegeterian" + item_type_intent);
         /*String item_image_url_intent  = menuDetailInterface.getIntent().getExtras().getString("image_url");
         image.setImageResource(Integer.parseInt(item_image_url_intent));*/
         image.setImageResource(R.drawable.burger);
-        String reviews_of_menu_item_intent  = menuDetailInterface.getIntent().getExtras().getString("alternate_text");
+        String reviews_of_menu_item_intent = menuDetailInterface.getIntent().getExtras().getString("alternate_text");
         textViewReviews.setText("reviews of people are here of this menu item" + reviews_of_menu_item_intent);
         Log.v("alternate_text", reviews_of_menu_item_intent);
-
 
 
         // add to favorites
@@ -147,11 +148,22 @@ public class MenuDetailsFragment extends Fragment {
         addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "ok ", Toast.LENGTH_SHORT).show();
+               AdditonModel additonModel = additonModelList.get(position);
+                String addition = additonModel.getName();
 
+                if(addition == null)
+                {
+                    Toast.makeText(getActivity(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(getActivity(), MenuDetailInterface.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("addition_value" , addition);
+                    getActivity().startActivity(intent);
+                    Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
+                }
             }
-            });
-
+        });
         addition_lv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -171,7 +183,6 @@ public class MenuDetailsFragment extends Fragment {
             }
         });
 
-
         // addition json execution
         JsonTaskAddition jsonTaskAddition = new JsonTaskAddition();
         jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
@@ -180,13 +191,14 @@ public class MenuDetailsFragment extends Fragment {
 
  /* // quantity json execution
         JsonTaskQuantity jsonTaskQuantity = new JsonTaskQuantity();
-        jsonTaskQuantity.execute()*/;
+        jsonTaskQuantity.execute()*/
+        ;
 
 
         basket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent i = new Intent(getActivity() , BasketActivity.class);
+                Intent i = new Intent(getActivity(), BasketActivity.class);
                 startActivity(i);
             }
         });
@@ -201,14 +213,11 @@ public class MenuDetailsFragment extends Fragment {
         });*/
 
 
-
-
-
         return view;
     }
 
 
-    public class JsonTaskAddition extends AsyncTask<String,Void, List<AdditonModel>> {
+    public class JsonTaskAddition extends AsyncTask<String, Void, List<AdditonModel>> {
 
         @Override
         protected List<AdditonModel> doInBackground(String... params) {
@@ -285,31 +294,27 @@ public class MenuDetailsFragment extends Fragment {
             return additonModelList;
         }
 
-       /* @Override
+        /* @Override
+         protected void onPostExecute(List<AdditonModel> additonModels) {
+             super.onPostExecute(additonModels);
+             if (additonModels != null) {
+                 layoutManager = new LinearLayoutManager(getContext());
+                 addition_recyclerView.setLayoutManager(layoutManager);
+                 addition_recyclerView.setHasFixedSize(true);
+                 additionAdapter = new AdditionAdapter(getContext(), additonModels);
+                 addition_recyclerView.setAdapter(additionAdapter);
+             } else {
+                 Toast.makeText(getContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
+             }
+
+         }*/
+        @Override
         protected void onPostExecute(List<AdditonModel> additonModels) {
             super.onPostExecute(additonModels);
-            if (additonModels != null) {
-                layoutManager = new LinearLayoutManager(getContext());
-                addition_recyclerView.setLayoutManager(layoutManager);
-                addition_recyclerView.setHasFixedSize(true);
-                additionAdapter = new AdditionAdapter(getContext(), additonModels);
-                addition_recyclerView.setAdapter(additionAdapter);
-            } else {
-                Toast.makeText(getContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
-            }
-
-        }*/
-       @Override
-       protected void onPostExecute(List<AdditonModel> additonModels)
-       {
-           super.onPostExecute(additonModels);
-           additionAdapter.notifyDataSetChanged();
-       }
+            additionAdapter.notifyDataSetChanged();
+        }
 
     }
-
-
-
 
 
 }

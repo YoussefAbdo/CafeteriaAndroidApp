@@ -47,12 +47,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.cat_text_view.setText(categoryDataModelList.get(position).getName());
-
-       /* byte[] imageBytes = Base64.decode(categoryDataModelList.get(position).getImage().toString(),Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
-        holder.cat_image.setImageBitmap(decodedImage);*/
-        String path = "http://categoryappdemo.azurewebsites.net";
-        Picasso.with(context).load(path+categoryDataModelList.get(position).getImage()).into(holder.cat_image);
+       String path = "http://cafeteriaappdemo.azurewebsites.net";
+        Picasso.with(context).load(path + categoryDataModelList.get(position).getImage()).into(holder.cat_image);
         cat_id  = String.valueOf(categoryDataModelList.get(position).getId());
     }
 
