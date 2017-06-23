@@ -51,7 +51,7 @@
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/round_button_2"
-        android:paddingLeft="50dp"
+        android:paddingLeft="10dp"
         android:paddingTop="5dp"
         android:text="Start"
         android:textColor="#ffffff"

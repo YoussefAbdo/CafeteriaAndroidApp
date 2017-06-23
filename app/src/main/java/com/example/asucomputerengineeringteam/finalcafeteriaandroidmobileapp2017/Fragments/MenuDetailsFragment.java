@@ -131,6 +131,9 @@ public class MenuDetailsFragment extends Fragment {
             }
         });
 
+        // addition json execution
+        JsonTaskAddition jsonTaskAddition = new JsonTaskAddition();
+        jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
         additionAdapter = new AdditionAdapter(getActivity(), additonModelList);
         addition_recyclerView.setAdapter(additionAdapter);
 
@@ -153,9 +156,7 @@ public class MenuDetailsFragment extends Fragment {
             }
         });
 
-        // addition json execution
-        JsonTaskAddition jsonTaskAddition = new JsonTaskAddition();
-        jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
+
 
        /* // quantity json execution
         JsonTaskQuantity jsonTaskQuantity = new JsonTaskQuantity();

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
@@ -19,6 +20,8 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments.CategoryFragment;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -45,13 +48,10 @@ public class CafeteriaAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyVi
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.caf_text_view.setText(cafeteriaArrayList.get(position).getName());
 
-        byte[] imageBytes = Base64.decode(cafeteriaArrayList.get(position).getImage().toString(),Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
-        holder.caf_image.setImageBitmap(decodedImage);
-        Log.v("sizeImage" ,imageBytes.toString());
+        String path = "http://cafeteriaappdemo.azurewebsites.net";
+        Picasso.with(context).load(path+cafeteriaArrayList.get(position).getImage()).into(holder.caf_image);
         caf_id  = String.valueOf(cafeteriaArrayList.get(position).getId());
     }
-
     @Override
     public int getItemCount()
     {
@@ -69,10 +69,8 @@ public class CafeteriaAdapter extends RecyclerView.Adapter<CafeteriaAdapter.MyVi
                 public void onClick(View v) {
                     Intent intent = new Intent(context,CategoryInterface.class);
                     intent.putExtra("caf_id", caf_id);
-                   // intent.putExtra("caf_image_intent", caf_image.toString());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-                  // Toast.makeText(context , "ok" , Toast.LENGTH_LONG).show();
 
                 }
             });

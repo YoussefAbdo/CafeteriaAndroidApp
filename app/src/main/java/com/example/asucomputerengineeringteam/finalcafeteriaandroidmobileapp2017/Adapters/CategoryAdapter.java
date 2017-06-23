@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -49,6 +51,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
        /* byte[] imageBytes = Base64.decode(categoryDataModelList.get(position).getImage().toString(),Base64.DEFAULT);
         Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
         holder.cat_image.setImageBitmap(decodedImage);*/
+        String path = "http://categoryappdemo.azurewebsites.net";
+        Picasso.with(context).load(path+categoryDataModelList.get(position).getImage()).into(holder.cat_image);
         cat_id  = String.valueOf(categoryDataModelList.get(position).getId());
     }
 
@@ -67,13 +71,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  /*  Intent intent= new Intent(context,MenuItemInterface.class);
+                    Intent intent= new Intent(context,MenuItemInterface.class);
                     intent.putExtra("cat_id", cat_id);
                     Log.v("cat_id" , cat_id);
-                    //  intent.putExtra("cat_image_intent", cat_image.toString());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);*/
-                    Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
+                    context.startActivity(intent);
+
 
                 }
             });

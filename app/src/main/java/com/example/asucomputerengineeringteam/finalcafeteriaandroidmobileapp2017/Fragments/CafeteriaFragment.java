@@ -138,7 +138,7 @@ public class CafeteriaFragment extends Fragment {
             JSONArray parentArray = parentObject.getJSONArray("cafeterias");
 
             String name = "Name";
-            String image = "ImageData";
+            String image = "ImageUrl";
             Log.v("caf_name", name);
             Log.v("image", image);
             String id = "Id";

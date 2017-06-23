@@ -14,13 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CategoryInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CategoryAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CategoryDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,11 +44,14 @@ public class CategoryFragment  extends Fragment {
     public CategoryAdapter categoryAdapter;
     public List<CategoryDataModel> categoryDataModelList = new ArrayList<>();
     RecyclerView recyclerView;
-    ImageView caf_upper_image ;
     RecyclerView.LayoutManager layoutManager;
     private ProgressDialog dialog;
+
+
     public CategoryFragment() {
     }
+
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -62,21 +65,11 @@ public class CategoryFragment  extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_category, container, false);
         recyclerView =(RecyclerView)view.findViewById(R.id.category_recyclerView);
 
-        caf_upper_image = (ImageView)view.findViewById(R.id.caf_upper_image);
-        caf_upper_image.setImageResource(R.drawable.burger);
-
-        /*CategoryInterface activity = (CategoryInterface) getActivity();
-        // Intent intent = getActivity().getIntent();
-        // int
-        String caf_image = activity.getIntent().getExtras().getString("caf_image_intent");
-       caf_upper_image.setImageResource(Integer.parseInt(caf_image));
-        Log.v("image = " , caf_image);*/
         CategoryInterface activity = (CategoryInterface)getActivity();
         String caf_id = activity.getIntent().getExtras().getString("caf_id");
         Log.v("id" , caf_id);
         JsonTaskCategory jsonTaskCategory = new JsonTaskCategory();
         jsonTaskCategory.execute("http://cafeteriaappdemo.azurewebsites.net/api/category/GetByCafetria/"+Integer.valueOf(caf_id));
-
 
         return view;
     }
@@ -146,7 +139,7 @@ public class CategoryFragment  extends Fragment {
             JSONArray parentArray = parentObject.getJSONArray("categories");
 
             String name = "Name";
-            String image = "ImageData";
+            String image = "ImageUrl";
             String id = "Id";
 
             for (int i = 0; i < parentArray.length(); i++) {
@@ -154,6 +147,7 @@ public class CategoryFragment  extends Fragment {
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 categoryDataModel.setName(finalObject.getString(name));
                 categoryDataModel.setImage(finalObject.getString(image));
+                Log.v("image", String.valueOf(finalObject.get(image)));
                 categoryDataModel.setId(Integer.parseInt(finalObject.getString(id)));
 
                 //adding the final object in the list

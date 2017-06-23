@@ -1,14 +1,11 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +13,7 @@ import android.widget.Toast;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,83 +22,67 @@ import java.util.List;
  * Created by Esraa Hosny on 4/25/2017.
  */
 
-public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MyViewHolder> {
+public class MenuItemAdapter extends BaseAdapter {
 
     List<MenuItemDataModel> menuItemDataModelList;
     Context context;
-    String cat_id;
     String review;
 
-    public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModels) {
-        menuItemDataModelList = menuItemDataModels;
+    public MenuItemAdapter(Context context, List<MenuItemDataModel> menuItemDataModelList) {
+        super();
+        this.menuItemDataModelList = menuItemDataModelList;
         this.context = context;
     }
-
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.menuitem_list_item, parent, false);
-        MyViewHolder viewHolder = new MyViewHolder(view);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        String name = menuItemDataModelList.get(position).getName();
-        holder.men_name_text.setText("Name is " + name);
-
-        String price = String.valueOf(menuItemDataModelList.get(position).getPrice());
-        holder.men_price_text.setText("Price = " +price + "");
-
-        cat_id = String.valueOf(menuItemDataModelList.get(position).getId());
-        review = menuItemDataModelList.get(position).getAlternatetext();
-
-       /* holder.favorite.setImageResource(R.drawable.favorite);
-        holder.no_favorite.setImageResource(R.drawable.nofavorite);
-
-*/
-       /* byte[] imageBytes = Base64.decode(menuItemDataModelList.get(position).getImageData().toString(), Base64.DEFAULT);
-        Log.v("sizeImage", imageBytes.toString());
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        holder.men_image_view.setImageBitmap(decodedImage);*/
-    }
-
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return menuItemDataModelList.size();
     }
 
-    public void setFilter(List<MenuItemDataModel> menuItemDataModelList1) {
-        menuItemDataModelList = new ArrayList<>();
-        menuItemDataModelList.addAll(menuItemDataModelList1);
-        notifyDataSetChanged();
+    @Override
+    public Object getItem(int position) {
+        return menuItemDataModelList.get(position);
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView men_name_text;
-        public ImageView men_image_view;
-        public TextView men_price_text;
-
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            men_name_text = (TextView)itemView.findViewById(R.id.men_name_text);
-            men_image_view = (ImageView)itemView.findViewById(R.id.men_image_view);
-            men_price_text = (TextView)itemView.findViewById(R.id.men_price_text);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                 /*   Intent intent = new Intent(context,MenuDetailInterface.class);
-                    intent.putExtra("cat_id", cat_id);
-                    intent.putExtra("reviews", review);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.startActivity(intent);*/
-                    Toast.makeText(context, "ok item clicked", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-        }
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
+
+    @Override
+    public View getView(int position, View view, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.menuitem_list_item, parent, false);
+
+        TextView men_name_text = (TextView) view.findViewById(R.id.men_name_text);
+        ImageView men_image_view = (ImageView) view.findViewById(R.id.men_image_view);
+        TextView men_price_text = (TextView) view.findViewById(R.id.men_price_text);
+
+        String name = menuItemDataModelList.get(position).getName();
+        men_name_text.setText(name);
+
+        String price = String.valueOf(menuItemDataModelList.get(position).getPrice());
+        men_price_text.setText(price);
+
+        men_image_view.setImageResource(R.drawable.burger);
+
+        review = menuItemDataModelList.get(position).getAlternatetext();
+        //  http://cafeteriaappdemo.azurewebsites.net/Scripts/CustomerTheme/images/page3_img1.jpg
+//        String path = "http://menuitemappdemo.azurewebsites.net";
+//        Picasso.with(context).load(path + menuItemDataModelList.get(position).getImageData()).into(men_image_view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* Intent intent = new Intent(context, MenuDetailInterface.class);
+                intent.putExtra("reviews", review);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);*/
+                Toast.makeText(context, "ok item", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        return view;
+    }
+
 }
-
 
