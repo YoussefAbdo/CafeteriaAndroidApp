@@ -4,7 +4,6 @@
     android:id="@+id/activity_contact_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green2"
     android:layout_margin="16dp"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.ContactUsActivity">
 
@@ -15,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="FeedBack"
         android:background="@color/green1"
+        android:text="FeedBack"
         android:textColor="@color/dark_green"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -46,49 +45,112 @@
         android:textSize="10sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/email_syntax"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/send_email_1"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:background="@color/purple"
-            android:text="Yahoo" />
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/send_email_2"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/send_email_1"
-            android:layout_marginTop="10dp"
-            android:text="Gmail"
-            android:background="@color/color7"/>
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/yahoo_icon" />
 
-        <Button
-            android:id="@+id/send_email_3"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:background="@color/yellow"
-            android:layout_below="@+id/send_email_1"
-            android:layout_marginTop="10dp"
-            android:text="Hotmail" />
+            <Button
+                android:id="@+id/send_email_1"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:background="@color/purple"
+                android:layout_toLeftOf="@id/image1"
+                android:text="Yahoo"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/send_email_4"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:background="@color/blue"
-            android:layout_below="@+id/send_email_3"
-            android:layout_marginTop="10dp"
-            android:text="Facebook" />
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear1"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/gmail_icon" />
+
+            <Button
+                android:id="@+id/send_email_2"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/image2"
+                android:background="@color/color7"
+                android:text="Gmail"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/hotmail_icon" />
+
+            <Button
+                android:id="@+id/send_email_3"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/yellow"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:text="Hotmail" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear3"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/facebook_icon" />
+
+            <Button
+                android:id="@+id/send_email_4"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/blue"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:text="Facebook" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
