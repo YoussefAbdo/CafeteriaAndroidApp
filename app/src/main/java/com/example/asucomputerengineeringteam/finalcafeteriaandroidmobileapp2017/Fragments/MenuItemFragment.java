@@ -1,17 +1,10 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,17 +13,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.MenuItemAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.Favorites;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MenuItemDataModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Interfaces.MenuItemListener;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import org.json.JSONArray;
@@ -45,7 +37,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Esraa Hosny on 4/29/2017.
@@ -56,36 +47,113 @@ public class MenuItemFragment extends Fragment {
     public MenuItemAdapter menuItemAdapter;
     public List<MenuItemDataModel> menuItemDataModelList = new ArrayList<>();
     public GridView gridView;
-    //DataBaseFavourites dbf;
+    Favorites dbf;
     String cat_id;
+    ImageView favorite_menu ,items_menu;
+    Toolbar myToolBar ;
+
     ArrayList<MenuItemDataModel> arrayList_Fav_menuitems = new ArrayList<>();
+    private MenuItemListener menuItemListener;
 
 
+    public void setItems(MenuItemListener menuItemListener)
+    {
+        this.menuItemListener = menuItemListener;
+    }
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-       // dbf = new DataBaseFavourites(getActivity());
+        dbf = new Favorites(getActivity());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        menuItemDataModelList.clear();
+        arrayList_Fav_menuitems.clear();
+        menuItemAdapter.notifyDataSetChanged();
+        gridView.setAdapter(menuItemAdapter);
+        JsonTaskMenuItem movieTask = new JsonTaskMenuItem();
+        movieTask.execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_menuitem, container, false);
-        gridView = (GridView)view.findViewById(R.id.gridView);
+        View view = inflater.inflate(R.layout.fragment_menuitem, container, false);
+        gridView = (GridView) view.findViewById(R.id.gridView);
 
-        MenuItemInterface activity = (MenuItemInterface) getActivity();
-        cat_id = activity.getIntent().getExtras().getString("cat_id");
-        Log.v("idtomenuitem", cat_id);
-        JsonTaskMenuItem jsonmenu = new JsonTaskMenuItem();
+        myToolBar = (Toolbar) view.findViewById(R.id.toolbar);
+        myToolBar.setTitle(getResources().getString(R.string.sentence));
+        menuItemAdapter = new MenuItemAdapter(getActivity(), menuItemDataModelList);
+        gridView.setAdapter(menuItemAdapter);
+
+       // MenuItemInterface activity = (MenuItemInterface) getActivity();
+       // cat_id = activity.getIntent().getExtras().getString("cat_id");
+       // Log.v("idtomenuitem", cat_id);
+      //  JsonTaskMenuItem jsonmenu = new JsonTaskMenuItem();
         //http://cafeteriaappdemo.azurewebsites.net/api/menuitem/GetByCategory/"+Integer.valueOf(cat_id)
         //http://cafeteriaappdemo.azurewebsites.net/api/menuitem
-        jsonmenu.execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem");
+        //jsonmenu.execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem");
         /*gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(), "ok item", Toast.LENGTH_SHORT).show();
             }
         });*/
+
+        items_menu = (ImageView)view.findViewById(R.id.items_menu);
+        items_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arrayList_Fav_menuitems.clear();
+                menuItemAdapter.notifyDataSetChanged();
+                gridView.setAdapter(menuItemAdapter);
+                JsonTaskMenuItem jsonmenu = new JsonTaskMenuItem();
+                //http://cafeteriaappdemo.azurewebsites.net/api/menuitem/GetByCategory/"+Integer.valueOf(cat_id)
+                jsonmenu.execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem");
+            }
+        });
+        favorite_menu = (ImageView)view.findViewById(R.id.favorite_menu);
+        favorite_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(getContext(), "ok item", Toast.LENGTH_SHORT).show();
+                menuItemDataModelList.clear();
+                menuItemDataModelList = dbf.GetAllData();
+                Log.v("favcount", menuItemDataModelList.size() + "");
+                menuItemAdapter = new MenuItemAdapter(getContext(), menuItemDataModelList);
+                menuItemAdapter.notifyDataSetChanged();
+                gridView.setAdapter(menuItemAdapter);
+
+                for (int i = 0; i < menuItemDataModelList.size(); i++) {
+                    Log.v("FID", String.valueOf(menuItemDataModelList.get(i).getId()));
+                }
+
+            }
+        });
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                 MenuItemDataModel menuItemDataModel;
+                if(menuItemDataModelList.size()==0)
+                    menuItemDataModel = arrayList_Fav_menuitems.get(position);
+                else
+                    menuItemDataModel = menuItemDataModelList.get(position);
+                    String name = menuItemDataModel.getName();
+                    String price = menuItemDataModel.getPrice();
+                    String des = menuItemDataModel.getDescription();
+                    String type = menuItemDataModel.getType();
+                    String image = menuItemDataModel.getImageData();
+                    String review = menuItemDataModel.getAlternatetext();
+                    String ids = menuItemDataModel.getId();
+
+                menuItemListener.setSelectedMenuItem(image,name,price,review,des, type,ids);
+
+
+            }
+        });
         return view;
     }
 
@@ -160,8 +228,8 @@ public class MenuItemFragment extends Fragment {
                 JSONObject finalObject = parentArray.getJSONObject(i);
                 MenuItemDataModel menuItemDataModel = new MenuItemDataModel();
                 menuItemDataModel.setName(finalObject.getString(name));
-                menuItemDataModel.setId(Integer.parseInt(finalObject.getString(id)));
-                menuItemDataModel.setPrice(Double.parseDouble(finalObject.getString(price)));
+                menuItemDataModel.setId(finalObject.getString(id));
+                menuItemDataModel.setPrice(finalObject.getString(price));
                 menuItemDataModel.setAlternatetext(finalObject.getString(review));
                 menuItemDataModel.setImageData(finalObject.getString(image));
                 //adding the final object in the list
@@ -178,46 +246,12 @@ public class MenuItemFragment extends Fragment {
                 super.onPostExecute(menuitems);
                // dialog.dismiss();
               //  menuItemAdapter.menuItemDataModelList.addAll(menuitems);
-                menuItemAdapter = new MenuItemAdapter(getActivity(),menuItemDataModelList);
+               /* menuItemAdapter = new MenuItemAdapter(getActivity(),menuItemDataModelList);
                 gridView.setAdapter(menuItemAdapter);
+                menuItemAdapter.notifyDataSetChanged();*/
+                menuItemAdapter.menuItemDataModelList.addAll(menuitems);
                 menuItemAdapter.notifyDataSetChanged();
             }
         }
-
-   /* @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_items:
-                menuItemDataModelList.clear();
-                menuItemAdapter = new MenuItemAdapter(getActivity(),menuItemDataModelList);
-                gridView.setAdapter(menuItemAdapter);
-                JsonTaskMenuItem jsonmenu = new JsonTaskMenuItem();
-                //http://cafeteriaappdemo.azurewebsites.net/api/menuitem/GetByCategory/"+Integer.valueOf(cat_id)
-                jsonmenu.execute("http://cafeteriaappdemo.azurewebsites.net/api/menuitem");
-
-                break;
-            *//*case R.id.action_favorites:
-                menuItemDataModelList.clear();
-                menuItemDataModelList = dbf.GetAllData();
-                Log.v("favcount", menuItemDataModelList.size() + "");
-                menuItemAdapter = new MenuItemAdapter(getContext(), menuItemDataModelList,menu_images);
-                menuItemAdapter.notifyDataSetChanged();
-                recyclerView.setAdapter(menuItemAdapter);
-
-                for (int i = 0; i < menuItemDataModelList.size(); i++) {
-                    Log.v("FID", String.valueOf(menuItemDataModelList.get(i).getId()));
-                }
-                break;*//*
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }
 

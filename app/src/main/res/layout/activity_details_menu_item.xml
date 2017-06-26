@@ -142,13 +142,13 @@
 
         <ListView
             android:id="@+id/addition_lv"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="140dp"
             android:layout_below="@+id/additions_text_view"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            android:background="@color/bg_screen3">
+            android:background="@color/green2">
 
         </ListView>
 
@@ -170,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="reviews of people are here of this menu item"
-            android:background="@color/bg_screen3"
+            android:background="@color/green2"
             android:layout_below="@+id/reviewText"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
@@ -217,7 +217,7 @@
                     android:background="@drawable/round_button"
                     android:layout_centerHorizontal="true"
                     android:text="0"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="20dp"
                     android:textColor="#ffffff"
                     android:textSize="30dp"
                     android:textStyle="bold" />
@@ -247,11 +247,11 @@
             android:text="Add to Basket"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/bottom_linear"
-            android:textColor="@color/dark_green"
+            android:textColor="#ffffff"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
-            android:background="@color/bg_screen3"/>
+            android:background="@color/dark_green"/>
     </RelativeLayout>
 
 </ScrollView>

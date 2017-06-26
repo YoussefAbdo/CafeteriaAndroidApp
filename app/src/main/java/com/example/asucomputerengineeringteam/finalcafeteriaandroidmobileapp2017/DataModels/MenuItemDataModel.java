@@ -8,8 +8,8 @@ import java.util.List;
 
 public class MenuItemDataModel {
 
-    private int id ;
-    private double price;
+    private String id ;
+    private String price;
     private String name ;
     private int categoryId ;
     private String Description;
@@ -23,19 +23,19 @@ public class MenuItemDataModel {
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

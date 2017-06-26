@@ -4,7 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-
+    <color name="light_green">#b3ffd9</color>
+    <color name="blue">#4da6ff</color>
+    <color name="purple">#e699ff</color>
     <color name="color1">#e60000</color>
     <color name="color2"> #ffe6b3</color>
     <color name="color3">#00e673</color>
@@ -32,10 +34,14 @@
 
     <color name="dark_green">#1B5E20</color>
 
+    <color name="green1">#69F0AE</color>
+    <color name="green2">#C8E6C9</color>
+    <color name="green3">#46bb8f</color>
+
     <!-- Screens background color-->
     <color name="bg_screen1">#46bb8f</color>
-    <color name="bg_screen2">#69F0AE</color>
-    <color name="bg_screen3">#C8E6C9</color>
+    <color name="bg_screen2">#46bb8f</color>
+    <color name="bg_screen3">#46bb8f</color>
     <color name="bg_screen4">#46bb8f</color>
 
     <!-- dots inactive colors -->

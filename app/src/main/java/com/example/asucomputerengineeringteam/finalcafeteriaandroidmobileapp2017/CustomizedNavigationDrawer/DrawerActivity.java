@@ -34,7 +34,7 @@ public class DrawerActivity extends AppCompatActivity  implements NavigationView
     private FlowingDrawer drawer;
     List<DrawerDataModel> drawerList;
     public static final String[] nav_label = {"Account" , "Cafeterias" , "Orders" , "Basket" , "Settings" , "Logout" ,"Contact us"};
-    public static final int[] nav_item = {R.drawable.user , R.drawable.basket , R.drawable.orders , R.drawable.basket , R.drawable.settings , R.drawable.basket , R.drawable.contact_us};
+    public static final int[] nav_item = {R.drawable.user , R.drawable.cafeteria_icon , R.drawable.orders , R.drawable.basket , R.drawable.settings_icon , R.drawable.logout_icon, R.drawable.contact_us_icon};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class DrawerActivity extends AppCompatActivity  implements NavigationView
                     Intent intent = new Intent(DrawerActivity.this , SignupActivity.class);
                     startActivity(intent);
                 }
-                if(nav_label == "Cafeterias" || nav_image.equals(R.drawable.basket))
+                if(nav_label == "Cafeterias" || nav_image.equals(R.drawable.cafeteria_icon))
                 {
                     Intent intent = new Intent(DrawerActivity.this , CafeteriaInterface.class);
                     startActivity(intent);
@@ -75,16 +75,16 @@ public class DrawerActivity extends AppCompatActivity  implements NavigationView
                     Intent intent = new Intent(DrawerActivity.this , BasketActivity.class);
                     startActivity(intent);
                 }
-                if(nav_label == "Settings" || nav_image.equals(R.drawable.settings))
+                if(nav_label == "Settings" || nav_image.equals(R.drawable.settings_icon))
                 {
                     Intent intent = new Intent(DrawerActivity.this , SettingsActivity.class);
                     startActivity(intent);
                 }
-                if(nav_label == "Logout" || nav_image.equals(R.drawable.basket))
+                if(nav_label == "Logout" || nav_image.equals(R.drawable.logout_icon))
                 {
                     Toast.makeText(DrawerActivity.this, "user is logged out", Toast.LENGTH_SHORT).show();
                 }
-                if(nav_label == "Contact us" || nav_image.equals(R.drawable.contact_us))
+                if(nav_label == "Contact us" || nav_image.equals(R.drawable.contact_us_icon))
                 {
                     Intent intent = new Intent(DrawerActivity.this , ContactUsActivity.class);
                     startActivity(intent);

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         image = (ImageView)findViewById(R.id.image);
         image.setImageResource(R.drawable.frame_image_modified2);
-        image.setAlpha(85);
+        image.setAlpha(120);
 
         logo = (ImageView)findViewById(R.id.logo_image);
         logo.setImageResource(R.drawable.app_logo);

@@ -37,7 +37,7 @@ public class DrawerFragment extends Fragment implements Animation.AnimationListe
         final View view = inflater.inflate(R.layout.drawer_fragment, container, false);
 
         TextView text_chef = (TextView)view.findViewById(R.id.text_chef);
-        text_chef.setText("<< Open Here");
+        text_chef.setText("Open the menu in the top left to make your order");
         animFadein = AnimationUtils.loadAnimation(getContext(),R.anim.fade_in);
         text_chef.startAnimation(animFadein);
 

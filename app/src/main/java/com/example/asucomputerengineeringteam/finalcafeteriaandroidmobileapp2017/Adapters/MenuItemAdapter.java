@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MenuItemAdapter extends BaseAdapter {
 
-    List<MenuItemDataModel> menuItemDataModelList;
+  public List<MenuItemDataModel> menuItemDataModelList;
     Context context;
     String review;
 
@@ -72,6 +72,7 @@ public class MenuItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MenuDetailInterface.class);
+                intent.putExtra("id", menuItemDataModelList.get(position).getId());
                 intent.putExtra("name", menuItemDataModelList.get(position).getName());
                 intent.putExtra("price", menuItemDataModelList.get(position).getPrice());
                 intent.putExtra("description", menuItemDataModelList.get(position).getDescription());
