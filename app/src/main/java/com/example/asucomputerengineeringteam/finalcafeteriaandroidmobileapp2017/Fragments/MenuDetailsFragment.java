@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.BasketActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.AdditionAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.Favorites;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
@@ -55,6 +57,8 @@ public class MenuDetailsFragment extends Fragment {
     TextView tvReviewData;
     Favorites favorites;
     String ids_menus;
+    int increment =0;
+    int decrement = 0;
 
     /*TextView tvIsConnected;
     EditText addition_name;
@@ -95,7 +99,7 @@ public class MenuDetailsFragment extends Fragment {
         notfavorite = (ImageView) view.findViewById(R.id.no_favorite);
         textViewReviews = (TextView) view.findViewById(R.id.textViewReviews);
         addition_lv = (ListView) view.findViewById(R.id.addition_lv);
-      //  back_btn = (Button)view.findViewById(R.id.back_btn);
+        back_btn = (Button)view.findViewById(R.id.back_btn);
 
         //intent Bundle to get data
         final Intent intent = getActivity().getIntent();
@@ -119,6 +123,8 @@ public class MenuDetailsFragment extends Fragment {
         final String item_description_intent = extras.getString("description");
         item_description.setText("Description of this item is ...." + item_description_intent);
         //image
+        /*String item_image_url_intent  = menuDetailInterface.getIntent().getExtras().getString("image_url");
+        image.setImageResource(Integer.parseInt(item_image_url_intent));*/
         final String item_image_url_intent = extras.getString("image_url");
         Log.v("image" , item_image_url_intent);
         //image.setImageResource(Integer.parseInt(item_image_url_intent));
@@ -217,33 +223,40 @@ public class MenuDetailsFragment extends Fragment {
         jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
 
 
-
- /* // quantity json execution
-        JsonTaskQuantity jsonTaskQuantity = new JsonTaskQuantity();
-        jsonTaskQuantity.execute()*/
-        ;
-
-
-        /*basket.setOnClickListener(new View.OnClickListener() {
+        back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), BasketActivity.class);
-                startActivity(i);
-            }
-        });*/
-
-
-       /* back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getContext() , MenuItemInterface.class);
-//                getContext().startActivity(intent);
+                Intent intent = new Intent(getContext() , MenuItemInterface.class);
+                getContext().startActivity(intent);
                 Toast.makeText(getActivity(), "Back button", Toast.LENGTH_SHORT).show();
 
             }
         });
 
-*/
+      /* add_btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               increment++;
+           }
+       });
+      remove_btn.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              decrement--;
+          }
+      });
+        quantity_text.getText().toString();
+
+       basket.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+                Intent i = new Intent(getActivity(), BasketActivity.class);
+                startActivity(i);
+               //post code is here
+            }
+        });*/
+
+
         return view;
     }
 
@@ -325,20 +338,6 @@ public class MenuDetailsFragment extends Fragment {
             return additonModelList;
         }
 
-        /* @Override
-         protected void onPostExecute(List<AdditonModel> additonModels) {
-             super.onPostExecute(additonModels);
-             if (additonModels != null) {
-                 layoutManager = new LinearLayoutManager(getContext());
-                 addition_recyclerView.setLayoutManager(layoutManager);
-                 addition_recyclerView.setHasFixedSize(true);
-                 additionAdapter = new AdditionAdapter(getContext(), additonModels);
-                 addition_recyclerView.setAdapter(additionAdapter);
-             } else {
-                 Toast.makeText(getContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
-             }
-
-         }*/
         @Override
         protected void onPostExecute(List<AdditonModel> additonModels) {
             super.onPostExecute(additonModels);
@@ -349,23 +348,3 @@ public class MenuDetailsFragment extends Fragment {
 
 
 }
-// intent part
-       /* MenuDetailInterface menuDetailInterface = (MenuDetailInterface) getActivity();
-        final String id_menu_item_intent = (String) menuDetailInterface.getIntent().getExtras().get("id");
-       *//* final String item_name_intent = menuDetailInterface.getIntent().getExtras().getString("name");
-        item_name.setText(item_name_intent);*//*
-        final String item_price_intent = menuDetailInterface.getIntent().getExtras().getString("price");
-        item_price.setText("Price = " + item_price_intent);
-        final String item_description_intent = menuDetailInterface.getIntent().getExtras().getString("description");
-        item_description.setText("Description of this meal ...." + item_description_intent);
-
-        final String item_type_intent = menuDetailInterface.getIntent().getExtras().getString("type");
-        item_type.setText("Type is non-vegeterian" + item_type_intent);
-
-        *//*String item_image_url_intent  = menuDetailInterface.getIntent().getExtras().getString("image_url");
-        image.setImageResource(Integer.parseInt(item_image_url_intent));*//*
-        image.setImageResource(R.drawable.burger);
-
-        final String reviews_of_menu_item_intent = menuDetailInterface.getIntent().getExtras().getString("alternate_text");
-        textViewReviews.setText("reviews of people are here of this menu item" + reviews_of_menu_item_intent);
-        Log.v("alternate_text", reviews_of_menu_item_intent);*/
