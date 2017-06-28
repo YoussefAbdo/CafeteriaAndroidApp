@@ -99,7 +99,7 @@ public class MenuDetailsFragment extends Fragment {
         notfavorite = (ImageView) view.findViewById(R.id.no_favorite);
         textViewReviews = (TextView) view.findViewById(R.id.textViewReviews);
         addition_lv = (ListView) view.findViewById(R.id.addition_lv);
-        back_btn = (Button)view.findViewById(R.id.back_btn);
+       // back_btn = (Button)view.findViewById(R.id.back_btn);
 
         //intent Bundle to get data
         final Intent intent = getActivity().getIntent();
@@ -223,7 +223,7 @@ public class MenuDetailsFragment extends Fragment {
         jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
 
 
-        back_btn.setOnClickListener(new View.OnClickListener() {
+       /* back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext() , MenuItemInterface.class);
@@ -231,7 +231,7 @@ public class MenuDetailsFragment extends Fragment {
                 Toast.makeText(getActivity(), "Back button", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
 
       /* add_btn.setOnClickListener(new View.OnClickListener() {
            @Override

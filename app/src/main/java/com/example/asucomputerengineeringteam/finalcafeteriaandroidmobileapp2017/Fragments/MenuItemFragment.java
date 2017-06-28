@@ -1,10 +1,13 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -37,6 +41,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Esraa Hosny on 4/29/2017.
@@ -49,6 +54,8 @@ public class MenuItemFragment extends Fragment {
     public GridView gridView;
     Favorites dbf;
     String cat_id;
+    // Search EditText
+    EditText inputSearch;
     ImageView favorite_menu ,items_menu;
     Toolbar myToolBar ;
 
@@ -83,11 +90,28 @@ public class MenuItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menuitem, container, false);
         gridView = (GridView) view.findViewById(R.id.gridView);
-
+        inputSearch = (EditText)view.findViewById(R.id.inputSearch);
         myToolBar = (Toolbar) view.findViewById(R.id.toolbar);
         myToolBar.setTitle(getResources().getString(R.string.sentence));
         menuItemAdapter = new MenuItemAdapter(getActivity(), menuItemDataModelList);
         gridView.setAdapter(menuItemAdapter);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                menuItemAdapter.getFilter().filter(arg0);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+
+            }
+        });
 
        // MenuItemInterface activity = (MenuItemInterface) getActivity();
        // cat_id = activity.getIntent().getExtras().getString("cat_id");
