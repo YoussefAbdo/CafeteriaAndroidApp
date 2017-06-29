@@ -47,10 +47,10 @@
             android:name=".Activities.EditActivity"
             android:label="Edit Your Menu" />
         <activity
-            android:name=".Activities.OrderDetailsActivity"
+            android:name=".Activities.OrdersActivity"
             android:label="Help" />
         <activity
-            android:name=".Activities.OrdersActivity"
+            android:name=".Activities.OrderDetailsActivity"
             android:label="Edit Your Menu" />
         <activity
             android:name=".Activities.BasketActivity"

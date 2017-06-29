@@ -1,118 +1,156 @@
-// I am working now on this
-
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderDetailsModel;
+
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrderAdapter;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.Order;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.attr.data;
+import static android.R.attr.order;
 
 public class OrdersActivity extends AppCompatActivity {
 
-    //private ListView ordered_items_list_view_orders;
-    //private TextView total_price_text_view;
-    private TextView id_text_view_orders;
-    private TextView payment_done_text_view_orders;
-    private TextView order_time_text_view_orders;
-    private TextView payment_method_text_view_orders;
-    private TextView delivery_place_text_view_orders;
-    private TextView order_status_text_view_orders;
-    private TextView delivery_time_text_view_orders;
-    private TextView customerid_text_view_orders;
+    public static final String LOG_TAG = OrdersActivity.class.getName();
+    private static final String DATE_SEPARATOR = "T";
+
+    private final String URL_TO_HIT = "http://cafeteriaappdemo.azurewebsites.net/api/order";
+    private ProgressDialog dialog;
+
+    private OrderAdapter mAdapter;
+    ArrayList<OrderItems> orderItemses;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_orders);
+        setContentView(R.layout.orders_activity);
 
-        // Showing and Enabling clicks on the Home/Up button
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        dialog = new ProgressDialog(this);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage("Loading. Please wait..."); // showing a dialog for loading the data
 
-        // setting up text views and stuff
-        setUpUIViews();
+        // Find a reference to the {@link ListView} in the layout
+        ListView orderListView = (ListView) findViewById(R.id.list);
 
-        // recovering data from MainActivity, sent via intent
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            String json = bundle.getString("orderDetailsModel"); // getting the model from MainActivity send via extras
-            OrderDetailsModel orderDetailsModel = new Gson().fromJson(json, OrderDetailsModel.class);
+        // Create a new mAdapter that takes the list of orders as input
+        mAdapter = new OrderAdapter(this, new ArrayList<Order>());
 
-//            // Then later, when you want to display image
-//            ImageLoader.getInstance().displayImage(movieModel.getImage(), ivMovieIcon, new ImageLoadingListener() {
-//                @Override
-//                public void onLoadingStarted(String imageUri, View view) {
-//                    progressBar.setVisibility(View.VISIBLE);
-//                }
-//
-//                @Override
-//                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//                    progressBar.setVisibility(View.GONE);
-//                }
-//
-//                @Override
-//                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                    progressBar.setVisibility(View.GONE);
-//                }
-//
-//                @Override
-//                public void onLoadingCancelled(String imageUri, View view) {
-//                    progressBar.setVisibility(View.GONE);
-//                }
-//            });
+        // Set the mAdapter on the {@link ListView}
+        // so the list can be populated in the user interface
+        orderListView.setAdapter(mAdapter);
 
-            //ordered_items_list_view_orders setData (I must set the data of the ordered items here)
-            //total_price_text_view_orders.setText(orderDetailsModel.get); (Total Price must be set here)
-            id_text_view_orders.setText("Reference Number: " + String.valueOf(orderDetailsModel.getId()));
-            payment_done_text_view_orders.setText("Payment Status: " + String.valueOf(orderDetailsModel.isPaymentDone()));
-            order_time_text_view_orders.setText("Order Time: " + orderDetailsModel.getOrderTime());
-            payment_method_text_view_orders.setText("Payment Method: " + orderDetailsModel.getPaymentMethod());
-            delivery_place_text_view_orders.setText("Delivery Place: " + orderDetailsModel.getDeliveryPlace());
-            order_status_text_view_orders.setText("Delivery Place: " + orderDetailsModel.getDeliveryPlace());
-            order_status_text_view_orders.setText("Order Status: " + orderDetailsModel.getOrderStatus());
-            delivery_time_text_view_orders.setText("Delivery Time: " + orderDetailsModel.getDeliveryTime());
-            customerid_text_view_orders.setText("Your ID: " + String.valueOf(orderDetailsModel.getCustomerid()));
+        orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-//            StringBuffer stringBuffer = new StringBuffer();
-//            for(MovieModel.Cast cast : movieModel.getCastList()){
-//                stringBuffer.append(cast.getName() + ", ");
-//            }
-//
-//            tvCast.setText("Cast:" + stringBuffer);
-//            tvStory.setText(movieModel.getStory());
+                Order currentOrder = mAdapter.getItem(position);
+                Intent intent = new Intent(getApplicationContext(), OrderDetailsActivity.class);
 
+                int id = currentOrder.getId();
+                String orderId = Integer.toString(id);
+                intent.putExtra("message", orderId);
 
-        }
+                boolean paymentDone = currentOrder.ismPaymentDone();
+                String paymentDonestring;
+                if (paymentDone = true) {
+                    paymentDonestring = "We received your payment";
+                }
+                else {
+                    paymentDonestring = "Note paid yet";
+                }
+                intent.putExtra("messagePayment", paymentDonestring);
+
+                String originalOrderDate = currentOrder.getmDate();
+                String orderDate;
+                String orderTime;
+                String[] parts = originalOrderDate.split(DATE_SEPARATOR);
+                orderDate = parts[0];
+                orderTime = parts[1];
+                intent.putExtra("messageOrderDate", orderDate);
+                intent.putExtra("messageOrderTime", orderTime);
+
+                String paymentMethod = currentOrder.getmPaymentMethod();
+                intent.putExtra("messagePaymentMethod", paymentMethod);
+
+                String deliveryPlace = currentOrder.getmDeliveryPlace();
+                intent.putExtra("messageDeliveryPlace", deliveryPlace);
+
+                String status = currentOrder.getmStatus();
+                intent.putExtra("messageStatus", status);
+
+                String originalDeliveryDate = currentOrder.getmDeliveryTime();
+                String DeliveryDate;
+                String DeliveryTime;
+                String[] DeliveryTimeParts = originalDeliveryDate.split(DATE_SEPARATOR);
+                DeliveryDate = DeliveryTimeParts[0];
+                DeliveryTime = DeliveryTimeParts[1];
+                intent.putExtra("messageDeliveryDate", DeliveryDate);
+                intent.putExtra("messageDeliveryTime", DeliveryTime);
+
+                String TotalPrice = String.valueOf(currentOrder.getmTotalPriceAll());
+                intent.putExtra("messageTotalPrice", TotalPrice);
+
+                intent.putExtra("messageOrderedItems", orderItemses);
+
+                startActivity(intent);
+            }
+        });
+
+        // Start the AsyncTask to fetch the earthquake data
+        OrderAsyncTask task = new OrderAsyncTask();
+        task.execute(URL_TO_HIT);
     }
 
-    private void setUpUIViews() {
-        //ordered_items_list_view_orders = (ListView) findViewById(R.id.ordered_items_list_view_orders);
-        //total_price_text_view_orders = (TextView) findViewById(R.id.total_price_text_view_orders);
-        id_text_view_orders = (TextView) findViewById(R.id.id_text_view_orders);
-        payment_done_text_view_orders = (TextView) findViewById(R.id.payment_done_text_view_orders);
-        order_time_text_view_orders = (TextView) findViewById(R.id.order_time_text_view_orders);
-        payment_method_text_view_orders = (TextView) findViewById(R.id.payment_method_text_view_orders);
-        delivery_place_text_view_orders = (TextView) findViewById(R.id.delivery_place_text_view_orders);
-        order_status_text_view_orders = (TextView) findViewById(R.id.order_status_text_view_orders);
-        delivery_time_text_view_orders = (TextView) findViewById(R.id.delivery_time_text_view_orders);
-        customerid_text_view_orders = (TextView) findViewById(R.id.customerid_text_view_orders);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private  class OrderAsyncTask extends AsyncTask<String, Void, OrderQueryUtils.DataRapper> {
 
-        if (id == android.R.id.home) {
-            finish();
+        @Override
+        protected OrderQueryUtils.DataRapper doInBackground(String... urls) {
+            // Don't perform the request if there are no URLs, or the first URL is null.
+            if (urls.length < 1 || urls[0] == null) {
+                return null;
+            }
+
+            OrderQueryUtils.DataRapper result = OrderQueryUtils.fetchOrderData(urls[0]);
+            return result;        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.show();
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        protected void onPostExecute(OrderQueryUtils.DataRapper orders) {
+            super.onPostExecute(orders);
+            dialog.dismiss();
+
+            // Clear the adapter of previous earthquake data
+            mAdapter.clear();
+
+            // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if (orders.getmOrder() != null && !orders.getmOrder().isEmpty()) {
+                mAdapter.addAll(orders.getmOrder());
+                orderItemses = orders.getmOrderItems();
+            }
+        }
     }
 }
+
+

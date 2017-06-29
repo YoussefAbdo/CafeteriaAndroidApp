@@ -32,6 +32,6 @@
         <item>Choose...</item>
         <item> Favorites</item>
         <item>Menu Items</item>
-
     </string-array>
+ <string name="total_price">Total Price: EGP %s</string>
 </resources>

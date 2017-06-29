@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.BasketActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.CafeteriaInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.ContactUsActivity;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrderDetailsActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrdersActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.SettingsActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication.SignupActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
@@ -67,7 +67,7 @@ public class DrawerActivity extends AppCompatActivity  implements NavigationView
                 }
                 if(nav_label == "Orders" || nav_image.equals(R.drawable.orders))
                 {
-                    Intent intent = new Intent(DrawerActivity.this , OrderDetailsActivity.class);
+                    Intent intent = new Intent(DrawerActivity.this , OrdersActivity.class);
                     startActivity(intent);
                 }
                 if(nav_label == "Basket" || nav_image.equals(R.drawable.basket))

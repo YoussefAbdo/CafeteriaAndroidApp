@@ -1,163 +1,73 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrderDetailsAdapter;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderDetailsModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrderItemsAdapter;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
-import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Splash.MainActivity;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrderDetailsActivity extends AppCompatActivity {
-
-    private final String URL_TO_HIT = "http://cafeteriaappdemo.azurewebsites.net/api/order";
-    private ListView order_details_list_view;
-    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_details);
+        setContentView(R.layout.order_detials_activity);
 
-        dialog = new ProgressDialog(this);
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.setMessage("Loading. Please wait..."); // showing a dialog for loading the data
+        Intent intent = getIntent();
+        String string = intent.getStringExtra("message");
+        TextView idView = (TextView)findViewById(R.id.reference_number);
+        idView.setText("Order number: " + string);
 
-//        // Create default options which will be used for every
-//        //  displayImage(...) call if no options will be passed to this method
-//        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-//                .cacheInMemory(true)
-//                .cacheOnDisk(true)
-//                .build();
-//        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-//                .defaultDisplayImageOptions(defaultOptions)
-//                .build();
-//        ImageLoader.getInstance().init(config); // Do it on Application start
+        String stringpayment = intent.getStringExtra("messagePayment");
+        TextView paymentView = (TextView)findViewById(R.id.payment_done_order_details);
+        paymentView.setText(stringpayment);
 
-        order_details_list_view = (ListView) findViewById(R.id.order_details_list_view);
+        String orderDate = intent.getStringExtra("messageOrderDate");
+        String orderTime = intent.getStringExtra("messageOrderTime");
+        TextView dateOrderView = (TextView)findViewById(R.id.date_order_details);
+        TextView timeOrderView = (TextView)findViewById(R.id.time_order_details);
+        dateOrderView.setText(orderDate);
+        timeOrderView.setText(orderTime);
 
-        new JSONTask().execute(URL_TO_HIT);
-    }
+        String paymentMethod = intent.getStringExtra("messagePaymentMethod");
+        TextView paymentMethodView = (TextView)findViewById(R.id.payment_method_order_details);
+        paymentMethodView.setText(paymentMethod);
 
+        String deliveryPlace = intent.getStringExtra("messageDeliveryPlace");
+        TextView deliveryPlaceView = (TextView)findViewById(R.id.delivery_place_order_details);
+        deliveryPlaceView.setText(deliveryPlace);
 
-    public class JSONTask extends AsyncTask<String, String, List<OrderDetailsModel>> {
+        String status = intent.getStringExtra("messageStatus");
+        TextView statusView = (TextView)findViewById(R.id.status_order_details);
+        statusView.setText(status);
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog.show();
-        }
+        String DeliveryDate = intent.getStringExtra("messageOrderDate");
+        String DeliveryTime = intent.getStringExtra("messageOrderTime");
+        TextView dateDeilveryView = (TextView)findViewById(R.id.delivery_date_order_details);
+        TextView timeDeilveryView = (TextView)findViewById(R.id.delivery_time_order_details);
+        dateDeilveryView.setText(DeliveryDate);
+        timeDeilveryView.setText(DeliveryTime);
 
-        @Override
-        protected List<OrderDetailsModel> doInBackground(String... params) {
-            HttpURLConnection connection = null;
-            BufferedReader reader = null;
+        String TotalPrice = intent.getStringExtra("messageTotalPrice");
+        TextView TotalPriceView = (TextView)findViewById(R.id.total_price_all_order_details);
+        TotalPriceView.setText("Total Price: " + TotalPrice + " EGP");
 
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-                InputStream stream = connection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(stream));
-                StringBuffer buffer = new StringBuffer();
-                String line = "";
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-                }
+        ArrayList<OrderItems> orderItemses = (ArrayList<OrderItems>) intent.getSerializableExtra("messageOrderedItems");
 
-                String finalJson = buffer.toString();
-                Log.v("finaljson" , finalJson);
+        // Find a reference to the {@link ListView} in the layout
+        ListView orderItemsListView = (ListView) findViewById(R.id.list_of_ordered_items);
 
-                JSONObject parentObject = new JSONObject(finalJson);
-                JSONArray parentArray = parentObject.getJSONArray("orders");
+        // Create a new adapter that takes the list of OrderItems as input
+        final OrderItemsAdapter orderItemsAdapter = new OrderItemsAdapter(this, orderItemses);
 
-                List<OrderDetailsModel> orderDetailsModelList = new ArrayList<>();
-
-
-                Gson gson = new Gson();
-                for (int i = 0; i < parentArray.length(); i++) {
-                    JSONObject finalObject = parentArray.getJSONObject(i);
-                    /**
-                     * below single line of code from Gson saves you from writing the json parsing yourself
-                     * which is commented below
-                     */
-                    OrderDetailsModel orderDetailsModel = gson.fromJson(finalObject.toString(), OrderDetailsModel.class); // a single line json parsing using Gson
-
-                    orderDetailsModelList.add(orderDetailsModel);
-                }
-
-                return orderDetailsModelList;
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } finally {
-
-                if (connection != null) {
-                    connection.disconnect();
-                }
-                try {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(final List<OrderDetailsModel> result) {
-            super.onPostExecute(result);
-            dialog.dismiss();
-            if (result != null) {
-                OrderDetailsAdapter adapter = new OrderDetailsAdapter(getApplicationContext(), R.layout.order_row_item, result);
-                order_details_list_view.setAdapter(adapter);
-
-                order_details_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {  // list item click opens a new detailed activity
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        OrderDetailsModel orderDetailsModel = result.get(position); // getting the model
-                        Intent intent = new Intent(OrderDetailsActivity.this, OrdersActivity.class);
-                        intent.putExtra("orderDetailsModel", new Gson().toJson(orderDetailsModel)); // converting model json into string type and sending it via intent
-                        startActivity(intent);
-                    }
-                });
-            } else {
-                Toast.makeText(getApplicationContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
-
-            }
-        }
+        // Set the adapter on the {@link ListView}
+        // so the list can be populated in the user interface
+        orderItemsListView.setAdapter(orderItemsAdapter);
     }
 }
-
-
