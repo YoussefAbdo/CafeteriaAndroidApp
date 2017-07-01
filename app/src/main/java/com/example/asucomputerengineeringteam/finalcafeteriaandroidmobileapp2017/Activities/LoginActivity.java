@@ -1,17 +1,15 @@
-/*
-package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication;
+package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.content.Intent;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
@@ -44,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(validate())
                 {
                     Toast.makeText(getApplicationContext(), "Redirecting...",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent( getApplicationContext(),CategoriesActivity.class);
+                    Intent intent = new Intent( getApplicationContext(),CafeteriaInterface.class);
                     startActivity(intent);
                 }
                 else
@@ -59,8 +57,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+
+                /*
                 Intent intent = new Intent( getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
+                */
             }
         });
     }
@@ -99,4 +100,5 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 }
-*/
+
+

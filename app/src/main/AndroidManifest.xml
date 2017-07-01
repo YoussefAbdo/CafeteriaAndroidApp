@@ -40,6 +40,9 @@
             android:label="Settings"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Activities.HelpActivity"
             android:label="Help"
             android:theme="@style/AppTheme" />

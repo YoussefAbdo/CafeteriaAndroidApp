@@ -1,3 +1,4 @@
+/*
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Authentication;
 
 import android.content.Intent;
@@ -99,3 +100,4 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 }
+*/
