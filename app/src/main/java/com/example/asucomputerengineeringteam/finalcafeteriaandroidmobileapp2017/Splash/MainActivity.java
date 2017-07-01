@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         image.setAlpha(120);
 
         logo = (ImageView)findViewById(R.id.logo_image);
-        logo.setImageResource(R.drawable.app_logo);
+        logo.setImageResource(R.drawable.app_logo_final);
 
         start = (Button)findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {

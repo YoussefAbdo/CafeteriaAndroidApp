@@ -233,7 +233,7 @@ public class MenuDetailsFragment extends Fragment {
             }
         });*/
 
-      /* add_btn.setOnClickListener(new View.OnClickListener() {
+       add_btn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                increment++;
@@ -247,15 +247,26 @@ public class MenuDetailsFragment extends Fragment {
       });
         quantity_text.getText().toString();
 
-       basket.setOnClickListener(new View.OnClickListener() {
+      /* basket.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), BasketActivity.class);
+               switch(view.getId()){
+                   case R.id.btnPost:
+                       if(!validate())
+                           Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
+                       // call AsynTask to perform network operation on separate thread
+                       new HttpAsyncTask().execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
+                       break;
+               }
+                Intent i = new Intent();
+               i.putExtra("menuitem_id" , id_menu_item_intent);
+               i.putExtra("")
+
                 startActivity(i);
                //post code is here
             }
-        });*/
-
+        });
+*/
 
         return view;
     }
