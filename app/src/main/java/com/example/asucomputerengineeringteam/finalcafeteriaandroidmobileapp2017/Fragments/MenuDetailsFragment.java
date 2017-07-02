@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +61,12 @@ public class MenuDetailsFragment extends Fragment {
     TextView tvReviewData;
     Favorites favorites;
     String ids_menus;
-    int quantity =0;
+    int quantity = 0;
+    String additionMessage;
+    // String checkValue;
+    Bundle extras;
+    Intent intent , intent1;
+
     String item_price_intent;
 
     /*TextView tvIsConnected;
@@ -101,12 +108,12 @@ public class MenuDetailsFragment extends Fragment {
         notfavorite = (ImageView) view.findViewById(R.id.no_favorite);
         textViewReviews = (TextView) view.findViewById(R.id.textViewReviews);
         addition_lv = (ListView) view.findViewById(R.id.addition_lv);
-       // back_btn = (Button)view.findViewById(R.id.back_btn);
+        // back_btn = (Button)view.findViewById(R.id.back_btn);
 
         //intent Bundle to get data
-        final Intent intent = getActivity().getIntent();
-        Bundle extras = intent.getExtras();
-        if(extras == null){
+         intent = getActivity().getIntent();
+         extras = intent.getExtras();
+        if (extras == null) {
             extras = getArguments();
         }
         ids_menus = extras.getString("id");
@@ -119,7 +126,7 @@ public class MenuDetailsFragment extends Fragment {
         final String item_type_intent = extras.getString("type");
         item_type.setText("type of this item is vegeterian " + item_type_intent);
         //price
-         item_price_intent = extras.getString("price");
+        item_price_intent = extras.getString("price");
         item_price.setText(item_price_intent);
         //description
         final String item_description_intent = extras.getString("description");
@@ -128,7 +135,7 @@ public class MenuDetailsFragment extends Fragment {
         /*String item_image_url_intent  = menuDetailInterface.getIntent().getExtras().getString("image_url");
         image.setImageResource(Integer.parseInt(item_image_url_intent));*/
         final String item_image_url_intent = extras.getString("image_url");
-        Log.v("image" , item_image_url_intent);
+        Log.v("image", item_image_url_intent);
         //image.setImageResource(Integer.parseInt(item_image_url_intent));
         image.setImageResource(R.drawable.burger);
         //reviews
@@ -140,13 +147,12 @@ public class MenuDetailsFragment extends Fragment {
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getContext(), "ok favorite", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), "ok favorite", Toast.LENGTH_SHORT).show();
                 Favorites db = new Favorites(getActivity());
-                if(!db.search_menu_item(ids_menus))
-                {
+                if (!db.search_menu_item(ids_menus)) {
                     //boolean isInserted =
-                     favorites.insertData(ids_menus ,item_price_intent ,
-                            item_name_intent,item_description_intent,item_type_intent,reviews_of_menu_item_intent,item_image_url_intent);
+                    favorites.insertData(ids_menus, item_price_intent,
+                            item_name_intent, item_description_intent, item_type_intent, reviews_of_menu_item_intent, item_image_url_intent);
 
                 }
 
@@ -162,7 +168,7 @@ public class MenuDetailsFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
                         favorites.delete_menu_item(ids_menus);
-                       // Toast.makeText(getContext(),item_type.getText().toString() + " is removed" , Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getContext(),item_type.getText().toString() + " is removed" , Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });
@@ -182,25 +188,6 @@ public class MenuDetailsFragment extends Fragment {
 
         additionAdapter = new AdditionAdapter(getContext(), additonModelList);
         addition_lv.setAdapter(additionAdapter);
-        addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               AdditonModel additonModel = additonModelList.get(position);
-                String addition = additonModel.getName();
-
-                if(addition == null)
-                {
-                    Toast.makeText(getActivity(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent intent = new Intent();
-                   // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("addition_value" , addition);
-                    getActivity().startActivity(intent);
-                   // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
         addition_lv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -223,7 +210,29 @@ public class MenuDetailsFragment extends Fragment {
         // addition json execution
         JsonTaskAddition jsonTaskAddition = new JsonTaskAddition();
         jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quantity == 100) {
+                    Toast.makeText(getContext(), "Number of menuitems can't be more than 100", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                quantity = quantity + 1;
+                displayQuantity(quantity);
+            }
+        });
 
+        remove_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (quantity == 1) {
+                    Toast.makeText(getContext(), "Number of menuitems can't be less than 1", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                quantity = quantity - 1;
+                displayQuantity(quantity);
+            }
+        });
 
        /* back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,56 +245,51 @@ public class MenuDetailsFragment extends Fragment {
         });*/
 
 
-       add_btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               if (quantity == 100) {
-                   Toast.makeText(getContext(), "Number of menuitems can't be more than 100", Toast.LENGTH_SHORT).show();
-                   return;
-               }
-               quantity = quantity +1;
-               displayQuantity(quantity);
-           }
-       });
+        addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AdditonModel additonModel = additonModelList.get(position);
+                String addition = additonModel.getName();
 
-      remove_btn.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              if (quantity ==1) {
-                  Toast.makeText(getContext(), "Number of menuitems can't be less than 1", Toast.LENGTH_SHORT).show();
-                  return;
-              }
-              quantity = quantity -1;
-              displayQuantity(quantity);
-          }
-      });
-
-       basket.setOnClickListener(new View.OnClickListener() {
-           @Override
-          public void onClick(View view) {
-              /*  Intent i = new Intent(getContext(),BasketActivity.class);
-               Bundle extras = intent.getExtras();
-               double TotalPrice = calculatePrice();
-               String item_addition = extras.getString("addition_value");
-               OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()),item_name_intent ,Double.parseDouble(item_price_intent),item_addition ,TotalPrice );
-               i.putExtra("orderitems_all_data" , orderItems);
-                startActivity(i);*/
-               Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
-           }
+                if (addition == null) {
+                    Toast.makeText(getContext(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
+                } else if (addition != null) {
+                    additionMessage = getString(Integer.parseInt("Additions List"));
+                    additionMessage += "\n" + getString(Integer.parseInt("Additions are"));
+                    Intent intent = new Intent(getContext(), MenuDetailInterface.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("addition_value", additionMessage);
+                    getActivity().startActivity(intent);
+                    // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
+
+
+        basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String item_addition = extras.getString("addition_value");
+               /* double TotalPrice = calculatePrice();
+                OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), item_addition, TotalPrice);
+                intent1.putExtra("orderitems_all_data", orderItems);
+                startActivity(intent1);*/
+                Toast.makeText(getContext(), item_addition, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 
-       public void displayQuantity(int numberOfMenuItems) {
-           quantity_text.setText("" + numberOfMenuItems);
-       }
-
-     public int calculatePrice() {
-        int price = quantity*5;
-            price += quantity * Integer.parseInt(item_price_intent);
-        return price;
+    public void displayQuantity(int numberOfMenuItems) {
+        quantity_text.setText("" + numberOfMenuItems);
     }
 
+    public double calculatePrice() {
+        double price = quantity * 5;
+        price += quantity * Double.parseDouble(item_price_intent);
+        return price;
+    }
 
 
     public class JsonTaskAddition extends AsyncTask<String, Void, List<AdditonModel>> {
