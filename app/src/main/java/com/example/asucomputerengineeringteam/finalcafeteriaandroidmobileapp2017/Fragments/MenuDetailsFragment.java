@@ -1,6 +1,7 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Fragments;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -27,6 +28,7 @@ import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.AdditionAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.Favorites;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import org.json.JSONArray;
@@ -57,8 +59,8 @@ public class MenuDetailsFragment extends Fragment {
     TextView tvReviewData;
     Favorites favorites;
     String ids_menus;
-    int increment =0;
-    int decrement = 0;
+    int quantity =0;
+    String item_price_intent;
 
     /*TextView tvIsConnected;
     EditText addition_name;
@@ -117,7 +119,7 @@ public class MenuDetailsFragment extends Fragment {
         final String item_type_intent = extras.getString("type");
         item_type.setText("type of this item is vegeterian " + item_type_intent);
         //price
-        final String item_price_intent = extras.getString("price");
+         item_price_intent = extras.getString("price");
         item_price.setText(item_price_intent);
         //description
         final String item_description_intent = extras.getString("description");
@@ -191,11 +193,11 @@ public class MenuDetailsFragment extends Fragment {
                     Toast.makeText(getActivity(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent intent = new Intent(getActivity(), MenuDetailInterface.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent();
+                   // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("addition_value" , addition);
                     getActivity().startActivity(intent);
-                    Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -233,43 +235,57 @@ public class MenuDetailsFragment extends Fragment {
             }
         });*/
 
+
        add_btn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               increment++;
+               if (quantity == 100) {
+                   Toast.makeText(getContext(), "Number of menuitems can't be more than 100", Toast.LENGTH_SHORT).show();
+                   return;
+               }
+               quantity = quantity +1;
+               displayQuantity(quantity);
            }
        });
+
       remove_btn.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              decrement--;
+              if (quantity ==1) {
+                  Toast.makeText(getContext(), "Number of menuitems can't be less than 1", Toast.LENGTH_SHORT).show();
+                  return;
+              }
+              quantity = quantity -1;
+              displayQuantity(quantity);
           }
       });
-        quantity_text.getText().toString();
 
-      /* basket.setOnClickListener(new View.OnClickListener() {
+       basket.setOnClickListener(new View.OnClickListener() {
            @Override
-           public void onClick(View view) {
-               switch(view.getId()){
-                   case R.id.btnPost:
-                       if(!validate())
-                           Toast.makeText(getBaseContext(), "Enter some data!", Toast.LENGTH_LONG).show();
-                       // call AsynTask to perform network operation on separate thread
-                       new HttpAsyncTask().execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
-                       break;
-               }
-                Intent i = new Intent();
-               i.putExtra("menuitem_id" , id_menu_item_intent);
-               i.putExtra("")
-
-                startActivity(i);
-               //post code is here
-            }
+          public void onClick(View view) {
+              /*  Intent i = new Intent(getContext(),BasketActivity.class);
+               Bundle extras = intent.getExtras();
+               double TotalPrice = calculatePrice();
+               String item_addition = extras.getString("addition_value");
+               OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()),item_name_intent ,Double.parseDouble(item_price_intent),item_addition ,TotalPrice );
+               i.putExtra("orderitems_all_data" , orderItems);
+                startActivity(i);*/
+               Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
+           }
         });
-*/
-
         return view;
     }
+
+       public void displayQuantity(int numberOfMenuItems) {
+           quantity_text.setText("" + numberOfMenuItems);
+       }
+
+     public int calculatePrice() {
+        int price = quantity*5;
+            price += quantity * Integer.parseInt(item_price_intent);
+        return price;
+    }
+
 
 
     public class JsonTaskAddition extends AsyncTask<String, Void, List<AdditonModel>> {

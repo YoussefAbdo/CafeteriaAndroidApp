@@ -202,31 +202,33 @@
 
                 <Button
                     android:id="@+id/add_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/add_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/add_icon"
                     android:text="+"
                     android:textColor="#ffffff"
                     android:textSize="30dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="50dp"/>
+
+
                 <TextView
                     android:id="@+id/quantity_text"
-                    android:layout_width="50dp"
+                    android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:background="@drawable/round_button"
                     android:layout_centerHorizontal="true"
                     android:text="0"
-                    android:paddingLeft="20dp"
-                    android:textColor="#ffffff"
+                    android:padding="5dp"
+                    android:textColor="@color/dark_green"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/remove_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/remove_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/remove_icon"
                     android:onClick="increment"
                     android:layout_toRightOf="@+id/quantity_text"
                     android:layout_marginLeft="60dp"
@@ -244,11 +246,11 @@
             android:text="Add to Basket"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/bottom_linear"
-            android:textColor="#ffffff"
+            android:textColor="@color/dark_red"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
-            android:background="@color/dark_green"/>
+            android:background="@color/light_cafe"/>
     </RelativeLayout>
 
 </ScrollView>

@@ -16,7 +16,9 @@
             android:id="@+id/basket_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/yellow"></ListView>
+            android:background="@color/yellow">
+
+        </ListView>
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
