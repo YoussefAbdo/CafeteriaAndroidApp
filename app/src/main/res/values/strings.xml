@@ -34,4 +34,9 @@
         <item>Menu Items</item>
     </string-array>
  <string name="total_price">Total Price: EGP %s</string>
+ <!-- Text to display in the list when there are no earthquakes [CHAR LIMIT=NONE] -->
+ <string name="no_orders">No orders found.</string>
+ <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
+ <string name="no_internet_connection">No internet connection.</string>
+
 </resources>
