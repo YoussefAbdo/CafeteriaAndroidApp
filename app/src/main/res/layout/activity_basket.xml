@@ -3,20 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_light_cafe"
+    android:background="@color/green2"
     android:nestedScrollingEnabled="true"
     android:orientation="vertical">
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/green3"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/basket"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Basket"
+                    android:layout_margin="13dp"
+                    android:textColor="@color/dark_green"
+                    android:textStyle="bold"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.Toolbar>
+
         <ListView
             android:id="@+id/basket_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/yellow">
+            android:background="@color/green2">
 
         </ListView>
 
@@ -68,7 +98,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="Total"
                 android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="@color/orange"
+                android:textColor="@color/dark_green"
                 android:textStyle="bold" />
 
             <TextView
@@ -79,7 +109,7 @@
                 android:layout_marginRight="20dp"
                 android:text="$0"
                 android:textAppearance="?android:textAppearanceLarge"
-                android:textColor="@color/orange"
+                android:textColor="@color/dark_green"
                 android:textStyle="normal" />
 
         </RelativeLayout>
@@ -92,7 +122,7 @@
             android:layout_marginBottom="8dp"
             android:text="Location"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/orange"
+            android:textColor="@color/dark_green"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -122,7 +152,7 @@
             android:layout_marginBottom="8dp"
             android:text="Payment Method"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="@color/orange"
+            android:textColor="@color/dark_green"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -138,7 +168,7 @@
                 android:layout_marginRight="8dp"
                 android:text="Cash On Delivery"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/dark_brown"
+                android:textColor="@color/dark_green"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -147,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cafeteria Credit"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/dark_brown"
+                android:textColor="@color/dark_green"
                 android:textStyle="bold" />
         </RadioGroup>
 
@@ -157,7 +187,7 @@
             android:layout_height="50dp"
             android:background="@drawable/button_start"
             android:text="Order now"
-            android:textColor="@color/dark_brown"
+            android:textColor="@color/dark_green"
             android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>
