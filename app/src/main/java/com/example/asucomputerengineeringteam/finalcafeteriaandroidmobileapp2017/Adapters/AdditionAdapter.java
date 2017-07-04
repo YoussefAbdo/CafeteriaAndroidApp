@@ -38,8 +38,6 @@ public class AdditionAdapter extends BaseAdapter {
         this.additionModelList = additionModelList;
         this.context = context;
     }
-
-
      @Override
      public int getCount() {
          return additionModelList.size();
@@ -62,6 +60,8 @@ public class AdditionAdapter extends BaseAdapter {
           add_checkbox.setText(additionModelList.get(position).getName());
          String.valueOf(additionModelList.get(position).getId());
          addition_item_name = additionModelList.get(position).getName();
+         if(add_checkbox.isChecked())
+             Toast.makeText(context, addition_item_name + " is checked.", Toast.LENGTH_SHORT).show();
          return view;
      }
 }
