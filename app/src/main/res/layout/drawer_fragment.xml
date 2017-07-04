@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/logo_image"
         android:layout_width="110dp"
@@ -19,34 +20,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_image"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
         android:text="Order Online"
         android:textColor="@color/dark_green"
         android:textSize="30sp"
         android:textStyle="bold" />
+
     <TextView
+        android:id="@+id/text_chef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_chef"
-        android:textColor="@color/dark_green"
+        android:layout_below="@+id/app_name"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp"
-        android:layout_below="@+id/app_name"
         android:text="Open the menu in the top left to make your order"
-        />
+        android:textColor="@color/dark_green"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
     <ImageView
+        android:id="@+id/image_chef"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:id="@+id/image_chef"
-        android:src="@drawable/chef2"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_chef"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_chef"/>
+        android:layout_marginTop="20dp"
+        android:src="@drawable/chef2" />
 
 
 </RelativeLayout>

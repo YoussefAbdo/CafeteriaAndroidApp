@@ -3,22 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green2"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/bg_screen3"
+        android:layout_height="50dp"
+        android:background="@color/green2"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/order_icon"/>
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:text="Order List"
-            android:textColor="#000000"
-            android:textStyle="normal" />
+            android:layout_margin="13dp"
+            android:textColor="@color/dark_green"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 

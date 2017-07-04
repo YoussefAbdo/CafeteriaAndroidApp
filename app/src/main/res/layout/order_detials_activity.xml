@@ -1,111 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/reference_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp"
-        android:textSize="12sp"
-        tools:text="Order number: 12345" />
-
-    <TextView
-        android:id="@+id/date_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="4dp"
-        android:textSize="12sp"
-        tools:text="Mar 6, 2010" />
-
-    <TextView
-        android:id="@+id/time_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="8dp"
-        android:textSize="12sp"
-        tools:text="3:00 PM" />
-
-    <ListView
-        android:id="@+id/list_of_ordered_items"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="80dp"></ListView>
+        android:layout_height="50dp"
+        android:background="@color/green2"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/order_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="13dp"
+                android:text="Order Details"
+                android:textColor="@color/dark_green"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 
-    <TextView
-        android:id="@+id/total_price_all_order_details"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_order"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        tools:text="We received your payment" />
-    <TextView
-        android:id="@+id/payment_done_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:textSize="12sp"
-        tools:text="We received your payment" />
+        android:layout_below="@+id/toolbar2"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/payment_method_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="8dp"
-        android:textSize="12sp"
-        tools:text="Cash" />
+        <TextView
+            android:id="@+id/reference_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp"
+            android:textColor="@color/dark_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="Order number: 12345" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="4dp"
-        android:text="Delivery place: "
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/date_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="4dp"
+            android:textColor="@color/dark_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="Mar 6, 2010" />
 
-    <TextView
-        android:id="@+id/delivery_place_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="8dp"
-        android:textSize="12sp"
-        tools:text="Romm 6, Office 15" />
+        <TextView
+            android:id="@+id/time_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:textColor="@color/dark_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="3:00 PM" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/status_order_details"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_list"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginBottom="4dp"
-        android:textSize="12sp"
-        tools:text="Delivered" />
+        android:layout_below="@+id/linear_order"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/delivery_date_order_details"
-        android:layout_width="wrap_content"
+        <ListView
+            android:id="@+id/list_of_ordered_items"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        </ListView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:textSize="12sp"
-        tools:text="Mar 6, 2010" />
+        android:layout_below="@+id/linear_list"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/delivery_time_order_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:textSize="12sp"
-        tools:text="3:00 PM" />
+        <TextView
+            android:id="@+id/total_price_all_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:textColor="@color/dark_green"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="We received your payment" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/payment_done_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            tools:text="We received your payment" />
+
+
+        <TextView
+            android:id="@+id/payment_method_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:textSize="12sp"
+            tools:text="Cash" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="4dp"
+            android:text="Delivery place: "
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/delivery_place_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:textSize="12sp"
+            tools:text="Romm 6, Office 15" />
+
+        <TextView
+            android:id="@+id/status_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            tools:text="Delivered" />
+
+        <TextView
+            android:id="@+id/delivery_date_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            tools:text="Mar 6, 2010" />
+
+        <TextView
+            android:id="@+id/delivery_time_order_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:textSize="12sp"
+            tools:text="3:00 PM" />
+    </LinearLayout>
+
+</RelativeLayout>

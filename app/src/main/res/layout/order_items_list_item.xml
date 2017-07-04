@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp">
-
 
     <TextView
         android:id="@+id/quantity_order_items_list_item"
@@ -13,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
         tools:text="5" />
 
     <LinearLayout
@@ -27,7 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
+            android:textColor="#000000"
             android:textSize="12sp"
+            android:textStyle="bold"
             tools:text="Kabab and Kofta" />
 
         <TextView
@@ -35,7 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
+            android:textColor="#000000"
             android:textSize="12sp"
+            android:textStyle="bold"
             tools:text="With Extra Tehina" />
 
         <TextView
@@ -43,7 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
+            android:textColor="#000000"
             android:textSize="12sp"
+            android:textStyle="bold"
             tools:text="Well done" />
     </LinearLayout>
 
@@ -59,6 +66,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
             android:maxLines="3"
+            android:textStyle="bold"
+            android:textColor="#000000"
             android:textAllCaps="true"
             android:textSize="12sp"
             tools:text="EGP 2x 85" />
@@ -67,6 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="#000000"
             android:textSize="12sp"
             tools:text="Total Price: EGP 100" />
 
