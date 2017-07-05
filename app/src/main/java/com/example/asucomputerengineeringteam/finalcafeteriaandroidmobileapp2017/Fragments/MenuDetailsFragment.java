@@ -137,7 +137,7 @@ public class MenuDetailsFragment extends Fragment {
         final String item_image_url_intent = extras.getString("image_url");
         Log.v("image", item_image_url_intent);
         //image.setImageResource(Integer.parseInt(item_image_url_intent));
-        image.setImageResource(R.drawable.burger);
+        image.setImageResource(R.drawable.burgar_icon);
         //reviews
         final String reviews_of_menu_item_intent = extras.getString("alternate_text");
         textViewReviews.setText("my reviews about this item is very good . I recommend this to all people " + reviews_of_menu_item_intent);
@@ -185,9 +185,28 @@ public class MenuDetailsFragment extends Fragment {
                 alert.show();
             }
         });
-
         additionAdapter = new AdditionAdapter(getContext(), additonModelList);
         addition_lv.setAdapter(additionAdapter);
+        addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AdditonModel additonModel = additonModelList.get(position);
+                String addition = additonModel.getName();
+                Toast.makeText(getActivity(), addition, Toast.LENGTH_SHORT).show();
+                 /* if (addition == null) {
+                    Toast.makeText(getContext(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
+                } else if (addition != null) {
+                    additionMessage = getString(Integer.parseInt("Additions List"));
+                    additionMessage += "\n" + getString(Integer.parseInt("Additions are"));
+                    Intent intent = new Intent(getContext(), MenuDetailInterface.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("addition_value", additionMessage);
+                    getActivity().startActivity(intent);
+                    // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
+                }*/
+
+            }
+        });
         addition_lv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -206,10 +225,10 @@ public class MenuDetailsFragment extends Fragment {
                 return true;
             }
         });
-
         // addition json execution
         JsonTaskAddition jsonTaskAddition = new JsonTaskAddition();
         jsonTaskAddition.execute("http://cafeteriaappdemo.azurewebsites.net/api/addition");
+
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,26 +263,6 @@ public class MenuDetailsFragment extends Fragment {
             }
         });*/
 
-
-        addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AdditonModel additonModel = additonModelList.get(position);
-                String addition = additonModel.getName();
-
-                if (addition == null) {
-                    Toast.makeText(getContext(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
-                } else if (addition != null) {
-                    additionMessage = getString(Integer.parseInt("Additions List"));
-                    additionMessage += "\n" + getString(Integer.parseInt("Additions are"));
-                    Intent intent = new Intent(getContext(), MenuDetailInterface.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("addition_value", additionMessage);
-                    getActivity().startActivity(intent);
-                    // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
         basket.setOnClickListener(new View.OnClickListener() {

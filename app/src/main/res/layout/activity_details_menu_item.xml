@@ -32,7 +32,7 @@
             android:layout_below="@+id/linear_icons"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/burger" />
+            android:src="@drawable/burgar_icon" />
         <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
@@ -136,20 +136,19 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="Additions"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/dark_green"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ListView
             android:id="@+id/addition_lv"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="140dp"
+            android:layout_margin="20dp"
             android:layout_below="@+id/additions_text_view"
-            android:layout_marginLeft="50dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/green2">
-
+            android:layout_marginTop="5dp">
         </ListView>
 
         <TextView
@@ -161,6 +160,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:text="Reviews"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/dark_green"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -170,35 +170,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="reviews of people are here of this menu item"
-            android:background="@color/green2"
             android:layout_below="@+id/reviewText"
+            android:textColor="@color/dark_green"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewReviews"
-            android:id="@+id/bottom_linear"
-            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/quantity_title_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="Quantity"
-                android:textAppearance="?android:textAppearanceLarge"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textViewReviews"
                 android:textColor="@color/dark_green"
                 android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:id="@+id/relative"
+                android:layout_below="@+id/quantity_title_text_view">
 
                 <Button
                     android:id="@+id/add_btn"
@@ -238,14 +232,14 @@
                     android:textStyle="bold"/>
 
             </RelativeLayout>
-        </LinearLayout>
+
         <Button
             android:id="@+id/basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add to Basket"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/bottom_linear"
+            android:layout_below="@+id/relative"
             android:textColor="@color/dark_red"
             android:textStyle="bold"
             android:layout_marginTop="10dp"

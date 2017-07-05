@@ -83,7 +83,7 @@ public class MenuItemAdapter  extends BaseAdapter  implements Filterable {
         holder.men_name_text.setText(name);
         String price = String.valueOf(menuItemDataModelList.get(position).getPrice());
         holder.men_price_text.setText(price);
-        holder.men_image_view.setImageResource(R.drawable.burger);
+        holder.men_image_view.setImageResource(R.drawable.burgar_icon);
         holder.men_more_text.setText("more...");
             // Listen for ListView Item Click
             convertView.setOnClickListener(new View.OnClickListener() {
