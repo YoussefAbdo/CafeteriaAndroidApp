@@ -7,11 +7,25 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 public class AdditonModel {
     private int id;
     private String name;
+    boolean selected = false;
 
     public AdditonModel() {
-
     }
 
+    public AdditonModel(boolean selected, int id, String name) {
+        super();
+        this.selected = selected;
+        this.id = id;
+        this.name = name;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public int getId() {
         return id;
