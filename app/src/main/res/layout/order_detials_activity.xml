@@ -109,7 +109,7 @@
             android:textColor="@color/dark_green"
             android:textSize="12sp"
             android:textStyle="bold"
-            tools:text="We received your payment" />
+            tools:text="Total price: EGP 150" />
 
         <TextView
             android:id="@+id/payment_done_order_details"

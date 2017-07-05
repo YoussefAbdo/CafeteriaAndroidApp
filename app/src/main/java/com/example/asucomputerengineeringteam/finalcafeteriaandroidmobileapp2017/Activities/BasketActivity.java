@@ -3,7 +3,10 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.icu.text.SimpleDateFormat;
 import android.location.Location;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,12 +20,17 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrderItemsAdapter;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class BasketActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -37,8 +45,11 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
     private TextView loction_text_view;
     private EditText location_edit_text;
     private ImageView gps_image_view;
+
     private RadioButton cash_radio_button;
     private RadioButton wallet_radio_button;
+
+
     private Button order_button;
 
     private final String TAG = "Location BasketActivity";
@@ -48,6 +59,7 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +68,15 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         // setting up text views and stuff
         setUpUIViews();
         buildGoogleApiClient();
+
+//        Intent intent = getIntent();
+//        ArrayList<OrderItems> orderItemses = (ArrayList<OrderItems>) intent.getSerializableExtra("messageOrderedItems");
+//        // Create a new adapter that takes the list of OrderItems as input
+//        final OrderItemsAdapter orderItemsAdapter = new OrderItemsAdapter(this, orderItemses);
+//        // Set the adapter on the {@link ListView}
+//        // so the list can be populated in the user interface
+//        basket_list.setAdapter(orderItemsAdapter);
+
 
 //        public List<String> arrayList = new ArrayList<>();
 //        final String menuitem_name = getIntent().getExtras().getString("menuitem_name");
@@ -73,8 +94,8 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         add_more_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent1 = new Intent(BasketActivity.this , MenuItemsActivity.class);
-//                startActivity(intent1);
+                Intent intent = new Intent(BasketActivity.this , MenuItemInterface.class);
+                startActivity(intent);
             }
         });
 
@@ -89,6 +110,19 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         order_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String comment = comments_edit_text.getText().toString();
+                String location = location_edit_text.getText().toString();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
+                String currentDateTimeString = simpleDateFormat.format(new Date());
+
+
+                if (cash_radio_button.isChecked()) {
+
+                }
+                if (wallet_radio_button.isChecked()) {
+
+                }
 
             }
         });
