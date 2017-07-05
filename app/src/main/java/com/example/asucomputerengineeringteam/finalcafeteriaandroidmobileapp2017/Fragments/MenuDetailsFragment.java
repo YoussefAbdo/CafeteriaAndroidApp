@@ -486,8 +486,8 @@ public class MenuDetailsFragment extends Fragment {
                  double TotalPrice = calculatePrice();
                 Intent intent = new Intent(getContext() , BasketActivity.class);
                 OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), addition_data_as_string, TotalPrice);
-                intent1.putExtra("orderitems_all_data", orderItems);
-                startActivity(intent1);
+                intent.putExtra("orderitems_all_data", orderItems);
+                startActivity(intent);
               /*  Toast.makeText(getContext(),
                         responseText, Toast.LENGTH_LONG).show();*/
 
