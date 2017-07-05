@@ -24,8 +24,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.BasketActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.Favorites;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 
 import org.json.JSONArray;
@@ -60,6 +62,7 @@ public class MenuDetailsFragment extends Fragment {
     int quantity = 0;
     Bundle extras;
     Intent intent , intent1;
+    String item_name_intent;
 
     String item_price_intent;
     @TargetApi(Build.VERSION_CODES.M)
@@ -107,7 +110,7 @@ public class MenuDetailsFragment extends Fragment {
         //id
         final String id_menu_item_intent = extras.getString("id");
         //name
-        final String item_name_intent = extras.getString("name");
+        item_name_intent = extras.getString("name");
         item_name.setText(item_name_intent);
         //name
         final String item_type_intent = extras.getString("type");
@@ -343,7 +346,6 @@ public class MenuDetailsFragment extends Fragment {
             // return cafeteriaModelList;
             return additonModelArrayList;
         }
-
         @Override
         protected void onPostExecute(ArrayList<AdditonModel> additonModels) {
             super.onPostExecute(additonModels);
@@ -471,10 +473,8 @@ public class MenuDetailsFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
                 StringBuffer responseText = new StringBuffer();
                 responseText.append("The following were selected...\n");
-
                 ArrayList<AdditonModel> additonModels = additionAdapter.additonModels;
                 for(int i=0;i<additonModels.size();i++){
                     AdditonModel additonModel = additonModels.get(i);
@@ -482,9 +482,14 @@ public class MenuDetailsFragment extends Fragment {
                         responseText.append("\n" + additonModel.getName());
                     }
                 }
-
-                Toast.makeText(getContext(),
-                        responseText, Toast.LENGTH_LONG).show();
+                String addition_data_as_string = responseText.toString();
+                 double TotalPrice = calculatePrice();
+                Intent intent = new Intent(getContext() , BasketActivity.class);
+                OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), addition_data_as_string, TotalPrice);
+                intent1.putExtra("orderitems_all_data", orderItems);
+                startActivity(intent1);
+              /*  Toast.makeText(getContext(),
+                        responseText, Toast.LENGTH_LONG).show();*/
 
             }
         });
