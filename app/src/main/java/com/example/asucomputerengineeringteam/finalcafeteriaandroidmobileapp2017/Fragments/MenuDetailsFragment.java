@@ -4,9 +4,11 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -25,10 +27,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.BasketActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuDetailInterface;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.Favorites;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.MySharedPreference;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.AdditonModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +44,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -59,12 +66,23 @@ public class MenuDetailsFragment extends Fragment {
     TextView tvReviewData;
     Favorites favorites;
     String ids_menus;
-    int quantity = 0;
+    int quantity = 1;
     Bundle extras;
-    Intent intent , intent1;
+    Intent intent;
     String item_name_intent;
 
     String item_price_intent;
+
+    StringBuffer responseText = null;
+
+    // Send OrderItems to Baseket activity
+    // Array List of the objects
+    ArrayList<OrderItems> orderItemses;
+    // Create object of shared preference
+    private MySharedPreference sharedPreference;
+    // Create object of JSON
+    private Gson gson;
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -158,7 +176,7 @@ public class MenuDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Do you want to delete this movie");
+                builder.setTitle("Do you want to delete this menuitem");
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
@@ -180,34 +198,24 @@ public class MenuDetailsFragment extends Fragment {
                 alert.show();
             }
         });
-
-
-
-
-
-        //methods of addition list part
-
-     /*   addition_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        addition_lv.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AdditonModel additonModel = additonModelList.get(position);
-                String addition = additonModel.getName();
-                Toast.makeText(getActivity(), addition, Toast.LENGTH_SHORT).show();
-                 *//* if (addition == null) {
-                    Toast.makeText(getContext(), "Please check box to choose addition ", Toast.LENGTH_SHORT).show();
-                } else if (addition != null) {
-                    additionMessage = getString(Integer.parseInt("Additions List"));
-                    additionMessage += "\n" + getString(Integer.parseInt("Additions are"));
-                    Intent intent = new Intent(getContext(), MenuDetailInterface.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("addition_value", additionMessage);
-                    getActivity().startActivity(intent);
-                    // Toast.makeText(getActivity(), "Good, addition is selected", Toast.LENGTH_SHORT).show();
-                }*//*
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
 
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+
+                }
+                v.onTouchEvent(event);
+                return true;
             }
-        });*/
-
+        });
 
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,18 +251,6 @@ public class MenuDetailsFragment extends Fragment {
             }
         });*/
 
-       /* basket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String item_addition = extras.getString("addition_value");
-               *//* double TotalPrice = calculatePrice();
-                OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), item_addition, TotalPrice);
-                intent1.putExtra("orderitems_all_data", orderItems);
-                startActivity(intent1);*//*
-                Toast.makeText(getContext(), item_addition, Toast.LENGTH_SHORT).show();
-            }
-        });
-*/
         return view;
     }
 
@@ -263,14 +259,11 @@ public class MenuDetailsFragment extends Fragment {
     }
 
     public double calculatePrice() {
-        double price = quantity * 5;
+        double price = 0.0;
         price += quantity * Double.parseDouble(item_price_intent);
         return price;
     }
-
-
     public class JsonTaskAddition extends AsyncTask<String, Void, ArrayList<AdditonModel>> {
-
         @Override
         protected ArrayList<AdditonModel> doInBackground(String... params) {
             HttpURLConnection connection = null;
@@ -364,24 +357,7 @@ public class MenuDetailsFragment extends Fragment {
                             Toast.LENGTH_LONG).show();
                 }
             });
-            addition_lv.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    int action = event.getAction();
-                    switch (action) {
-                        case MotionEvent.ACTION_DOWN:
-                            v.getParent().requestDisallowInterceptTouchEvent(true);
 
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            v.getParent().requestDisallowInterceptTouchEvent(false);
-                            break;
-
-                    }
-                    v.onTouchEvent(event);
-                    return true;
-                }
-            });
         }
 
     }
@@ -467,27 +443,33 @@ public class MenuDetailsFragment extends Fragment {
         }
 
     }
-
     public void checkButtonClick() {
         basket.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("The following were selected...\n");
+                responseText = new StringBuffer();
                 ArrayList<AdditonModel> additonModels = additionAdapter.additonModels;
                 for(int i=0;i<additonModels.size();i++){
                     AdditonModel additonModel = additonModels.get(i);
                     if(additonModel.isSelected()){
-                        responseText.append("\n" + additonModel.getName());
+                        responseText.append("-" + additonModel.getName());
                     }
                 }
-                String addition_data_as_string = responseText.toString();
-                 double TotalPrice = calculatePrice();
-                Intent intent = new Intent(getContext() , BasketActivity.class);
-                OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), addition_data_as_string, TotalPrice);
-                intent.putExtra("orderitems_all_data", orderItems);
-                startActivity(intent);
+
+                sharedPreference = new MySharedPreference(getContext());
+                gson = new Gson();
+                getHighScoreListFromSharedPreference();
+                savee();
+                Intent i =new Intent(getContext() ,BasketActivity.class);
+                startActivity(i);
+
+//                String addition_data_as_string = responseText.toString();
+//                double TotalPrice = calculatePrice();
+//                Intent intent = new Intent(getContext() , BasketActivity.class);
+//                OrderItems orderItems = new OrderItems(Integer.parseInt(quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent), addition_data_as_string, TotalPrice);
+//                intent.putExtra("orderitems_all_data", orderItems);
+//                startActivity(intent);
               /*  Toast.makeText(getContext(),
                         responseText, Toast.LENGTH_LONG).show();*/
 
@@ -495,4 +477,40 @@ public class MenuDetailsFragment extends Fragment {
         });
 
     }
+
+    private  void savee() {
+
+        String addition_data_as_string = responseText.toString();
+        double TotalPrice = calculatePrice();
+
+        OrderItems orderItems = new OrderItems(Integer.parseInt(
+                quantity_text.getText().toString()), item_name_intent, Double.parseDouble(item_price_intent),
+                addition_data_as_string, TotalPrice);
+
+        orderItemses.add(orderItems); //add to scores list
+        saveScoreListToSharedpreference(orderItemses); //save to share pre
+        Toast.makeText(getContext(), "save ", Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    private void saveScoreListToSharedpreference(ArrayList<OrderItems> orderItemses) {
+        //convert ArrayList object to String by Gson
+        String jsonScore = gson.toJson(orderItemses);
+
+        //save to shared preference
+        sharedPreference.saveHighScoreList(jsonScore);
+    }
+
+    private void getHighScoreListFromSharedPreference() {
+        //retrieve data from shared preference
+        String jsonScore = sharedPreference.getHighScoreList();
+        Type type = new TypeToken<List<OrderItems>>(){}.getType();
+        orderItemses = gson.fromJson(jsonScore, type);
+
+        if (orderItemses == null) {
+            orderItemses = new ArrayList<>();
+        }
+    }
+
 }

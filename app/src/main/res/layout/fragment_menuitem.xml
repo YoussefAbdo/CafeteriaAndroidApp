@@ -39,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:ems="10" >
-
         <requestFocus />
     </EditText>
 

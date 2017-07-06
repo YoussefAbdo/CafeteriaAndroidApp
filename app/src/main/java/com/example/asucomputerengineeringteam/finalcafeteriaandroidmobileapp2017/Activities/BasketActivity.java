@@ -2,10 +2,12 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.icu.text.SimpleDateFormat;
 import android.location.Location;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.OrderItemsAdapter;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.CustomizedNavigationDrawer.DrawerActivity;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataBase.MySharedPreference;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.OrderItems;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.google.android.gms.common.ConnectionResult;
@@ -28,15 +32,18 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class BasketActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    private ListView basket_list;
     private Button add_more_button;
     private Button edit_button;
     private EditText comments_edit_text;
@@ -57,6 +64,11 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
     protected Location mLastLocation;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
+    // Get order items from MenuDetailsFragment.java
+    private MySharedPreference sharedPreference;
+    private Gson gson;
+    public ArrayList<OrderItems> orderItemses;
+    private ListView basket_list;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -69,27 +81,6 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         setUpUIViews();
         buildGoogleApiClient();
 
-//        Intent intent = getIntent();
-//        ArrayList<OrderItems> orderItemses = (ArrayList<OrderItems>) intent.getSerializableExtra("messageOrderedItems");
-//        // Create a new adapter that takes the list of OrderItems as input
-//        final OrderItemsAdapter orderItemsAdapter = new OrderItemsAdapter(this, orderItemses);
-//        // Set the adapter on the {@link ListView}
-//        // so the list can be populated in the user interface
-//        basket_list.setAdapter(orderItemsAdapter);
-
-
-//        public List<String> arrayList = new ArrayList<>();
-//        final String menuitem_name = getIntent().getExtras().getString("menuitem_name");
-//        final String menuitem_price = getIntent().getExtras().getString("menuitem_price");
-//        final String addition_name = getIntent().getExtras().getString("addition_name");
-//
-//        List<String> menuitems = new List<String> ;
-//        menuitems.add(menuitem_name);
-//        List<String> additions = new List<String> ;
-//        menuitems.add(menuitem_price);
-//        basketAdapter = new BasketAdapter(Basket.this,menuitems , additions);
-//        basket_list.setAdapter(basketAdapter);
-//        basketAdapter.notifyDataSetChanged();
 
         add_more_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,18 +102,22 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
             @Override
             public void onClick(View view) {
 
-                String comment = comments_edit_text.getText().toString();
-                String location = location_edit_text.getText().toString();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
-                String currentDateTimeString = simpleDateFormat.format(new Date());
+//                String comment = comments_edit_text.getText().toString();
+//                String location = location_edit_text.getText().toString();
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss");
+//                String currentDateTimeString = simpleDateFormat.format(new Date());
+//
+//
+//                if (cash_radio_button.isChecked()) {
+//
+//                }
+//                if (wallet_radio_button.isChecked()) {
+//
+//                }
 
-
-                if (cash_radio_button.isChecked()) {
-
-                }
-                if (wallet_radio_button.isChecked()) {
-
-                }
+                Toast.makeText(BasketActivity.this, "We got your order, Thanks for using our application", Toast.LENGTH_LONG).show();
+                Intent intent3 = new Intent(BasketActivity.this, DrawerActivity.class);
+                startActivity(intent3);
 
             }
         });
@@ -133,6 +128,11 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
                 Toast.makeText(BasketActivity.this, "We got your location", Toast.LENGTH_LONG).show();
             }
         });
+
+        sharedPreference = new MySharedPreference(getApplicationContext());
+        gson = new Gson();
+        getHighScoreListFromSharedPreference();
+        adapter();
     }
 
     @Override
@@ -266,4 +266,41 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
     private void getLatitudeAndLongitude() {
         location_edit_text.setText(String.valueOf(mLastLocation.getLatitude() + "," + String.valueOf(mLastLocation.getLongitude())));
     }
+
+    private void getHighScoreListFromSharedPreference() {
+        //retrieve data from shared preference
+        String jsonScore = sharedPreference.getHighScoreList();
+        Type type = new TypeToken<List<OrderItems>>() {
+        }.getType();
+        orderItemses = gson.fromJson(jsonScore, type);
+
+        if (orderItemses == null) {
+            orderItemses = new ArrayList<>();
+        }
+        CalculateTotalPrice(orderItemses);
+
+    }
+
+    private void adapter() {
+        if (orderItemses.size() == 0) {
+            Toast.makeText(BasketActivity.this, "No items added to the basket", Toast.LENGTH_SHORT).show();
+        } else {
+            getHighScoreListFromSharedPreference(); //get data
+            //set adapter for listview and visible it
+            OrderItemsAdapter adapter = new OrderItemsAdapter(BasketActivity.this,orderItemses);
+            basket_list.setAdapter(adapter);
+        }
+    }
+
+    public double CalculateTotalPrice (ArrayList<OrderItems> orderItemses) {
+        double mTotalPrice = 0.0;
+
+        for(int i = 0; i < orderItemses.size(); i++) {
+            OrderItems currentOrderItems = orderItemses.get(i);
+            mTotalPrice+=currentOrderItems.getmTotalPrice();
+            total_text_view.setText(String.valueOf(mTotalPrice));
+        }
+        return mTotalPrice;
+    }
+
 }
