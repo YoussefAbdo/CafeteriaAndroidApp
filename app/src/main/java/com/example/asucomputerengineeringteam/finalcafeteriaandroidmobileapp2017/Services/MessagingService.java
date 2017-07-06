@@ -44,7 +44,7 @@ public class MessagingService extends FirebaseMessagingService {
 
         builder.setAutoCancel(true);
 
-        builder.setSmallIcon(R.drawable.cafeteria_icon);
+        builder.setSmallIcon(R.drawable.app_logo_final);
 
         builder.setContentIntent(pendingIntent);
 
