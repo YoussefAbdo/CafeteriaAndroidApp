@@ -268,7 +268,7 @@ public class SignupActivity extends AppCompatActivity {
                 if(result.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), CafeteriaInterface.class);
+                    Intent intent = new Intent(getApplicationContext(), Congratulation.class);
                     startActivity(intent);
                 }
                 else
