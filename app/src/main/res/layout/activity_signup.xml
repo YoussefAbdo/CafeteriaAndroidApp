@@ -104,6 +104,28 @@
         android:textSize="20dp"
         android:text="Already a member? Login" />
 
+    <TextView
+        android:text=""
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="461dp"
+        android:id="@+id/textView2" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="119dp"
+        android:layout_marginStart="119dp"
+        android:id="@+id/progressBar"
+        android:layout_below="@+id/loginTextViewLink"
+        android:layout_marginTop="430dp"/>
 
 
 </RelativeLayout>
