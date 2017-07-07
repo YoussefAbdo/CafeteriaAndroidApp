@@ -116,8 +116,8 @@ public class MenuItemFragment extends Fragment {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ImageView basket_image_icon = (ImageView) view.findViewById(R.id.basket_image_icon);
+        basket_image_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Click action

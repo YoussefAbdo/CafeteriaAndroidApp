@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.MenuItemInterface"
     tools:showIn="@layout/activity_menu_item_interface">
 
@@ -19,46 +18,45 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
             android:id="@+id/favorite_menu"
-            android:src="@drawable/favorite"
-            />
-        <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
+            android:src="@drawable/favorite" />
+
+        <ImageView
             android:id="@+id/items_menu"
-            android:src="@drawable/menu_icon"
-            />
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/menu_icon" />
+
+        <ImageView
+            android:id="@+id/basket_image_icon"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/yellow_icon" />
 
     </android.support.v7.widget.Toolbar>
+
     <EditText
         android:id="@+id/inputSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:ems="10" >
+        android:ems="10">
+
         <requestFocus />
     </EditText>
 
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="10dp"
-        android:numColumns="2"
+        android:layout_height="550dp"
         android:layout_below="@+id/inputSearch"
-        />
+        android:layout_margin="10dp"
+        android:numColumns="2" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_below="@+id/gridView"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_input_add"/>
 
 </RelativeLayout>
