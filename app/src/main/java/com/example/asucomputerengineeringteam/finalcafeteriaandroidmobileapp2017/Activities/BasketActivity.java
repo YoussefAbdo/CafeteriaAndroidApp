@@ -1,6 +1,7 @@
 package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,6 +41,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.system.Os.remove;
 
 
 public class BasketActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
@@ -69,6 +73,7 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
     private Gson gson;
     public ArrayList<OrderItems> orderItemses;
     private ListView basket_list;
+    OrderItemsAdapter adapter = null;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -80,6 +85,11 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         // setting up text views and stuff
         setUpUIViews();
         buildGoogleApiClient();
+
+        sharedPreference = new MySharedPreference(getApplicationContext());
+        gson = new Gson();
+        getHighScoreListFromSharedPreference();
+        adapter();
 
 
         add_more_button.setOnClickListener(new View.OnClickListener() {
@@ -129,10 +139,22 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
             }
         });
 
-        sharedPreference = new MySharedPreference(getApplicationContext());
-        gson = new Gson();
-        getHighScoreListFromSharedPreference();
-        adapter();
+
+
+        basket_list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+
+                adapter.remove(adapter.getItem(pos));
+                saveScoreListToSharedpreference(orderItemses); //save to share pre
+                adapter.notifyDataSetChanged(); //Updates adapter to new changes                Log.v("long clicked","pos: " + pos);
+                CalculateTotalPrice(orderItemses);
+
+                return true;
+            }
+        });
     }
 
     @Override
@@ -287,7 +309,7 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         } else {
             getHighScoreListFromSharedPreference(); //get data
             //set adapter for listview and visible it
-            OrderItemsAdapter adapter = new OrderItemsAdapter(BasketActivity.this,orderItemses);
+            adapter = new OrderItemsAdapter(BasketActivity.this,orderItemses);
             basket_list.setAdapter(adapter);
         }
     }
@@ -303,4 +325,11 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         return mTotalPrice;
     }
 
+    private void saveScoreListToSharedpreference(ArrayList<OrderItems> orderItemses) {
+        //convert ArrayList object to String by Gson
+        String jsonScore = gson.toJson(orderItemses);
+
+        //save to shared preference
+        sharedPreference.saveHighScoreList(jsonScore);
+    }
 }
