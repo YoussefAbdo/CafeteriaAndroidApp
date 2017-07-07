@@ -64,23 +64,14 @@
                 android:textStyle="bold"
                 android:textColor="@color/dark_green" />
 
-            <Button
-                android:id="@+id/edit_button"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:background="@drawable/button_start"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:text="Edit items"
-                android:textColor="@color/dark_green" />
+
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp">
 
             <TextView
@@ -112,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
             android:hint="Comments"
             android:inputType="textMultiLine" />
 
@@ -123,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
             android:text="Location"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@color/dark_green"
@@ -138,6 +131,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
                 android:hint="Write your location here!"
                 android:inputType="textMultiLine" />
 
@@ -153,6 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
             android:text="Payment Method"
             android:textAppearance="?android:textAppearanceLarge"
             android:textColor="@color/dark_green"
@@ -162,6 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
             android:orientation="horizontal">
 
             <RadioButton
@@ -188,6 +184,8 @@
             android:id="@+id/order_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/button_start"
             android:text="Order now"
             android:textColor="@color/dark_green"

@@ -49,7 +49,6 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private Button add_more_button;
-    private Button edit_button;
     private EditText comments_edit_text;
     private TextView total_title_text_view;
     private TextView total_text_view;
@@ -97,14 +96,6 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
             public void onClick(View view) {
                 Intent intent = new Intent(BasketActivity.this , MenuItemInterface.class);
                 startActivity(intent);
-            }
-        });
-
-        edit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2 = new Intent(BasketActivity.this, EditActivity.class);
-                startActivity(intent2);
             }
         });
 
@@ -265,7 +256,6 @@ public class BasketActivity extends AppCompatActivity implements GoogleApiClient
     private void setUpUIViews() {
         basket_list = (ListView) findViewById(R.id.basket_list);
         add_more_button = (Button) findViewById(R.id.add_more_button);
-        edit_button = (Button) findViewById(R.id.edit_button);
         comments_edit_text = (EditText) findViewById(R.id.comments_edit_text);
         total_title_text_view = (TextView) findViewById(R.id.total_title_text_view);
         total_text_view = (TextView) findViewById(R.id.total_text_view);
