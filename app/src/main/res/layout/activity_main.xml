@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/app_name"
-        android:src="@drawable/frame_image_modified2" />
+        android:src="@drawable/frame_image_modified2"
+        android:scaleType = "centerCrop" />
 
 
     <LinearLayout
