@@ -2,6 +2,8 @@ package com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp201
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,9 +19,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Activities.OrdersActivity;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.Adapters.CafeteriaAdapter;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.CafeteriaDataModel;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
@@ -50,6 +54,11 @@ public class CafeteriaFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     public ProgressDialog dialog;
 
+    //connection failed
+     TextView network_text;
+    ImageView image_connection ;
+
+
 
     public CafeteriaFragment() {
     }
@@ -68,7 +77,26 @@ public class CafeteriaFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_cafeteria, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.cafeteria_recyclerView);
         text = (TextView) view.findViewById(R.id.text1);
-            new JsonTaskCafeteria().execute("http://cafeteriaappdemo.azurewebsites.net/api/cafeteria");
+         //   new JsonTaskCafeteria().execute("http://cafeteriaappdemo.azurewebsites.net/api/cafeteria");
+
+        network_text = (TextView)view.findViewById(R.id.no_internet_text);
+        image_connection = (ImageView)view.findViewById(R.id.image_connection);
+        //recyclerView.setEmptyView(network_text);
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        //Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        // If there is a networkd connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Start the AsyncTask to fetch the earthquake data
+            JsonTaskCafeteria jsonTaskCafeteria = new JsonTaskCafeteria();
+            jsonTaskCafeteria.execute("http://cafeteriaappdemo.azurewebsites.net/api/cafeteria");
+        } else {
+            dialog.dismiss();
+            // Update empty state with no connection error message
+            network_text.setText(R.string.no_internet_connection);
+            image_connection.setImageResource(R.drawable.no_conn);
+        }
 
         return view;
     }
