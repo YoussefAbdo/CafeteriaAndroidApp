@@ -107,13 +107,13 @@
         android:textColor="#ffffff"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:paddingTop="14dp"
+        android:paddingTop="8dp"
         android:paddingLeft="25dp"
         android:textSize="20sp"
         android:layout_marginLeft="80dp"
         android:layout_below="@+id/ConfirmPasswordEditText"
         android:layout_marginTop="55dp"
-        android:text="Create Account" />
+        android:text="Register" />
 
     <TextView
         android:id="@+id/loginTextViewLink"
