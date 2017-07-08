@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme" />
+            android:label="Login"/>
         <activity
             android:name=".Activities.SignupActivity"
             android:theme="@style/AppTheme" />
