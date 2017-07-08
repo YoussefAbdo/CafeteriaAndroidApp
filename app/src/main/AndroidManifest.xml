@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
+        android:name=".DataModels.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/app_logo_final"
         android:label="Order Online"
@@ -44,6 +45,9 @@
             android:label="Login"/>
         <activity
             android:name=".Activities.SignupActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.Congratulation"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.HelpActivity"
