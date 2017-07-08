@@ -17,22 +17,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.LoginResponse;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.MyApplication;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.R;
 import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.parsers.LoginResponseJSONParser;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.DataModels.UserInfo;
+import com.example.asucomputerengineeringteam.finalcafeteriaandroidmobileapp2017.parsers.UserInfoJSONParser;
+
 
 
 public class LoginActivity extends AppCompatActivity {
 
     TextView registerLink;
+    TextView output;
     Button loginButton;
     Button cancelButton;
     EditText EmailEditText, PasswordEditText;
     List<MyTask> tasks;
-    List<LoginResponse> loginResponseList ;
+    List<LoginResponse> loginResponseList;
     ProgressBar pb;
+    String id = "";
+    String accessToken = "";
+    List<UserInfo> userInfoList;
+    boolean accessed = false;
 
 
     @Override
@@ -46,7 +55,9 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = (Button) findViewById(R.id.loginButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
+
         registerLink = (TextView)findViewById(R.id.textview2);
+        output = (TextView) findViewById(R.id.textView3);
 
         pb = (ProgressBar) findViewById(R.id.progressBar1);
         pb.setVisibility(View.INVISIBLE);
@@ -62,7 +73,10 @@ public class LoginActivity extends AppCompatActivity {
                 if(validate())
                 {
                     if(isOnline())
+                    {
                         requestData("http://cafeteriaappdemo.azurewebsites.net/api/Account/Login");
+                    }
+
                     else
                         Toast.makeText(getApplicationContext(), "Network is not available", Toast.LENGTH_LONG).show();
                 }
@@ -132,6 +146,16 @@ public class LoginActivity extends AppCompatActivity {
         //you can pass as many parameters as you want
         task.execute(p);
     }
+    // this method requests id of user
+    private void requestData2(String uri)
+    {
+        RequestPackage p2 = new RequestPackage();
+        p2.setMethod("GET");
+        p2.setUri(uri);
+        MyTask2 task2 = new MyTask2();
+
+        task2.execute(p2);
+    }
 
     protected boolean isOnline()
     {
@@ -164,7 +188,6 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(RequestPackage... params)
         {
             String content = HttpManager.getData(params[0]);
-
             return content;
         }
 
@@ -173,29 +196,65 @@ public class LoginActivity extends AppCompatActivity {
             if(result == null)
             {
                 Toast.makeText(getApplicationContext(), "The user name or password is incorrect.",Toast.LENGTH_SHORT).show();
+                tasks.clear();
+                if(tasks.size() == 0)
+                {
+                    pb.setVisibility(View.INVISIBLE);
+                }
             }
             else if(result.contains("access_token"))
             {
-                //loginResponseList = LoginResponseJSONParser.parseFeed("[" + result + "]");
-                Toast.makeText(getApplicationContext(), "Redirecting...",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent( getApplicationContext(),CafeteriaInterface.class);
-                startActivity(intent);
+                loginResponseList = LoginResponseJSONParser.parseFeed("[" + result + "]");
+                accessToken = loginResponseList.get(0).getToken_type() + " " + loginResponseList.get(0).getAccess_token();
+                requestData2("http://cafeteriaappdemo.azurewebsites.net/api/Account/userinfo");
             }
+        }
+    }
+
+    private class MyTask2 extends AsyncTask <RequestPackage, String, String>
+    {
+
+        protected void onPreExecute() {
+            HttpManager2.authorization = accessToken;
+            //HttpManager2.authorization = "bearer EJuWL-TMgOIxORwtIo7hXqjEGMMBaH3Lkg8Rpn_8Vbwe239XCNvFVWowQzOzVcOupi_j5dghKcpiHY3d9ARFnzuBxEWkfbaIOviMPIrcf8l-A4C8mGTXFe91wS1Hsd69Gmw9esGYabuUDRZVPwTDxeO-CEM2Vnz-emuz9hy86X4Jidh1ZB7puMca2HGjlsHqlCmn3jAUVyCy8AFNeXdI9I_Q_925sdNG0tUQjAEDOzna9_fzv4dOUmhu7QRPT9OTxCsm6FgMF2Gc7uQQekJ8iF6Qpc-9K810cx3yguI9ArfKqaZYUEq6JikqJj1wgsxhQ6_rX0rkNNegOGFyluyqYviP7_XOhE3ibFc0CErAN0EMPOZ1UR_XLa7Lu39oQjwLw-DPjNnZjW326TbUoBo-v0sGRA0Zw1XPW-VrWbN-W1dXaMGzDZAv_f3Fwj9A70MkZP_avnrnj8WFyEauH0sEKA1foPkNVzTIkPct6YDx6t0raE97Phyac96EqCoHngfP4QRPIB31cng0_zbQ3j8W3w";
+        }
+
+        protected String doInBackground(RequestPackage... params)
+        {
+            String content = HttpManager2.getData(params[0]);
+            return content;
+        }
+
+        protected void onPostExecute(String result)
+        {
+            userInfoList = UserInfoJSONParser.parseFeed("[" + result + "]");
+            id = userInfoList.get(0).getUserId();
+
+            saveID(id);
+
+           // MyApplication mApp = ((MyApplication)getApplicationContext());
+            //output.append(mApp.getId());
 
 
-            tasks.remove(this);
+            tasks.clear();
             if(tasks.size() == 0)
             {
                 pb.setVisibility(View.INVISIBLE);
             }
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values)
-        {
-            // updateDisplay(values[0]);
+            //Toast.makeText(getApplicationContext(), "Redirecting...",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent( getApplicationContext(),CafeteriaInterface.class);
+            startActivity(intent);
         }
     }
+
+    // saves user id throught all the application
+    //u have to log in so that this method executes
+    private void saveID(String id)
+    {
+        MyApplication mApp = ((MyApplication)getApplicationContext());
+        mApp.setId(id);
+    }
+
 
 }
 
