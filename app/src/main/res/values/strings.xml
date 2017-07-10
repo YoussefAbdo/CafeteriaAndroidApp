@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Cafeteria App</string>
-   <string name="sentence">Choose Your Menuitem</string>
+    <string name="sentence">Choose Your Menuitem</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
@@ -33,12 +33,13 @@
         <item> Favorites</item>
         <item>Menu Items</item>
     </string-array>
- <string name="total_price">Total Price: EGP %s</string>
- <!-- Text to display in the list when there are no earthquakes [CHAR LIMIT=NONE] -->
- <string name="no_orders">No orders found.</string>
- <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
- <string name="no_internet_connection">No internet connection.</string>
+    <string name="total_price">Total Price: EGP %s</string>
+    <!-- Text to display in the list when there are no earthquakes [CHAR LIMIT=NONE] -->
+    <string name="no_orders">No orders found.</string>
+    <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
+    <string name="no_internet_connection">No internet connection.</string>
 
- <dimen name="fab_margin">16dp</dimen>
+    <!--dimen name="fab_margin">16dp</dimen-->
+    <string name="title_activity_profile">ProfileActivity</string>
 
 </resources>
