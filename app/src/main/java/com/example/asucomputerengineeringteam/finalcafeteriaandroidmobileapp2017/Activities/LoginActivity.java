@@ -242,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
                 pb.setVisibility(View.INVISIBLE);
             }
             //Toast.makeText(getApplicationContext(), "Redirecting...",Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent( getApplicationContext(),CafeteriaInterface.class);
+            Intent intent = new Intent( getApplicationContext(),ProfileActivity.class);
             startActivity(intent);
         }
     }
