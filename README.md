@@ -1,0 +1,3 @@
+# CafeteriaAndroidApp
+
+Cafeteria Management System.
